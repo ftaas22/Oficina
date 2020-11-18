@@ -15,5 +15,5 @@ class Mecanico(especializacao: Especializacao, salario:String, horario: Horario 
   def getHorario(): Horario = {
     return horario;
   }
-
+// 8 slots por dia
 }

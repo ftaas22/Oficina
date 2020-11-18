@@ -34,5 +34,6 @@ object Teste{
 
   }
 
+//fazer classe que recebo lista dos objetos, ver mecanicos e criar os trabalhos e fazer uma lista de trabalhos
 
 }
