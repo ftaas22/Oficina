@@ -1,6 +1,7 @@
 import Especializacao.Especializacao
 
-class Mecanico(especializacao: Especializacao, salario:String, horario: Horario ) {
+class Mecanico(especializacao: Especializacao, salario:String ) {
+  //tirei o horario: Horario do construtor
 
   override def toString: String = super.toString
 
@@ -12,8 +13,8 @@ class Mecanico(especializacao: Especializacao, salario:String, horario: Horario 
     return salario;
   }
 
-  def getHorario(): Horario = {
-    return horario;
-  }
+  //def getHorario(): Horario = {
+    //return horario;
+  //}
 // 8 slots por dia
 }

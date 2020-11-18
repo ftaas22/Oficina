@@ -1,4 +1,5 @@
 import Avaria._
+import Especializacao.Especializacao
 
 import scala.io.Source
 import scala.util.control.Breaks.break
@@ -6,6 +7,7 @@ import scala.util.control.Breaks.break
 object Teste{
   def main(args: Array[String]) {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
+    var source2:Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
    // var list:Array[Carro]
 
     /*def find_Avaria( text:String):Avaria = {
@@ -30,7 +32,14 @@ object Teste{
       carlist::=car
     }
 
+    var mecList = List[Mecanico]()
+    for(i<-source2){
+      var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1))
+      mecList::=mecanico
+    }
+
     print(carlist)
+    print(mecList)
 
   }
 
