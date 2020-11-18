@@ -7,7 +7,7 @@ object Teste{
   def main(args: Array[String]) {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
    // var list:Array[Carro]
-    var str:String = "ESCAPE"
+    /*var str:String = "ESCAPE"
     def find_Avaria( text:String): Unit = {
       var a = Avaria.values.iterator
       for (z <- a) {
@@ -19,10 +19,6 @@ object Teste{
 
     }
 
-
-
-
-
     for(i<-source){
       //println(i.split(" ")(0))
       //println(i.split(" ")(1))
@@ -30,8 +26,11 @@ object Teste{
       var tra:Trabalho=new Trabalho(Avaria.BATERIA )
 
       //var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),)
-    }
+    }*/
 
+    var tra = new Trabalho(Avaria.ESCAPE)
+    tra.defineTrabalho()
+    print(tra.getEspecializacao())
 
   }
 
