@@ -1,11 +1,13 @@
 import Especializacao.Especializacao
 import Avaria.Avaria
 
-abstract class Trabalho(avaria: Avaria) {
+trait trab {
+  val preco: Double
+  val tempo: Double
+  val especializacao: Especializacao
+}
 
-  var preco:Double
-  var tempo:Double
-  var especializacao:Especializacao
+class Trabalho(avaria: Avaria) extends trab {
 
   def getAvaria(): Avaria = {
     return avaria
