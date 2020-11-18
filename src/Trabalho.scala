@@ -1,15 +1,17 @@
 import java.time.LocalDate
 import java.time.DayOfWeek
-import Avaria.Avaria
+import Avaria._
 import Especializacao._
 
 trait trab {
   var preco: Double
   var tempo: Double
   var especializacao: Especializacao
-  var dia: LocalDate = LocalDate.now()
-  var dayWeek: DayOfWeek = dia.getDayOfWeek
+ // var dia: LocalDate = LocalDate.now()
+  //var dayWeek: DayOfWeek = dia.getDayOfWeek
 }
+
+
 
 class Trabalho(avaria: Avaria) extends trab {
 
@@ -177,13 +179,13 @@ class Trabalho(avaria: Avaria) extends trab {
     }
   }
 
-  def getDia(): LocalDate = return dia
+ // def getDia(): LocalDate = return dia
 
-  def setDayWeek(d: LocalDate): Unit = {
+  /*def setDayWeek(d: LocalDate): Unit = {
     dayWeek = d.getDayOfWeek
-  }
+  }*/
 
-  def diadetrabalho(): Unit = {
+  /*def diadetrabalho(): Unit = {
     var i = 0
     var horasTrabalhadas = 0
     for( i <- entrada to saida ) {
@@ -191,10 +193,10 @@ class Trabalho(avaria: Avaria) extends trab {
       horasTrabalhadas += 1
       println(horasTrabalhadas)
     }
-  }
+  }*/
 
-  def trabalho(): Unit = {
-    printDia(dia)
+  /*def trabalho(): Unit = {
+    //printDia(dia)
     if(dayWeek == DayOfWeek.SATURDAY) {
     } else if(dayWeek == DayOfWeek.SUNDAY) {
     } else {
@@ -202,11 +204,11 @@ class Trabalho(avaria: Avaria) extends trab {
     }
     dia.plusDays(1)
     setDayWeek(dia)
-  }
+  }*/
 
   override var preco: Double = _
   override var tempo: Double = _
   override var especializacao: Especializacao = _
-  override var dia: LocalDate = _
-  override var dayWeek: DayOfWeek = _
+  //override var dia: LocalDate = _
+  //override var dayWeek: DayOfWeek = _
 }
