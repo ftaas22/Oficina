@@ -7,8 +7,8 @@ object Teste{
   def main(args: Array[String]) {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
    // var list:Array[Carro]
-    /*var str:String = "ESCAPE"
-    def find_Avaria( text:String): Unit = {
+
+    /*def find_Avaria( text:String):Avaria = {
       var a = Avaria.values.iterator
       for (z <- a) {
         if (z.toString.contains(text.toUpperCase)) {
@@ -17,20 +17,20 @@ object Teste{
         }
       }
 
-    }
+    }*/
 
+    var carlist= List[Carro]()
     for(i<-source){
       //println(i.split(" ")(0))
       //println(i.split(" ")(1))
       //println(i.split(" ")(2))
-      var tra:Trabalho=new Trabalho(Avaria.BATERIA )
+      //var tra:Trabalho=new Trabalho(Avaria.BATERIA )
+      //print(Avaria.withName("BATERIA"))
+      var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),new Trabalho (Avaria.withName(i.split(" ")(2))))
+      carlist::=car
+    }
 
-      //var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),)
-    }*/
-
-    var tra = new Trabalho(Avaria.ESCAPE)
-    tra.defineTrabalho()
-    print(tra.getEspecializacao())
+    print(carlist)
 
   }
 

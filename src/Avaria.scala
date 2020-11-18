@@ -7,3 +7,17 @@ object Avaria extends Enumeration {
 
 
 }
+/*import Avaria._
+class Avaria_cla(private var avaria: Avaria.Value) {
+  def find_Avaria(text: String): Avaria.Value = {
+    var a = Avaria.values.iterator
+    for (z <- a) {
+      if (z.toString.contains(text.toUpperCase)) {
+        print(z)
+        return z
+      }
+    }
+
+  }
+}*/
+
