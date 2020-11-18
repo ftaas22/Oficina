@@ -37,6 +37,13 @@ object Teste{
       var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1))
       mecList::=mecanico
     }
+    var horario = new Trabalho(Avaria.MOTOR)
+    horario.setDayWeek(horario.getDia())
+
+    val i = 0
+    for(i <- 1 to 3) {
+      horario.trabalho()
+    }
 
     print(carlist)
     print(mecList)
