@@ -7,7 +7,7 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
   var dia: LocalDate = LocalDate.now()
   var dayWeek: DayOfWeek = dia.getDayOfWeek
   val entrada = 9
-  val saida = 13
+  val saida = 16
   val totaldays = 5
 
   def getDia: LocalDate = dia
@@ -16,13 +16,16 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
     dayWeek = d.getDayOfWeek
   }
 
-  //def de um dia de trabalho
+  //def de um dia de trabalho //alterei para correr o arranjo dos carros por mecanico
   def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
     for(_ <- entrada to saida) {
       Thread.sleep(1000)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
+      for(mec <- listaMecanicos) {
+        mec.arranjar()
+      }
     }
   }
 
@@ -41,21 +44,22 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
   //fazer passar dias enquanto houver carros para reparar
   def passarDias(): Unit = {
     while(true) {
-      if(listaCarros.isEmpty){
+      /*if(listaCarros.isEmpty){
         return
-      }
+      }*/
       gestaoCarros()
       trabalho()
     }
   }
 
   def gestaoCarros(): Unit = {
-    for(i <-listaMecanicos) {
-      for (j <- listaCarros) {
-        if (i.getEspecializacao().equals(j.getTrabalho().especializacao) && i.getArranjarCarro() == null && j.getReparando() == false) {
-          i.setArranjarCarro(j)
-          j.setReparando(true)
-          println(i.getEspecializacao())
+    for(mec <-listaMecanicos) {
+      for (car <- listaCarros) {
+        if (mec.getEspecializacao().equals(car.getTrabalho().especializacao) /*&& mec.getArranjarCarro() == null*/ && car.getReparando() == false) {
+          //i.setArranjarCarro(j)
+          car.setReparando(true)
+          mec.addCarro(car)
+          println(mec.getEspecializacao())
         }
       }
     }
