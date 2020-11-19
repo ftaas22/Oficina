@@ -5,12 +5,12 @@ import scala.collection.convert.ImplicitConversions.`collection asJava`
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.control.Breaks.break
-
+//new commit
 object Teste{
   def main(args: Array[String]) {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2:Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
-    // var list:Array[Carro]
+     var lisl=0
 
     /*def find_Avaria( text:String):Avaria = {
       var a = Avaria.values.iterator
