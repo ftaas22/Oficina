@@ -16,6 +16,10 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
     return salario;
   }
 
+  def printMecanico(): Unit = {
+    println(especializacao + " " + salario)
+  }
+
   /*def getArranjarCarro(): Carro = {
     return carro
   }*/
@@ -30,10 +34,12 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
 
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
   def arranjar() {
-    arranjarCarro.head.reparar()
-    if(arranjarCarro.head.isPronto()) {
-      println(arranjarCarro.head.isPronto())
-      arranjarCarro = arranjarCarro.tail
+    if(!arranjarCarro.isEmpty) {
+      arranjarCarro.head.reparar()
+      if (arranjarCarro.head.isPronto()) {
+        println(arranjarCarro.head.isPronto())
+        arranjarCarro = arranjarCarro.tail
+      }
     }
   }
 }

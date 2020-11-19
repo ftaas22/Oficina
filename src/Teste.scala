@@ -32,13 +32,16 @@ object Teste{
       carlist+=car
     }
 
-    var listavazia = new ListBuffer[Carro]()
-
     //adicionar mecânicos a uma lista
     var meclist = List[Mecanico]()
     for(i<-source2){
+      var listavazia = new ListBuffer[Carro]()
       var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), listavazia)
       meclist::=mecanico
+    }
+
+    for(z<- meclist) {
+
     }
 
     //criar o sistema que faz correr os dias
