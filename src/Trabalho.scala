@@ -9,10 +9,16 @@ trait trab {
   var especializacao: Especializacao
 }
 
-class Trabalho(avaria: Avaria) extends trab {
+class Trabalho(var avaria: Avaria) extends trab {
+
+  var avar: Avaria = avaria
 
   def getAvaria(): Avaria = {
-    return avaria
+    return avar
+  }
+
+  def setAvaria(ava: Avaria) {
+    avar = ava
   }
 
   def getPreco(): Double = {

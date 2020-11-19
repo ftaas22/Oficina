@@ -20,6 +20,10 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
     println(especializacao + " " + salario)
   }
 
+  def getListaCar(): ListBuffer[Carro] = {
+    return arranjarCarro
+  }
+
   /*def getArranjarCarro(): Carro = {
     return carro
   }*/

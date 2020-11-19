@@ -1,9 +1,11 @@
 import java.time.{DayOfWeek, LocalDate}
 
+import Avaria.Avaria
+
 import scala.collection.mutable.ListBuffer
 import scala.util.control.Breaks.breakable
 
-class System(listaMecanicos: List[Mecanico], listaCarros: ListBuffer[Carro]){
+class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro]){
 
   var dia: LocalDate = LocalDate.now()
   var dayWeek: DayOfWeek = dia.getDayOfWeek
@@ -42,14 +44,32 @@ class System(listaMecanicos: List[Mecanico], listaCarros: ListBuffer[Carro]){
     setDayWeek(dia)
   }
 
+  def allMecanicoIsVazia(): Boolean = {
+    var isVazia: Boolean = false
+    for(mec <-listaMecanicos) {
+      if(mec.getListaCar().isEmpty)
+        isVazia = true
+    }
+    return isVazia
+  }
+
   //fazer passar dias enquanto houver carros para reparar
   def passarDias(): Unit = {
     while(true) {
-      if(!listaCarros.isEmpty){
-        gestaoCarros()
-      }
+      gestaoCarros()
+      /*if(!listaCarros.isEmpty){
+
+      }*/
       trabalho()
+      /*if(allMecanicoIsVazia()) {
+        return
+      }*/
     }
+  }
+
+  def gestaoObservacao(car: Carro): Unit = {
+    var ava = Avaria.randomAvaria()
+    car.getTrabalho().setAvaria(ava)
   }
 
   def gestaoCarros(): Unit = {
@@ -59,7 +79,12 @@ class System(listaMecanicos: List[Mecanico], listaCarros: ListBuffer[Carro]){
           //i.setArranjarCarro(j)
           car.setReparando(true)
           mec.addCarro(car)
+          listaCarros = listaCarros.tail
           //println(mec.getEspecializacao())
+        } else if(car.getTrabalho().avaria.equals(Avaria.OBSERVACAO)) {
+          //gestaoObservacao(car)
+          var ava = Avaria.randomAvaria()
+          car.getTrabalho().setAvaria(ava)
         }
       }
     }

@@ -40,10 +40,6 @@ object Teste{
       meclist::=mecanico
     }
 
-    for(z<- meclist) {
-
-    }
-
     //criar o sistema que faz correr os dias
     var system = new System(meclist, carlist)
 
