@@ -25,7 +25,9 @@ object Teste{
     //adicionar carros a uma lista
     var carlist= List[Carro]()
     for(i<-source){
-      var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),new Trabalho (Avaria.withName(i.split(" ")(2))), false)
+      var trabalho: Trabalho= new Trabalho(Avaria.withName(i.split(" ")(2)))
+      trabalho.defineTrabalho()
+      var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),trabalho, false)
       carlist::=car
     }
 

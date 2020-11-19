@@ -170,6 +170,11 @@ class Trabalho(avaria: Avaria) extends trab {
       setTempo(28)
       setEspecializacao(Especializacao.ESTOFADOR)
     }
+    else if(avaria.equals((Avaria.OBSERVACAO))){
+      setPreco(0)
+      setTempo(0.5)
+      setEspecializacao(Especializacao.OBSERVACAO)
+    }
   }
 
   override var preco: Double = _

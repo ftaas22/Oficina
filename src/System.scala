@@ -1,5 +1,7 @@
 import java.time.{DayOfWeek, LocalDate}
 
+import scala.util.control.Breaks.breakable
+
 class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
 
   var dia: LocalDate = LocalDate.now()
@@ -48,14 +50,18 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
   }
 
   def gestaoCarros(): Unit = {
-    for(i<-listaMecanicos){
-      for(j<-listaCarros){
-        if(j.getTrabalho().especializacao.equals(i.getEspecializacao()) && i.getArranjarCarro() == null){
+    for(i <-listaMecanicos) {
+      for (j <- listaCarros) {
+        if (i.getEspecializacao().equals(j.getTrabalho().especializacao) && i.getArranjarCarro() == null && j.getReparando() == false) {
           i.setArranjarCarro(j)
           j.setReparando(true)
-          println("1 trabalho")
+          println(i.getEspecializacao())
         }
       }
     }
+  }
+
+  def break(mecanico: Mecanico): Unit ={
+
   }
 }

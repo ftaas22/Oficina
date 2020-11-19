@@ -14,8 +14,12 @@ class Carro(modelo: String, ano: String,trabalho: Trabalho , aReparar: Boolean) 
     return trabalho
   }
 
+  def getReparando(): Boolean={
+    return reparando
+  }
+
   def setReparando(reparandoCarro: Boolean): Unit ={
-    reparando=reparandoCarro
+    this.reparando=reparandoCarro
   }
 
 }

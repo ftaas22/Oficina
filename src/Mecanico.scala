@@ -19,6 +19,6 @@ class Mecanico(especializacao: Especializacao, salario:String, arranjarCarro: Ca
   }
 
   def setArranjarCarro(carroNovo: Carro): Unit = {
-    carro = carroNovo
+    this.carro = carroNovo
   }
 }
