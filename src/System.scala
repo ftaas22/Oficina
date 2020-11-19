@@ -1,6 +1,8 @@
 import java.time.{DayOfWeek, LocalDate}
 
-class System(listaMecanicos: List[Mecanico]){
+import scala.util.control.Breaks.break
+
+class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
 
   var dia: LocalDate = LocalDate.now()
   var dayWeek: DayOfWeek = dia.getDayOfWeek
@@ -8,7 +10,7 @@ class System(listaMecanicos: List[Mecanico]){
   val saida = 13
   val totaldays = 5
 
-  def getDia(): LocalDate = return dia
+  def getDia: LocalDate = dia
 
   def setDayWeek(d: LocalDate): Unit = {
     dayWeek = d.getDayOfWeek
@@ -36,10 +38,13 @@ class System(listaMecanicos: List[Mecanico]){
     setDayWeek(dia)
   }
 
-  def passarDias(totaldays: Int): Unit = {
-    var i = 0
-    for (i <- 0 to totaldays) {
+  def passarDias(): Unit = {
+    while(true) {
+      if(listaCarros.isEmpty){
+        return
+      }
       trabalho()
     }
+
   }
 }

@@ -1,6 +1,7 @@
 import Avaria._
 import Especializacao.Especializacao
 
+import scala.collection.convert.ImplicitConversions.`collection asJava`
 import scala.io.Source
 import scala.util.control.Breaks.break
 
@@ -29,18 +30,19 @@ object Teste{
     }
 
     //adicionar mecânicos a uma lista
-    var mecList = List[Mecanico]()
+    var meclist = List[Mecanico]()
     for(i<-source2){
       var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1))
-      mecList::=mecanico
+      meclist::=mecanico
     }
 
-    //criar um horário para um trabalho
-    var system = new System(mecList)
-    system.passarDias(15)
+    //criar o sistema que faz correr os dias
+    var system = new System(meclist, carlist)
+
+    system.passarDias()
     //prints teste
     print(carlist)
-    print(mecList)
+    print(meclist)
 
   }
 }
