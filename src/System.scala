@@ -1,7 +1,5 @@
 import java.time.{DayOfWeek, LocalDate}
 
-import scala.util.control.Breaks.break
-
 class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
 
   var dia: LocalDate = LocalDate.now()
@@ -18,15 +16,15 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
 
   //def de um dia de trabalho
   def diadetrabalho(): Unit = {
-    var i = 0
     var horasTrabalhadas = 0
-    for( i <- entrada to saida ) {
+    for(_ <- entrada to saida) {
       Thread.sleep(1000)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
     }
   }
 
+  //só se trabalha em dias úteis
   def trabalho() {
     println(dia.toString)
     if (dayWeek == DayOfWeek.SATURDAY) {
@@ -38,6 +36,7 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
     setDayWeek(dia)
   }
 
+  //fazer passar dias enquanto houver carros para reparar
   def passarDias(): Unit = {
     while(true) {
       if(listaCarros.isEmpty){
@@ -45,6 +44,5 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
       }
       trabalho()
     }
-
   }
 }
