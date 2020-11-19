@@ -15,7 +15,7 @@ class Mecanico(especializacao: Especializacao, salario:String, arranjarCarro: Ca
   }
 
   def getArranjarCarro(): Carro = {
-    return arranjarCarro
+    return carro
   }
 
   def setArranjarCarro(carroNovo: Carro): Unit = {
