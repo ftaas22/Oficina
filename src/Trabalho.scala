@@ -9,8 +9,6 @@ trait trab {
   var especializacao: Especializacao
 }
 
-
-
 class Trabalho(avaria: Avaria) extends trab {
 
   def getAvaria(): Avaria = {

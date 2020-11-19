@@ -25,14 +25,14 @@ object Teste{
     //adicionar carros a uma lista
     var carlist= List[Carro]()
     for(i<-source){
-      var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),new Trabalho (Avaria.withName(i.split(" ")(2))))
+      var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),new Trabalho (Avaria.withName(i.split(" ")(2))), false)
       carlist::=car
     }
 
     //adicionar mecânicos a uma lista
     var meclist = List[Mecanico]()
     for(i<-source2){
-      var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1))
+      var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), null)
       meclist::=mecanico
     }
 

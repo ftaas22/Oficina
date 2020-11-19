@@ -42,7 +42,20 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
       if(listaCarros.isEmpty){
         return
       }
+      gestaoCarros()
       trabalho()
+    }
+  }
+
+  def gestaoCarros(): Unit = {
+    for(i<-listaMecanicos){
+      for(j<-listaCarros){
+        if(j.getTrabalho().especializacao.equals(i.getEspecializacao()) && i.getArranjarCarro() == null){
+          i.setArranjarCarro(j)
+          j.setReparando(true)
+          println("1 trabalho")
+        }
+      }
     }
   }
 }

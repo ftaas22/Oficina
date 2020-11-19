@@ -1,5 +1,6 @@
-class Carro(modelo: String, ano: String,trabalho: Trabalho ) {
+class Carro(modelo: String, ano: String,trabalho: Trabalho , aReparar: Boolean) {
 
+  var reparando: Boolean = false
 
   def getModel():String={
     return modelo
@@ -11,6 +12,10 @@ class Carro(modelo: String, ano: String,trabalho: Trabalho ) {
 
   def getTrabalho():Trabalho= {
     return trabalho
+  }
+
+  def setReparando(reparandoCarro: Boolean): Unit ={
+    reparando=reparandoCarro
   }
 
 }

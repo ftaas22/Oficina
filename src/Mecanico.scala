@@ -1,9 +1,10 @@
 import Especializacao.Especializacao
 
-class Mecanico(especializacao: Especializacao, salario:String ) {
-  //tirei o horario: Horario do construtor
+class Mecanico(especializacao: Especializacao, salario:String, arranjarCarro: Carro) {
 
   override def toString: String = super.toString
+
+  var carro: Carro = arranjarCarro
 
   def getEspecializacao():Especializacao = {
     return especializacao;
@@ -13,8 +14,11 @@ class Mecanico(especializacao: Especializacao, salario:String ) {
     return salario;
   }
 
-  //def getHorario(): Horario = {
-    //return horario;
-  //}
-// 8 slots por dia
+  def getArranjarCarro(): Carro = {
+    return arranjarCarro
+  }
+
+  def setArranjarCarro(carroNovo: Carro): Unit = {
+    carro = carroNovo
+  }
 }
