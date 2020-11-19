@@ -21,7 +21,7 @@ class System(listaMecanicos: List[Mecanico], listaCarros: ListBuffer[Carro]){
   def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
     for(_ <- entrada to saida) {
-      Thread.sleep(3000)
+      Thread.sleep(1000)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
       for(mec <- listaMecanicos) {
@@ -44,11 +44,10 @@ class System(listaMecanicos: List[Mecanico], listaCarros: ListBuffer[Carro]){
 
   //fazer passar dias enquanto houver carros para reparar
   def passarDias(): Unit = {
-    gestaoCarros()
     while(true) {
-      /*if(listaCarros.isEmpty){
-        return
-      }*/
+      if(!listaCarros.isEmpty){
+        gestaoCarros()
+      }
       trabalho()
     }
   }
