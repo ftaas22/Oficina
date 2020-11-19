@@ -7,16 +7,11 @@ trait trab {
   var preco: Double
   var tempo: Double
   var especializacao: Especializacao
-  var dia: LocalDate = LocalDate.now()
-  var dayWeek: DayOfWeek = dia.getDayOfWeek
 }
 
 
 
 class Trabalho(avaria: Avaria) extends trab {
-
-  val entrada = 9
-  val saida = 13
 
   def getAvaria(): Avaria = {
     return avaria
@@ -177,33 +172,6 @@ class Trabalho(avaria: Avaria) extends trab {
       setTempo(28)
       setEspecializacao(Especializacao.ESTOFADOR)
     }
-  }
-
-  def getDia(): LocalDate = return dia
-
-  def setDayWeek(d: LocalDate): Unit = {
-    dayWeek = d.getDayOfWeek
-  }
-
-  def diadetrabalho(): Unit = {
-    var i = 0
-    var horasTrabalhadas = 0
-    for( i <- entrada to saida ) {
-      Thread.sleep(1000)
-      horasTrabalhadas += 1
-      println(horasTrabalhadas)
-    }
-  }
-
-  def trabalho() {
-    println(dia.toString)
-    if (dayWeek == DayOfWeek.SATURDAY) { println("Dia de Descanso")
-    } else if (dayWeek == DayOfWeek.SUNDAY) {println("Dia de Descanso")
-    } else {
-      diadetrabalho()
-    }
-    dia = dia.plusDays(1)
-    setDayWeek(dia)
   }
 
   override var preco: Double = _

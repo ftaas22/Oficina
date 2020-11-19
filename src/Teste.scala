@@ -21,35 +21,26 @@ object Teste{
 
     }*/
 
+    //adicionar carros a uma lista
     var carlist= List[Carro]()
     for(i<-source){
-      //println(i.split(" ")(0))
-      //println(i.split(" ")(1))
-      //println(i.split(" ")(2))
-      //var tra:Trabalho=new Trabalho(Avaria.BATERIA )
-      //print(Avaria.withName("BATERIA"))
       var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),new Trabalho (Avaria.withName(i.split(" ")(2))))
       carlist::=car
     }
 
+    //adicionar mecânicos a uma lista
     var mecList = List[Mecanico]()
     for(i<-source2){
       var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1))
       mecList::=mecanico
     }
-    var horario = new Trabalho(Avaria.MOTOR)
-    horario.setDayWeek(horario.getDia())
 
-    val i = 0
-    for(i <- 1 to 3) {
-      horario.trabalho()
-    }
-
+    //criar um horário para um trabalho
+    var system = new System(mecList)
+    system.passarDias(15)
+    //prints teste
     print(carlist)
     print(mecList)
 
   }
-
-//fazer classe que recebo lista dos objetos, ver mecanicos e criar os trabalhos e fazer uma lista de trabalhos
-
 }
