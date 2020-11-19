@@ -36,7 +36,7 @@ class Carro(modelo: String, ano: String,trabalho: Trabalho , aReparar: Boolean) 
   def reparar() {
     temporestante -= 1
     if(temporestante <= 0) {
-      pronto == true
+      pronto = true
     }
     printCarro()
   }

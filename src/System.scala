@@ -1,8 +1,9 @@
 import java.time.{DayOfWeek, LocalDate}
 
+import scala.collection.mutable.ListBuffer
 import scala.util.control.Breaks.breakable
 
-class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
+class System(listaMecanicos: List[Mecanico], listaCarros: ListBuffer[Carro]){
 
   var dia: LocalDate = LocalDate.now()
   var dayWeek: DayOfWeek = dia.getDayOfWeek
@@ -20,7 +21,7 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
   def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
     for(_ <- entrada to saida) {
-      Thread.sleep(1000)
+      Thread.sleep(3000)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
       for(mec <- listaMecanicos) {
@@ -43,11 +44,11 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
 
   //fazer passar dias enquanto houver carros para reparar
   def passarDias(): Unit = {
+    gestaoCarros()
     while(true) {
       /*if(listaCarros.isEmpty){
         return
       }*/
-      gestaoCarros()
       trabalho()
     }
   }
@@ -59,7 +60,7 @@ class System(listaMecanicos: List[Mecanico], listaCarros: List[Carro]){
           //i.setArranjarCarro(j)
           car.setReparando(true)
           mec.addCarro(car)
-          println(mec.getEspecializacao())
+          //println(mec.getEspecializacao())
         }
       }
     }

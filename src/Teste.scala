@@ -2,6 +2,7 @@ import Avaria._
 import Especializacao.Especializacao
 
 import scala.collection.convert.ImplicitConversions.`collection asJava`
+import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.util.control.Breaks.break
 
@@ -9,7 +10,7 @@ object Teste{
   def main(args: Array[String]) {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2:Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
-   // var list:Array[Carro]
+    // var list:Array[Carro]
 
     /*def find_Avaria( text:String):Avaria = {
       var a = Avaria.values.iterator
@@ -23,18 +24,20 @@ object Teste{
     }*/
 
     //adicionar carros a uma lista
-    var carlist= List[Carro]()
+    var carlist= ListBuffer[Carro]()
     for(i<-source){
       var trabalho: Trabalho= new Trabalho(Avaria.withName(i.split(" ")(2)))
       trabalho.defineTrabalho()
       var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),trabalho, false)
-      carlist::=car
+      carlist+=car
     }
+
+    var listavazia = new ListBuffer[Carro]()
 
     //adicionar mecânicos a uma lista
     var meclist = List[Mecanico]()
     for(i<-source2){
-      var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), null)
+      var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), listavazia)
       meclist::=mecanico
     }
 

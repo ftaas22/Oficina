@@ -1,10 +1,12 @@
 import Especializacao.Especializacao
 
-class Mecanico(especializacao: Especializacao, salario:String, arranjarCarro: List[Carro]) {
+import scala.collection.mutable.ListBuffer
+
+class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro: ListBuffer[Carro]) {
 
   override def toString: String = super.toString
 
-  var carro: Carro = arranjarCarro
+  //var carro: List[Carro] = arranjarCarro
 
   def getEspecializacao():Especializacao = {
     return especializacao;
@@ -14,13 +16,13 @@ class Mecanico(especializacao: Especializacao, salario:String, arranjarCarro: Li
     return salario;
   }
 
-  def getArranjarCarro(): Carro = {
+  /*def getArranjarCarro(): Carro = {
     return carro
-  }
+  }*/
 
-  def setArranjarCarro(carroNovo: Carro): Unit = {
+  /*def setArranjarCarro(carroNovo: Carro): Unit = {
     this.carro = carroNovo
-  }
+  }*/
 
   def addCarro(car: Carro): Unit = {
     arranjarCarro += car
@@ -30,6 +32,7 @@ class Mecanico(especializacao: Especializacao, salario:String, arranjarCarro: Li
   def arranjar() {
     arranjarCarro.head.reparar()
     if(arranjarCarro.head.isPronto()) {
+      println(arranjarCarro.head.isPronto())
       arranjarCarro = arranjarCarro.tail
     }
   }
