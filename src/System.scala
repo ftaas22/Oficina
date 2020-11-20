@@ -27,11 +27,11 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
 
   def existeOutroMecDisponivel(): Boolean = {
     for(mec <- listaMecanicos) {
-      if(mec.getHorasParado() > 2) {
+      if(mec.getHorasParado() > 8) {
         return true
       }
     }
-    false
+    return false
   }
 
   def mecDisponivel(): Mecanico = {
@@ -107,15 +107,16 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
                 car.setReparando(false)
                 observou = true
                 trabalhou = true
-            } else if(mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() != null && existeOutroMecDisponivel())
-                car.getTrabalho().setEspecializacao(mecDisponivel().getEspecializacao())
-                car.getTrabalho().setTempo(car.getTrabalho().getTempo() * 2)
+            }
+
+            if(mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() != null && existeOutroMecDisponivel()) {
+              car.getTrabalho().setEspecializacao(mecDisponivel().getEspecializacao())
+              car.getTrabalho().setTempo(car.getTrabalho().getTempo() * 2)
+            }
             }
          }
-        if(mec.carro == null) {
-          mec.setHorasParado(mec.getHorasParado()+1)
-        }
        }
+      if(mec.carro == null) mec.setHorasParado(mec.getHorasParado()+1)
       /*if(mec.carro != null){
         println("A ARRANJAR" + " " + mec.carro.getModel() + " " + mec.carro.getTrabalho().getTempo())
       }*/
