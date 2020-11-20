@@ -2,11 +2,11 @@ import Especializacao.Especializacao
 
 import scala.collection.mutable.ListBuffer
 
-class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro: ListBuffer[Carro]) {
+class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro: Carro) {
 
   override def toString: String = super.toString
 
-  //var carro: List[Carro] = arranjarCarro
+  var carro: Carro = arranjarCarro
 
   def getEspecializacao():Especializacao = {
     return especializacao;
@@ -20,29 +20,29 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
     println(especializacao + " " + salario)
   }
 
-  def getListaCar(): ListBuffer[Carro] = {
-    return arranjarCarro
-  }
+  /*def getListaCar(): ListBuffer[Carro] = {
+    return arranjarCarros
+  }*/
 
-  /*def getArranjarCarro(): Carro = {
+  def getArranjarCarro(): Carro = {
     return carro
-  }*/
-
-  /*def setArranjarCarro(carroNovo: Carro): Unit = {
-    this.carro = carroNovo
-  }*/
-
-  def addCarro(car: Carro): Unit = {
-    arranjarCarro += car
   }
+
+  def setArranjarCarro(carroNovo: Carro): Unit = {
+    carro = carroNovo
+  }
+
+  /*def addCarro(car: Carro): Unit = {
+    arranjarCarro += car
+  }*/
 
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
   def arranjar() {
-    if(!arranjarCarro.isEmpty) {
-      arranjarCarro.head.reparar()
-      if (arranjarCarro.head.isPronto()) {
-        println(arranjarCarro.head.isPronto())
-        arranjarCarro = arranjarCarro.tail
+    if(carro != null) {
+      if (carro.isPronto()) {
+        setArranjarCarro(null)
+      }else{
+        carro.reparar()
       }
     }
   }

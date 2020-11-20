@@ -9,7 +9,7 @@ object Avaria extends Enumeration {
 
   def randomAvaria(): Avaria = {
     var rad = Avaria(scala.util.Random.nextInt(maxID))
-    if(rad.equals(OBSERVACAO))
+    if(rad.equals(OBSERVACAO) || rad.equals(PRONTO))
       rad = randomAvaria()
     return rad
   }

@@ -1,9 +1,6 @@
 import java.time.{DayOfWeek, LocalDate}
 
-import Avaria.Avaria
-
 import scala.collection.mutable.ListBuffer
-import scala.util.control.Breaks.breakable
 
 class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro]){
 
@@ -27,7 +24,7 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
       horasTrabalhadas += 1
       println(horasTrabalhadas)
       for(mec <- listaMecanicos) {
-        mec.arranjar()
+          mec.arranjar()
       }
     }
   }
@@ -44,53 +41,56 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
     setDayWeek(dia)
   }
 
-  def allMecanicoIsVazia(): Boolean = {
+  /*def allMecanicoIsVazia(): Boolean = {
     var isVazia: Boolean = false
     for(mec <-listaMecanicos) {
       if(mec.getListaCar().isEmpty)
         isVazia = true
     }
-    return isVazia
-  }
+    isVazia
+  }*/
 
   //fazer passar dias enquanto houver carros para reparar
   def passarDias(): Unit = {
     while(true) {
+      for(car <- listaCarros){
+        if(!car.isPronto()) {
+          //println(car.getModel() + " " + car.isPronto() + " " + car.getTrabalho().getTempo())
+        }
+      }
       gestaoCarros()
-      /*if(!listaCarros.isEmpty){
-
-      }*/
       trabalho()
-      /*if(allMecanicoIsVazia()) {
-        return
-      }*/
     }
-  }
-
-  def gestaoObservacao(car: Carro): Unit = {
-    var ava = Avaria.randomAvaria()
-    car.getTrabalho().setAvaria(ava)
   }
 
   def gestaoCarros(): Unit = {
     for(mec <-listaMecanicos) {
+      var trabalhou = false
+      var observou = false
+      var arranjou = false
+      var ava = Avaria.randomAvaria()
       for (car <- listaCarros) {
-        if (mec.getEspecializacao().equals(car.getTrabalho().especializacao) /*&& mec.getArranjarCarro() == null*/ && car.getReparando() == false) {
-          //i.setArranjarCarro(j)
-          car.setReparando(true)
-          mec.addCarro(car)
-          listaCarros = listaCarros.tail
-          //println(mec.getEspecializacao())
-        } else if(car.getTrabalho().avaria.equals(Avaria.OBSERVACAO)) {
-          //gestaoObservacao(car)
-          var ava = Avaria.randomAvaria()
-          car.getTrabalho().setAvaria(ava)
+        if(!trabalhou) {
+          if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() == null) {
+            car.setReparando(true)
+            mec.setArranjarCarro(car)
+            arranjou = true
+            trabalhou = true
+          } else {
+            if (car.getTrabalho().getAvaria.equals(Avaria.OBSERVACAO) && !observou) {
+              car.getTrabalho().setAvaria(ava)
+              car.getTrabalho().defineTrabalho()
+              car.setReparando(false)
+              observou = true
+              trabalhou = true
+            }
+          }
         }
+
+      }
+      if(mec.carro != null){
+        println("A ARRANJAR" + " " + mec.carro.getModel() + " " + mec.carro.getTrabalho().getTempo())
       }
     }
-  }
-
-  def break(mecanico: Mecanico): Unit ={
-
   }
 }

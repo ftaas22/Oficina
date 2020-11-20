@@ -33,11 +33,12 @@ class Carro(modelo: String, ano: String,trabalho: Trabalho , aReparar: Boolean) 
 
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário
   def reparar() {
-    trabalho.setTempo(trabalho.getTempo()-1)
     if(trabalho.getTempo() <= 0) {
       pronto = true
+    }else{
+      trabalho.setTempo(trabalho.getTempo()-1)
     }
-    printCarro()
+
   }
 
 }

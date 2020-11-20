@@ -36,7 +36,7 @@ object Teste{
     var meclist = List[Mecanico]()
     for(i<-source2){
       var listavazia = new ListBuffer[Carro]()
-      var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), listavazia)
+      var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), null)
       meclist::=mecanico
     }
 
