@@ -1,19 +1,17 @@
 import Especializacao.Especializacao
 
-import scala.collection.mutable.ListBuffer
-
 class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro: Carro) {
 
   override def toString: String = super.toString
 
   var carro: Carro = arranjarCarro
 
-  def getEspecializacao():Especializacao = {
-    return especializacao;
+  def getEspecializacao:Especializacao = {
+    especializacao
   }
 
-  def getSalario(): String = {
-    return salario;
+  def getSalario: String = {
+    salario
   }
 
   def printMecanico(): Unit = {
@@ -24,8 +22,8 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
     return arranjarCarros
   }*/
 
-  def getArranjarCarro(): Carro = {
-    return carro
+  def getArranjarCarro: Carro = {
+    carro
   }
 
   def setArranjarCarro(carroNovo: Carro): Unit = {
