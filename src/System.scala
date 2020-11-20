@@ -16,6 +16,34 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
     dayWeek = d.getDayOfWeek
   }
 
+  def allMecanicoIsVazia(): Boolean = {
+    var isVazia: Boolean = true
+    for(mec <-listaMecanicos) {
+      if(mec.getArranjarCarro() == null)
+        isVazia = false
+    }
+    isVazia
+  }
+
+  def existeOutroMecDisponivel(): Boolean = {
+    for(mec <- listaMecanicos) {
+      if(mec.getHorasParado() > 2) {
+        return true
+      }
+    }
+    false
+  }
+
+  def mecDisponivel(): Mecanico = {
+    var mecanicotemp: Mecanico = null
+    for(mec <- listaMecanicos) {
+      if(mec.getHorasParado() > 8) {
+        mecanicotemp = mec
+      }
+    }
+    return mecanicotemp
+  }
+
   //def de um dia de trabalho //alterei para correr o arranjo dos carros por mecanico
   def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
@@ -24,7 +52,10 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
       horasTrabalhadas += 1
       println(horasTrabalhadas)
       for(mec <- listaMecanicos) {
-          mec.arranjar()
+        if(mec.carro == null || mec.carro.isPronto()) {
+          gestaoCarros()
+        }
+        mec.arranjar()
       }
     }
   }
@@ -41,56 +72,54 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
     setDayWeek(dia)
   }
 
-  /*def allMecanicoIsVazia(): Boolean = {
-    var isVazia: Boolean = false
-    for(mec <-listaMecanicos) {
-      if(mec.getListaCar().isEmpty)
-        isVazia = true
-    }
-    isVazia
-  }*/
-
   //fazer passar dias enquanto houver carros para reparar
   def passarDias(): Unit = {
     while(true) {
-      for(car <- listaCarros){
+      /*for(car <- listaCarros){
         if(!car.isPronto()) {
           //println(car.getModel() + " " + car.isPronto() + " " + car.getTrabalho().getTempo())
         }
-      }
-      gestaoCarros()
+      }*/
+      //gestaoCarros()
       trabalho()
+      //if(allMecanicoIsVazia() && listaCarros.isEmpty) return
     }
   }
 
   def gestaoCarros(): Unit = {
     for(mec <-listaMecanicos) {
-      var trabalhou = false
-      var observou = false
-      var arranjou = false
-      var ava = Avaria.randomAvaria()
-      for (car <- listaCarros) {
-        if(!trabalhou) {
-          if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() == null) {
-            car.setReparando(true)
-            mec.setArranjarCarro(car)
-            arranjou = true
-            trabalhou = true
-          } else {
-            if (car.getTrabalho().getAvaria.equals(Avaria.OBSERVACAO) && !observou) {
-              car.getTrabalho().setAvaria(ava)
-              car.getTrabalho().defineTrabalho()
-              car.setReparando(false)
-              observou = true
+      if(mec.carro == null) {
+        var trabalhou = false
+        var observou = false
+        var arranjou = false
+        var ava = Avaria.randomAvaria()
+        for (car <- listaCarros) {
+          if (!trabalhou) {
+            if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() == null) {
+              car.setReparando(true)
+              mec.setArranjarCarro(car)
+              arranjou = true
               trabalhou = true
+              mec.setHorasParado(0)
+            } else if (car.getTrabalho().getAvaria().equals(Avaria.OBSERVACAO) && !observou) {
+                car.getTrabalho().setAvaria(ava)
+                car.getTrabalho().defineTrabalho()
+                car.setReparando(false)
+                observou = true
+                trabalhou = true
+            } else if(mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() != null && existeOutroMecDisponivel())
+                car.getTrabalho().setEspecializacao(mecDisponivel().getEspecializacao())
+                car.getTrabalho().setTempo(car.getTrabalho().getTempo() * 2)
             }
-          }
+         }
+        if(mec.carro == null) {
+          mec.setHorasParado(mec.getHorasParado()+1)
         }
-
-      }
-      if(mec.carro != null){
+       }
+      /*if(mec.carro != null){
         println("A ARRANJAR" + " " + mec.carro.getModel() + " " + mec.carro.getTrabalho().getTempo())
-      }
+      }*/
     }
   }
+
 }

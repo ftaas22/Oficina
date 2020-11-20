@@ -28,7 +28,11 @@ class Carro(modelo: String, ano: String,trabalho: Trabalho , aReparar: Boolean) 
   }
 
   def printCarro(): Unit = {
-    println(modelo + " " + ano + " " + trabalho.getAvaria().toString + " " + trabalho.getTempo())
+    if(this.isPronto()) {
+      println("PRONTO: " + modelo + " " + ano + " " + trabalho.getAvaria().toString + " " + trabalho.getTempo())
+    } else {
+      println("A ARRANJAR " + modelo + " " + ano + " " + trabalho.getAvaria().toString + " " + trabalho.getTempo())
+    }
   }
 
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário

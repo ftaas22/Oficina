@@ -5,8 +5,9 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
   override def toString: String = super.toString
 
   var carro: Carro = arranjarCarro
+  var horasParado: Int = 0
 
-  def getEspecializacao:Especializacao = {
+  def getEspecializacao():Especializacao = {
     especializacao
   }
 
@@ -22,12 +23,20 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
     return arranjarCarros
   }*/
 
-  def getArranjarCarro: Carro = {
+  def getArranjarCarro(): Carro = {
     carro
   }
 
   def setArranjarCarro(carroNovo: Carro): Unit = {
     carro = carroNovo
+  }
+
+  def getHorasParado(): Int = {
+    return this.horasParado
+  }
+
+  def setHorasParado(i: Int): Unit = {
+    this.horasParado = i
   }
 
   /*def addCarro(car: Carro): Unit = {
@@ -37,6 +46,8 @@ class Mecanico(especializacao: Especializacao, salario:String, var arranjarCarro
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
   def arranjar() {
     if(carro != null) {
+      println(especializacao)
+      carro.printCarro()
       if (carro.isPronto()) {
         setArranjarCarro(null)
       }else{
