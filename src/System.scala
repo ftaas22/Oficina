@@ -3,7 +3,11 @@ import java.time.{DayOfWeek, LocalDate}
 import scala.collection.mutable.ListBuffer
 
 class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro]){
-
+  //meter os que precisão de obsdervacao para ultimo
+  //observaºão precisa de esperar meia hora so depois gerar um random
+  //mec disponivel muito tempo no if
+  //eficiencia do horario, dar prioridade
+  //
   var dia: LocalDate = LocalDate.now()
   var dayWeek: DayOfWeek = dia.getDayOfWeek
   val entrada = 9
@@ -48,7 +52,7 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
   def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
     for(_ <- entrada to saida) {
-      Thread.sleep(1000)
+      Thread.sleep(500)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
       for(mec <- listaMecanicos) {
@@ -89,6 +93,8 @@ class System(listaMecanicos: List[Mecanico], var listaCarros: ListBuffer[Carro])
   def gestaoCarros(): Unit = {
     for(mec <-listaMecanicos) {
       if(mec.carro == null) {
+
+
         var trabalhou = false
         var observou = false
         var arranjou = false

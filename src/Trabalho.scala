@@ -6,7 +6,7 @@ import Especializacao._
 trait trab {
   var preco: Double
   var tempo: Double
-  var especializacao: Especializacao
+  var  especializacao: Especializacao
 }
 
 class Trabalho(var avaria: Avaria) extends trab {
