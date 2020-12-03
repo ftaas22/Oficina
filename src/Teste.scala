@@ -10,7 +10,7 @@ object Teste{
   def main(args: Array[String]) {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2:Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
-     var lisl=0
+    var lisl=0
 
     /*def find_Avaria( text:String):Avaria = {
       var a = Avaria.values.iterator
@@ -31,22 +31,24 @@ object Teste{
       var car: Carro = new Carro(i.split(" ")(0),i.split(" ")(1),trabalho, false)
       carlist+=car
     }
-
+     print(carlist)
     //adicionar mecânicos a uma lista
-    var meclist = List[Mecanico]()
+    var meclist = ListBuffer[Mecanico]()
     for(i<-source2){
       var listavazia = new ListBuffer[Carro]()
       var mecanico: Mecanico = new Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), null)
-      meclist::=mecanico
+      meclist+=mecanico
     }
+
+
 
     //criar o sistema que faz correr os dias
     var system = new System(meclist, carlist)
 
     system.passarDias()
     //prints teste
-    print(carlist)
-    print(meclist)
+    //print(carlist)
+    //print(meclist)
 
   }
 }
