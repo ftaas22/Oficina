@@ -3,7 +3,6 @@ import java.time.{DayOfWeek, LocalDate}
 import scala.collection.mutable.ListBuffer
 
 class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[Carro]){
-  //meter os que precisão de obsdervacao para ultimo
   //observaºão precisa de esperar meia hora so depois gerar um random
   //mec disponivel muito tempo no if
   //eficiencia do horario, dar prioridade
@@ -85,64 +84,66 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
       Thread.sleep(500)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
-      for(mec <- listaMecanicos) {
-        if(mec.carro == null || mec.carro.isPronto()) {
 
-          gestaoCarros(mec)
-        }
-      }
       for(mec <- listaMecanicos)
         mec.arranjar()
-    }
+
+      for(mec <- listaMecanicos)
+        if(mec.carro == null || mec.carro.isPronto())
+          gestaoCarros(mec)
   }
 
 
   def gestaoCarros(mec: Mecanico): Unit = {
     //for(mec <-listaMecanicos) {
-      //if(mec.carro == null) {
+    //if(mec.carro == null) {
 
 
-        var trabalhou = false
-        var observou = false
-        var arranjou = false
+    var trabalhou = false
+    var observou = false
+    var arranjou = false
 
-        for (car <- listaCarros) {
+    for (car <- listaCarros) {
 
-          if (!trabalhou) {
-            if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.carro == null) {
-              car.setReparando(true)
-              mec.setArranjarCarro(car)
-              println(mec.getEspecializacao() + "  " + car + "foi atribuido")
-              arranjou = true
-              trabalhou = true
-              mec.setHorasParado(0)
-            }
-          }
+      if (!trabalhou) {
+        if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.carro == null) {
+          car.setReparando(true)
+          mec.setArranjarCarro(car)
+          println(mec.getEspecializacao() + "  " + car + "foi atribuido")
+          arranjou = true
+          trabalhou = true
+          mec.setHorasParado(0)
         }
-        if(!trabalhou)
-            for (car <- listaCarros) {
-            var ava = Avaria.randomAvaria()
-            if (car.getTrabalho().getAvaria().equals(Avaria.OBSERVACAO) && !observou) {
-                car.getTrabalho().setAvaria(ava)
-                car.getTrabalho().defineTrabalho()
-                car.setReparando(false)
-                println("Gerou avaria")
-                observou = true
-                trabalhou = true
-            }
-            else if(mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() != null && existeOutroMecDisponivel()) {
-              car.getTrabalho().setEspecializacao(mecDisponivel().getEspecializacao())
-              car.getTrabalho().setTempo(car.getTrabalho().getTempo() * 2)
-              println("Trabalho nao especializado")
-            }
+      }
+    }
+    if (!trabalhou) {
+      for (car <- listaCarros) {
+        var ava = Avaria.randomAvaria()
+        if (car.getTrabalho().getAvaria().equals(Avaria.OBSERVACAO) && !observou) {
+          car.getTrabalho().setAvaria(ava)
+          car.getTrabalho().defineTrabalho()
+          car.setReparando(false)
+          println("Gerou avaria")
+          observou = true
+          trabalhou = true
+        }
+      }
 
-        // }
-       }
+
+      for (car <- listaCarros)
+        if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() != null && existeOutroMecDisponivel()) {
+          car.getTrabalho().setEspecializacao(mecDisponivel().getEspecializacao())
+          car.getTrabalho().setTempo(car.getTrabalho().getTempo() * 2)
+          println("Trabalho nao especializado")
+        }
+
+    }
+  }
       //if(mec.carro == null) mec.setHorasParado(mec.getHorasParado()+1)
       /*if(mec.carro != null){
         println("A ARRANJAR" + " " + mec.carro.getModel() + " " + mec.carro.getTrabalho().getTempo())
       }*/
     //}
-  }
+
 
 }
