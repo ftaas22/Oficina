@@ -85,12 +85,13 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
       horasTrabalhadas += 1
       println(horasTrabalhadas)
 
-      for(mec <- listaMecanicos)
+      for (mec <- listaMecanicos)
         mec.arranjar()
 
-      for(mec <- listaMecanicos)
-        if(mec.carro == null || mec.carro.isPronto())
+      for (mec <- listaMecanicos)
+        if (mec.carro == null || mec.carro.isPronto())
           gestaoCarros(mec)
+    }
   }
 
 
