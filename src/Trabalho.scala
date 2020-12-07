@@ -3,50 +3,21 @@ import java.time.DayOfWeek
 import Avaria._
 import Especializacao._
 
-trait trab {
-  var preco: Double
-  var tempo: Double
-  var  especializacao: Especializacao
+
+case class Trabalho(avaria: Avaria){
+
+  def defineTrabalho(): _ = Avaria  match{
+  case avaria == Avaria.BATERIA => val preco=100 val tempo= 2 val especializacao=Especializacao.ENGELETRICO
 }
 
-class Trabalho(var avaria: Avaria) extends trab {
+  /*val preco: Double
+  val tempo: Double
+  val especializacao: Especializacao
 
-  var avar: Avaria = avaria
 
-  def getAvaria(): Avaria = {
-    return avar
-  }
 
-  def setAvaria(ava: Avaria) {
-    avar = ava
-  }
-
-  def getPreco(): Double = {
-    return preco
-  }
-
-  def setPreco(p:Double) {
-    preco = p
-  }
-
-  def getTempo(): Double = {
-    return tempo
-  }
-
-  def setTempo(t:Double) {
-    tempo = t
-  }
-
-  def getEspecializacao(): Especializacao = {
-    return especializacao;
-  }
-
-  def setEspecializacao(e:Especializacao) {
-    especializacao = e
-  }
-
-  def defineTrabalho() {
-    if(avar.equals(Avaria.BATERIA)) {
+   {
+    if(avaria.equals(Avaria.BATERIA)) {
       setPreco(100)
       setTempo(2)
       setEspecializacao(Especializacao.ENGELETRICO)
@@ -182,8 +153,9 @@ class Trabalho(var avaria: Avaria) extends trab {
       setEspecializacao(Especializacao.OBSERVACAO)
     }
   }
+  */
+}
 
-  override var preco: Double = _
-  override var tempo: Double = _
-  override var especializacao: Especializacao = _
+object Trabalho{
+    apply()
 }

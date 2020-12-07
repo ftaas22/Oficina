@@ -13,6 +13,8 @@ object Teste{
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2:Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
 
+
+
     //adicionar carros a uma lista
     download_Cars(source)
     println(carlist)
@@ -22,7 +24,7 @@ object Teste{
 
 
     //criar o sistema que faz correr os dias
-    var system = new System(meclist, carlist)
+    var system = new System()
     system.passarDias()
 
 

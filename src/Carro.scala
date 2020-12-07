@@ -1,48 +1,35 @@
-class Carro(modelo: String, ano: String,trabalho: Trabalho , aReparar: Boolean) {
-
+case class Carro(
+  val modelo: String,
+  val ano: String,
+  val trabalho: Trabalho,
+  val aReparar: Boolean){
   var reparando: Boolean = false
   var pronto: Boolean = false
 
-  def getModel():String={
-    return modelo
-  }
+}
 
-  def getAno():String= {
-    return ano
-  }
+object Carro{
 
-  def getTrabalho():Trabalho= {
-    return trabalho
-  }
+  def apply(modelo: String, ano: String, trabalho: Trabalho, aReparar: Boolean): Carro = new Carro(modelo, ano, trabalho, aReparar)
 
-  def getReparando(): Boolean={
-    return reparando
-  }
 
-  def setReparando(reparandoCarro: Boolean): Unit ={
-    this.reparando=reparandoCarro
-  }
-
-  def isPronto(): Boolean = {
-    return pronto
-  }
-
-  def printCarro(): Unit = {
-    if(this.isPronto()) {
-      println("PRONTO: " + modelo + " " + ano + " " + trabalho.getAvaria().toString + " " + trabalho.getTempo())
-    } else {
-      println("A ARRANJAR " + modelo + " " + ano + " " + trabalho.getAvaria().toString + " " + trabalho.getTempo())
-    }
-  }
 
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário
-  def reparar() {
-    if(trabalho.getTempo() <= 0) {
-      pronto = true
+  def reparar(x: Carro) {
+    if(x.trabalho.getTempo() <= 0) {
+      x.pronto = true
     }else{
-      trabalho.setTempo(trabalho.getTempo()-1)
+      x.trabalho.setTempo(x.trabalho.getTempo()-1)
     }
-
   }
+
+  def printCarro(x: Carro): Unit = {
+    if(true) {
+      println("PRONTO: " + x.modelo + " " + x.ano + " " + x.trabalho.getAvaria().toString + " " + x.trabalho.getTempo())
+    } else {
+      println("A ARRANJAR " + x.modelo + " " + x.ano + " " + x.trabalho.getAvaria().toString + " " + x.trabalho.getTempo())
+    }
+  }
+
 
 }

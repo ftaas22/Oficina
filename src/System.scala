@@ -2,7 +2,7 @@ import java.time.{DayOfWeek, LocalDate}
 
 import scala.collection.mutable.ListBuffer
 
-class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[Carro]){
+case class System(){
   //observaºão precisa de esperar meia hora so depois gerar um random
   //mec disponivel muito tempo no if
   //eficiencia do horario, dar prioridade
@@ -21,7 +21,7 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
 
   def allMecanicoIsVazia(): Boolean = {
     var isVazia: Boolean = true
-    for(mec <-listaMecanicos) {
+    for(mec <-Utils.meclist) {
       if(mec.getArranjarCarro() == null)
         isVazia = false
     }
@@ -29,7 +29,7 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
   }
 
   def existeOutroMecDisponivel(): Boolean = {
-    for(mec <- listaMecanicos) {
+    for(mec <- Utils.meclist) {
       if(mec.getHorasParado() > 8) {
         return true
       }
@@ -39,7 +39,7 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
 
   def mecDisponivel(): Mecanico = {
     var mecanicotemp: Mecanico = null
-    for(mec <- listaMecanicos) {
+    for(mec <- Utils.meclist) {
       if(mec.getHorasParado() > 8) {
         mecanicotemp = mec
       }
@@ -85,10 +85,10 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
       horasTrabalhadas += 1
       println(horasTrabalhadas)
 
-      for (mec <- listaMecanicos)
+      for (mec <- Utils.meclist)
         mec.arranjar()
 
-      for (mec <- listaMecanicos)
+      for (mec <- Utils.meclist)
         if (mec.carro == null || mec.carro.isPronto())
           gestaoCarros(mec)
     }
@@ -104,7 +104,7 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
     var observou = false
     var arranjou = false
 
-    for (car <- listaCarros) {
+    for (car <- Utils.meclist) {
 
       if (!trabalhou) {
         if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.carro == null) {
@@ -119,7 +119,7 @@ class System(listaMecanicos: ListBuffer[Mecanico], var listaCarros: ListBuffer[C
     }
     if (!trabalhou) {
       for (car <- listaCarros) {
-        var ava = Avaria.randomAvaria()
+        var ava = Utils.randomAvaria()
         if (car.getTrabalho().getAvaria().equals(Avaria.OBSERVACAO) && !observou) {
           car.getTrabalho().setAvaria(ava)
           car.getTrabalho().defineTrabalho()
