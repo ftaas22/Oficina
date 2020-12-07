@@ -1,4 +1,4 @@
-import Avaria._
+import TipoAvaria._
 import Especializacao.Especializacao
 import Utils._
 import javafx.stage.Stage

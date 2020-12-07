@@ -1,14 +1,17 @@
 import java.time.LocalDate
 import java.time.DayOfWeek
 
-import Avaria._
+import TipoAvaria._
 import Especializacao._
 
 import scala.Console.println
 
 
-case class Trabalho(avaria: Avaria){
-  //devolver uma lista com posicoes fixas
+case class Trabalho(avaria: Avaria,
+                    preco: Double,
+                    tempo: Double,
+                    especializacao: Especializacao ){
+
 
 
 
@@ -155,20 +158,6 @@ case class Trabalho(avaria: Avaria){
 
 object Trabalho{
 
-  def apply(avaria: Avaria): Trabalho = new Trabalho(avaria)
-
-  //var preco: Double = null
-  //var tempo: Double = null
-  //var especializacao: Especializacao = null
-
-  def defineTrabalho(x:Trabalho): List[Any] ={
-
-    x.avaria match{
-    case Avaria.BATERIA => println("100, 2, Especializacao.ENGELETRICO") return List(100, 2, Especializacao.ENGELETRICO )
-   // case Avaria.FUSIVEIS =>
-    case _ => return List("ERRO")
-    }
-  }
 
 
 }

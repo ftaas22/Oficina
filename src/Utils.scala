@@ -1,4 +1,6 @@
-import Avaria._
+import java.io.{File, PrintWriter}
+
+import TipoAvaria._
 import Trabalho._
 
 import scala.collection.mutable.ListBuffer
@@ -14,7 +16,7 @@ object Utils {
   def download_Cars(source:Iterator[String]): Unit ={
    if(source.hasNext){
         val i = source.next()
-        val trabalho: Trabalho= Trabalho(Avaria.withName(i.split(" ")(2)))
+        val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
         defineTrabalho(trabalho)
 
         val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, false)
@@ -35,11 +37,20 @@ object Utils {
     }
   }
 
-  def randomAvaria(): Avaria = {
-     val rad = Avaria(scala.util.Random.nextInt(maxID))
+  def randomAvaria(): TipoAvaria = {
+     val rad = TipoAvaria(scala.util.Random.nextInt(maxID))
     return rad
   }
 
+
+  def carListToFile(): Unit = {
+    val writer = new PrintWriter(new File("src\carros2.txt"))
+    carlist.foreach{
+      e => writer.write(e.modelo + " " + e.ano + " " +e.trabalho.avaria)
+        writer.println()
+    }
+    writer.close()
+  }
 
   def main(args: Array[String]): Unit = {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()

@@ -1,11 +1,174 @@
+import java.time.LocalDate
+import java.time.DayOfWeek
+
+import TipoAvaria._
+import Especializacao._
+
+import scala.Console.println
 
 
-object Avaria extends Enumeration {
+case class Avaria(Tipo_avaria: TipoAvaria){
+  //devolver uma lista com posicoes fixas
 
-  type Avaria = Value
-  val BATERIA, FUSIVEIS, VELAS, ALTERNADOR, MOTORES_ELETRICOS, IGNICAO, ALMOGADELAS, ALINHAMENTO_CHASSI, LAVAR, SUSPENSAO, PINTAR_PAINEL, PINTAR_EXTERIOR, PINTAR_INTEIOR, MOTOR, ARCONDICIONADO, TRANSMISSAO, DIRECAO, RODA, RADIADOR, ESCAPE, ESTOFOSFRENTE, ESTOFOSTRAS, ESTOFOSPORTA, ESTOFOSBAGAGEM, TROCA_DE_VIDRO, CARPETES, OBSERVACAO, PRONTO = Value
 
-  final def maxID: Int = 26
 
+  /*
+     {
+      if(avaria.equals(Avaria.BATERIA)) {
+        setPreco(100)
+        setTempo(2)
+        setEspecializacao(Especializacao.ENGELETRICO)
+      }
+      else if(avar.equals(Avaria.FUSIVEIS)) {
+        setPreco(90)
+        setTempo(1)
+        setEspecializacao(Especializacao.ENGELETRICO)
+      }
+      else if(avar.equals(Avaria.VELAS)) {
+        setPreco(5)
+        setTempo(0.5)
+        setEspecializacao(Especializacao.ENGELETRICO)
+      }
+      else if(avar.equals(Avaria.ALTERNADOR)) {
+        setPreco(75)
+        setTempo(2)
+        setEspecializacao(Especializacao.ENGELETRICO)
+      }
+      else if(avar.equals(Avaria.MOTORES_ELETRICOS)) {
+        setPreco(30)
+        setTempo(3)
+        setEspecializacao(Especializacao.ENGELETRICO)
+      }
+      else if(avar.equals(Avaria.IGNICAO)) {
+        setPreco(20)
+        setTempo(3)
+        setEspecializacao(Especializacao.ENGELETRICO)
+      }
+      else if(avar.equals(Avaria.ALMOGADELAS)) {
+        setPreco(50)
+        setTempo(4)
+        setEspecializacao(Especializacao.BATECHAPAS)
+      }
+      else if(avar.equals(Avaria.ALINHAMENTO_CHASSI)) {
+        setPreco(75)
+        setTempo(6)
+        setEspecializacao(Especializacao.BATECHAPAS)
+      }
+      else if(avar.equals(Avaria.LAVAR)) {
+        setPreco(5)
+        setTempo(0.25)
+        setEspecializacao(Especializacao.BATECHAPAS)
+      }
+      else if(avar.equals(Avaria.SUSPENSAO)) {
+        setPreco(50)
+        setTempo(8)
+        setEspecializacao(Especializacao.BATECHAPAS)
+      }
+      else if(avar.equals(Avaria.TROCA_DE_VIDRO)) {
+        setPreco(50)
+        setTempo(2)
+        setEspecializacao(Especializacao.BATECHAPAS)
+      }
+      else if(avar.equals(Avaria.PINTAR_PAINEL)) {
+        setPreco(100)
+        setTempo(1)
+        setEspecializacao(Especializacao.PINTOR)
+      }
+      else if(avar.equals(Avaria.PINTAR_EXTERIOR)) {
+        setPreco(300)
+        setTempo(8)
+        setEspecializacao(Especializacao.PINTOR)
+      }
+      else if(avar.equals(Avaria.PINTAR_INTEIOR)) {
+        setPreco(300)
+        setTempo(11)
+        setEspecializacao(Especializacao.PINTOR)
+      }
+      else if(avar.equals(Avaria.MOTOR)) {
+        setPreco(3000)
+        setTempo(5)
+        setEspecializacao(Especializacao.ENGAUTOMOVEL)
+      }
+      else if(avar.equals(Avaria.ARCONDICIONADO)) {
+        setPreco(20)
+        setTempo(2)
+        setEspecializacao(Especializacao.ENGAUTOMOVEL)
+      }
+      else if(avar.equals(Avaria.TRANSMISSAO)) {
+        setPreco(1000)
+        setTempo(3)
+        setEspecializacao(Especializacao.ENGAUTOMOVEL)
+      }
+      else if(avar.equals(Avaria.DIRECAO)) {
+        setPreco(50)
+        setTempo(1)
+        setEspecializacao(Especializacao.ENGAUTOMOVEL)
+      }
+      else if(avar.equals(Avaria.RODA)) {
+        setPreco(100)
+        setTempo(0.25)
+        setEspecializacao(Especializacao.ENGAUTOMOVEL)
+      }
+      else if(avar.equals(Avaria.RADIADOR)) {
+        setPreco(400)
+        setTempo(2)
+        setEspecializacao(Especializacao.ENGAUTOMOVEL)
+      }
+      else if(avar.equals(Avaria.ESCAPE)) {
+        setPreco(300)
+        setTempo(2)
+        setEspecializacao(Especializacao.ENGAUTOMOVEL)
+      }
+      else if(avar.equals(Avaria.ESTOFOSFRENTE)) {
+        setPreco(25)
+        setTempo(40)
+        setEspecializacao(Especializacao.ESTOFADOR)
+      }
+      else if(avar.equals(Avaria.ESTOFOSTRAS)) {
+        setPreco(25)
+        setTempo(40)
+        setEspecializacao(Especializacao.ESTOFADOR)
+      }
+      else if(avar.equals(Avaria.ESTOFOSPORTA)) {
+        setPreco(25)
+        setTempo(36)
+        setEspecializacao(Especializacao.ESTOFADOR)
+      }
+      else if(avar.equals(Avaria.ESTOFOSBAGAGEM)) {
+        setPreco(25)
+        setTempo(30)
+        setEspecializacao(Especializacao.ESTOFADOR)
+      }
+      else if(avar.equals(Avaria.CARPETES)) {
+        setPreco(25)
+        setTempo(28)
+        setEspecializacao(Especializacao.ESTOFADOR)
+      }
+      else if(avar.equals((Avaria.OBSERVACAO))){
+        setPreco(0)
+        setTempo(0.5)
+        setEspecializacao(Especializacao.OBSERVACAO)
+      }
+    }
+    */
 }
 
+object Trabalho{
+
+  def apply(avaria: Avaria): Trabalho = new Trabalho(avaria)
+
+  //var preco: Double = null
+  //var tempo: Double = null
+  //var especializacao: Especializacao = null
+
+  def defineTrabalho(x:Trabalho): List[Any] ={
+
+    x.avaria match{
+      case TipoAvaria.BATERIA => println("100, 2, Especializacao.ENGELETRICO") return List(100, 2, Especializacao.ENGELETRICO )
+      // case Avaria.FUSIVEIS =>
+      case _ => return List("ERRO")
+    }
+  }
+
+
+}

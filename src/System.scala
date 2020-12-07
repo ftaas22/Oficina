@@ -122,7 +122,7 @@ case class System(){
     if (!trabalhou) {
       for (car <- listaCarros) {
         var ava = Utils.randomAvaria()
-        if (car.getTrabalho().getAvaria().equals(Avaria.OBSERVACAO) && !observou) {
+        if (car.getTrabalho().getAvaria().equals(TipoAvaria.OBSERVACAO) && !observou) {
           car.getTrabalho().setAvaria(ava)
           car.getTrabalho().defineTrabalho()
           car.setReparando(false)
