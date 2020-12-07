@@ -1,4 +1,5 @@
 import Avaria._
+import Trabalho._
 
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
@@ -11,11 +12,13 @@ object Utils {
   var meclist = ListBuffer[Mecanico]()
 
   def download_Cars(source:Iterator[String]): Unit ={
-    if(source.hasNext){
+   if(source.hasNext){
         val i = source.next()
         val trabalho: Trabalho= Trabalho(Avaria.withName(i.split(" ")(2)))
-        trabalho.defineTrabalho()
+        defineTrabalho(trabalho)
+
         val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, false)
+        car.copy(ano= "1990")
         carlist+=car
         println(car.toString)
         download_Cars(source:Iterator[String])

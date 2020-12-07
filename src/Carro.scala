@@ -16,7 +16,7 @@ object Carro{
 
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário
   def reparar(x: Carro) {
-    if(x.trabalho.getTempo() <= 0) {
+    if(x.trabalho.tempo <= 0) {
       x.pronto = true
     }else{
       x.trabalho.setTempo(x.trabalho.getTempo()-1)

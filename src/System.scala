@@ -1,5 +1,7 @@
 import java.time.{DayOfWeek, LocalDate}
 
+import Mecanico._
+
 import scala.collection.mutable.ListBuffer
 
 case class System(){
@@ -86,10 +88,10 @@ case class System(){
       println(horasTrabalhadas)
 
       for (mec <- Utils.meclist)
-        mec.arranjar()
+        arranjar(mec)
 
       for (mec <- Utils.meclist)
-        if (mec.carro == null || mec.carro.isPronto())
+        if (mec.carro == null || mec.carro.pronto)
           gestaoCarros(mec)
     }
   }

@@ -1,21 +1,18 @@
 import java.time.LocalDate
 import java.time.DayOfWeek
+
 import Avaria._
 import Especializacao._
 
+import scala.Console.println
+
 
 case class Trabalho(avaria: Avaria){
-
-  def defineTrabalho(): _ = Avaria  match{
-  case avaria == Avaria.BATERIA => val preco=100 val tempo= 2 val especializacao=Especializacao.ENGELETRICO
-}
-
-  /*val preco: Double
-  val tempo: Double
-  val especializacao: Especializacao
+  //devolver uma lista com posicoes fixas
 
 
 
+/*
    {
     if(avaria.equals(Avaria.BATERIA)) {
       setPreco(100)
@@ -157,5 +154,21 @@ case class Trabalho(avaria: Avaria){
 }
 
 object Trabalho{
-    apply()
+
+  def apply(avaria: Avaria): Trabalho = new Trabalho(avaria)
+
+  //var preco: Double = null
+  //var tempo: Double = null
+  //var especializacao: Especializacao = null
+
+  def defineTrabalho(x:Trabalho): List[Any] ={
+
+    x.avaria match{
+    case Avaria.BATERIA => println("100, 2, Especializacao.ENGELETRICO") return List(100, 2, Especializacao.ENGELETRICO )
+   // case Avaria.FUSIVEIS =>
+    case _ => return List("ERRO")
+    }
+  }
+
+
 }
