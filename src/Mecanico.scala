@@ -7,8 +7,6 @@ case class Mecanico(
   especializacao: Especializacao,
   salario:String,
   lista_para_arr: List[Carro]) {
-  
-  
 
 }
 
@@ -22,14 +20,13 @@ object Mecanico{
       println(x.especializacao)
       x.lista_para_arr.head.print()
       if (x.lista_para_arr.head.pronto()) {
-
+        carlist+= x.lista_para_arr.head
+        x.lista_para_arr.drop(1)
       }else{
-
-        reparar(x.lista_para_arr.head)
+        x.lista_para_arr.updated(1,reparar(x.lista_para_arr.head))
       }
     }
   }
-
 
   def printMecanico(x: Mecanico): Unit = {
     println(x.especializacao + " " + x.salario)

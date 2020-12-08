@@ -58,8 +58,11 @@ object UtilsApp {
     writer.close()
   }
 
+
+  def
+
   //alterar para dar write da lista de carros
-  def mecListToFile(): Unit = {
+  /*def mecListToFile(): Unit = {
     val writer = new PrintWriter(new File("src\\mecanicos3.txt"))
     def writeList(list: List[Mecanico]): Unit = list match {
       case Nil => list
@@ -67,7 +70,7 @@ object UtilsApp {
     }
     writeList(meclist.toList)
     writer.close()
-  }
+  }*/
 
 
   def main(args: Array[String]): Unit = {
@@ -77,7 +80,7 @@ object UtilsApp {
     download_Mec(source2)
     //println(carlist)
     //carListToFile()
-    mecListToFile()
+    //mecListToFile()
 
   }
 }

@@ -13,9 +13,6 @@ case class Avaria(Tipo_avaria: TipoAvaria){
 object Avaria{
   def apply(Tipoavaria: TipoAvaria): Avaria = new Avaria(Tipoavaria)
 
-  //var preco: Double = null
-  //var tempo: Double = null
-  //var especializacao: Especializacao = null
 
   def defineTrabalho(x:Avaria):Trabalho={
     x.Tipo_avaria match{
@@ -125,6 +122,10 @@ object Avaria{
       }
       case TipoAvaria.OBSERVACAO => {
         val Trab= new Trabalho(x.Tipo_avaria, 0, 0.5, Especializacao.OBSERVACAO)
+        return Trab
+      }
+      case TipoAvaria.PRONTO=> {
+        val Trab = new Trabalho(x.Tipo_avaria, 0, 0.5, Especializacao.OBSERVACAO)
         return Trab
       }
     }
