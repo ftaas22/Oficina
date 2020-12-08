@@ -57,9 +57,6 @@ object UtilsApp {
     writer.close()
   }
 
-
-  def
-
   //alterar para dar write da lista de carros
   /*def mecListToFile(): Unit = {
     val writer = new PrintWriter(new File("src\\mecanicos3.txt"))
