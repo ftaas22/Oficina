@@ -6,42 +6,17 @@ import Utils._
 case class Mecanico(
   especializacao: Especializacao,
   salario:String,
-  var arranjarCarro: Carro) {
-
-  override def toString: String = super.toString
-
-  var carro: Carro = arranjarCarro
-  var horasParado: Int = 0
-
-
-  /*def getListaCar(): ListBuffer[Carro] = {
-    return arranjarCarros
-  }*/
-
-  def getArranjarCarro(): Carro = {
-    carro
-  }
-
-  def setArranjarCarro(carroNovo: Carro): Unit = {
-    carro = carroNovo
-  }
-
-  def getHorasParado(): Int = {
-    return this.horasParado
-  }
-
-  def setHorasParado(i: Int): Unit = {
-    this.horasParado = i
-  }
-
+  val Lista_para_arr: List[Carro]) {
+  
+  
 
 }
 
 object Mecanico{
- def apply(especializacao: Especializacao, salario: String, arranjarCarro: Carro): Mecanico = new Mecanico(especializacao, salario, arranjarCarro)
+  def apply(especializacao: Especializacao, salario: String, Lista_para_arr: List[Carro]): Mecanico = new Mecanico(especializacao, salario, Lista_para_arr)
 
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
-  /*def arranjar(x: Mecanico) {
+  def arranjar(x: Mecanico) {
     if(x.carro != null) {
       println(x.especializacao)
       printCarro(x.carro)
@@ -51,7 +26,7 @@ object Mecanico{
         reparar(x.carro)
       }
     }
-  }*/
+  }
 
 
   def printMecanico(x: Mecanico): Unit = {

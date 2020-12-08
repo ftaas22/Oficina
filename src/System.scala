@@ -1,10 +1,10 @@
-//import java.time.{DayOfWeek, LocalDate}
+import java.time.{DayOfWeek, LocalDate}
 
 import Mecanico._
 
 import scala.collection.mutable.ListBuffer
 
-/*case class System(){
+case class System(){
   //observaºão precisa de esperar meia hora so depois gerar um random
   //mec disponivel muito tempo no if
   //eficiencia do horario, dar prioridade
@@ -49,8 +49,8 @@ import scala.collection.mutable.ListBuffer
     return mecanicotemp
   }
 
-  //fazer passar dias enquanto houver carros para reparar
-  /*def passarDias(): Unit = {
+
+  def passarDias(): Unit = {
     while(true) {
       /*for(car <- listaCarros){
         if(!car.isPronto()) {
@@ -61,12 +61,12 @@ import scala.collection.mutable.ListBuffer
       trabalho()
       //if(allMecanicoIsVazia() && listaCarros.isEmpty) return
     }
-  }*/
+  }
 
 
 
   //só se trabalha em dias úteis
-  /*def trabalho() {
+  def trabalho() {
     println(dia.toString)
     if (dayWeek == DayOfWeek.SATURDAY) {
     } else if (dayWeek == DayOfWeek.SUNDAY) {
@@ -77,10 +77,10 @@ import scala.collection.mutable.ListBuffer
     setDayWeek(dia)
     print("Acabou o dia   ")
 
-  }*/
+  }
 
   //def de um dia de trabalho //alterei para correr o arranjo dos carros por mecanico
-  /*def diadetrabalho(): Unit = {
+  def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
     for(_ <- entrada to saida) {
       Thread.sleep(500)
@@ -94,7 +94,7 @@ import scala.collection.mutable.ListBuffer
         if (mec.carro == null || mec.carro.pronto)
           gestaoCarros(mec)
     }
-  }*/
+  }
 
 
   def gestaoCarros(mec: Mecanico): Unit = {
@@ -149,4 +149,4 @@ import scala.collection.mutable.ListBuffer
     //}
 
 
-}*/
+}

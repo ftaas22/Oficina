@@ -3,33 +3,30 @@ case class Carro(
   val ano: String,
   val trabalho: Trabalho,
   val aReparar: Boolean){
-  var reparando: Boolean = false
-  var pronto: Boolean = false
 
+  def pronto():Boolean={
+    if(trabalho.tempo <= 0)
+      return true
+    else
+      return false
+  }
+
+  override def toString: String = "A ARRANJAR " + modelo + " " + ano + " " + trabalho.TipoAvaria.toString + " " + trabalho.tempo
+
+  def print(x: Carro): Unit = {
+    println(toString)
+  }
 }
 
 object Carro{
 
   def apply(modelo: String, ano: String, trabalho: Trabalho, aReparar: Boolean): Carro = new Carro(modelo, ano, trabalho, aReparar)
 
-
-
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário
-  /*def reparar(x: Carro) {
-    if(x.trabalho.avaria <= 0) {
-      x.pronto = true
-    }else{
-      x.trabalho.setTempo(x.trabalho.getTempo()-1)
-    }
-  }*/
-
-  /*def printCarro(x: Carro): Unit = {
-    if(true) {
-      println("PRONTO: " + x.modelo + " " + x.ano + " " + x.trabalho.getAvaria().toString + " " + x.trabalho.getTempo())
-    } else {
-      println("A ARRANJAR " + x.modelo + " " + x.ano + " " + x.trabalho.getAvaria().toString + " " + x.trabalho.getTempo())
-    }
-  }*/
-
+  def reparar(x: Carro):Carro ={
+      val Temp= x.trabalho.tempo-1
+      val NovoTrabalho= x.trabalho.copy(tempo=Temp)
+      return x.copy(trabalho=NovoTrabalho)
+  }
 
 }
