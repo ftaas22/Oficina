@@ -23,8 +23,7 @@ object UtilsApp {
         val trabalho = Avaria.defineTrabalho(avaria)
         //val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
         //defineTrabalho(avaria)
-
-        val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, false)
+        val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),i.split(" ")(2),trabalho)
         car.copy(ano= "1990")
         carlist+=car
         println(car.toString)
@@ -66,11 +65,18 @@ object UtilsApp {
     val writer = new PrintWriter(new File("src\\mecanicos3.txt"))
     def writeList(list: List[Mecanico]): Unit = list match {
       case Nil => list
-      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " + x.arranjarCarro + "\n") :: writeList(xs) :: Nil
+      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " /*+ x.arranjarCarro*/ + "\n") :: writeList(xs) :: Nil
     }
     writeList(meclist.toList)
     writer.close()
   }*/
+
+  def FindCar(modelo:String, ano: String, dono: String): Carro = {
+    val temp = carlist.filter(_.modelo == modelo)
+    val temp1 = temp.filter(_.ano == ano)
+    val temp2 = temp1.filter(_.dono == dono)
+    return temp2.head
+  }
 
 
   def main(args: Array[String]): Unit = {
