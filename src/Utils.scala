@@ -16,8 +16,8 @@ object Utils {
   def download_Cars(source:Iterator[String]): Unit ={
    if(source.hasNext){
         val i = source.next()
-        val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
-        defineTrabalho(trabalho)
+       //val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
+        //defineTrabalho(trabalho)
 
         val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, false)
         car.copy(ano= "1990")
