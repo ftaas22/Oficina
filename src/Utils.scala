@@ -16,6 +16,8 @@ object Utils {
   def download_Cars(source:Iterator[String]): Unit ={
    if(source.hasNext){
         val i = source.next()
+        val avaria: Avaria =  Avaria(TipoAvaria.withName(i.split(" ")(2)))
+        val trabalho = Avaria.defineTrabalho(avaria)
        //val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
         //defineTrabalho(trabalho)
 
@@ -26,6 +28,7 @@ object Utils {
         download_Cars(source:Iterator[String])
       }
     }
+
 
   def download_Mec(source:Iterator[String]): Unit ={
     if(source.hasNext){
@@ -43,19 +46,19 @@ object Utils {
   }
 
   def carListToFile(): Unit = {
-    val writer = new PrintWriter(new File("src\carros2.txt"))
-    val carList2 = carlist.toList
-    def writeList[A](list: List[Carro]): Unit = list match {
+    val writer = new PrintWriter(new File("src\\carros3.txt"))
+    def writeList(list: List[Carro]): Unit = list match {
       case Nil => list
-      case x::xs => {
-        writer.write(x.modelo + " " + x.ano + " " + x.trabalho.avaria + "\n" )}:: writeList(xs) :: Nil
+      case x :: xs => writer.write(x.modelo + " " + x.ano + " " + x.trabalho.TipoAvaria + "\n") :: writeList(xs) :: Nil
     }
-
-  def main(args: Array[String]): Unit = {
-    var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
-    download_Cars(source)
-    println(carlist)
-    carListToFile()
+    writeList(carlist.toList)
+    writer.close()
   }
 
+    def main(args: Array[String]): Unit = {
+      var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
+      download_Cars(source)
+      println(carlist)
+      carListToFile()
+    }
 }

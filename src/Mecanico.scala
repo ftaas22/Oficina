@@ -41,7 +41,7 @@ object Mecanico{
  def apply(especializacao: Especializacao, salario: String, arranjarCarro: Carro): Mecanico = new Mecanico(especializacao, salario, arranjarCarro)
 
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
-  def arranjar(x: Mecanico) {
+  /*def arranjar(x: Mecanico) {
     if(x.carro != null) {
       println(x.especializacao)
       printCarro(x.carro)
@@ -51,7 +51,7 @@ object Mecanico{
         reparar(x.carro)
       }
     }
-  }
+  }*/
 
 
   def printMecanico(x: Mecanico): Unit = {

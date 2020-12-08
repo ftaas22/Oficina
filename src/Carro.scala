@@ -15,21 +15,21 @@ object Carro{
 
 
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário
-  def reparar(x: Carro) {
-    if(x.trabalho.tempo <= 0) {
+  /*def reparar(x: Carro) {
+    if(x.trabalho.avaria <= 0) {
       x.pronto = true
     }else{
       x.trabalho.setTempo(x.trabalho.getTempo()-1)
     }
-  }
+  }*/
 
-  def printCarro(x: Carro): Unit = {
+  /*def printCarro(x: Carro): Unit = {
     if(true) {
       println("PRONTO: " + x.modelo + " " + x.ano + " " + x.trabalho.getAvaria().toString + " " + x.trabalho.getTempo())
     } else {
       println("A ARRANJAR " + x.modelo + " " + x.ano + " " + x.trabalho.getAvaria().toString + " " + x.trabalho.getTempo())
     }
-  }
+  }*/
 
 
 }

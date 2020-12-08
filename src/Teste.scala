@@ -1,7 +1,7 @@
 import TipoAvaria._
 import Especializacao.Especializacao
 import Utils._
-import javafx.stage.Stage
+//import javafx.stage.Stage
 
 import scala.collection.convert.ImplicitConversions.`collection asJava`
 import scala.collection.mutable.ListBuffer
@@ -24,8 +24,8 @@ object Teste{
 
 
     //criar o sistema que faz correr os dias
-    var system = new System()
-    system.passarDias()
+    //var system = new System()
+    //system.passarDias()
 
 
   }
