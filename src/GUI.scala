@@ -1,9 +1,9 @@
-//import javafx.application.Application
-//import javafx.fxml.FXMLLoader
-//import javafx.scene.{Parent, Scene}
-//import javafx.stage.Stage
+import javafx.application.Application
+import javafx.fxml.FXMLLoader
+import javafx.scene.{Parent, Scene}
+import javafx.stage.Stage
 
-/*class GUI extends Application {
+class GUI extends Application {
 
   override def start(primaryStage: Stage): Unit = {
     primaryStage.setTitle("GUI")
@@ -22,7 +22,7 @@ object FxApp {
     Application.launch(classOf[GUI], args: _*)
   }
 
-}*/
+}
 
 
 
