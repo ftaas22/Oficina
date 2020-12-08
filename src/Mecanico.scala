@@ -6,7 +6,7 @@ import Utils._
 case class Mecanico(
   especializacao: Especializacao,
   salario:String,
-  val Lista_para_arr: List[Carro]) {
+  lista_para_arr: List[Carro]) {
   
   
 
@@ -18,13 +18,13 @@ object Mecanico{
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
   //aqui é que se faz a gestão se o carro esta pronto ou não e se estiver tira lo da lista do mecanico e meter na lista de pronto
   def arranjar(x: Mecanico) {
-    if(x.Lista_para_arr != null) {
+    if(x.lista_para_arr.head != null) {
       println(x.especializacao)
-      printCarro(x.carro)
-      if (x.carro.pronto) {
-        x.setArranjarCarro(null)
+      x.lista_para_arr.head.print()
+      if (x.lista_para_arr.head.pronto()) {
+
       }else{
-        reparar(x.carro)
+        reparar(x.lista_para_arr.head)
       }
     }
   }

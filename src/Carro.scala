@@ -1,8 +1,7 @@
 case class Carro(
-  val modelo: String,
-  val ano: String,
-  val trabalho: Trabalho,
-  val aReparar: Boolean){
+  modelo: String,
+  ano: String,
+  trabalho: Trabalho){
 
   def pronto():Boolean={
     if(trabalho.tempo <= 0)
@@ -13,7 +12,7 @@ case class Carro(
 
   override def toString: String = "A ARRANJAR " + modelo + " " + ano + " " + trabalho.TipoAvaria.toString + " " + trabalho.tempo
 
-  def print(x: Carro): Unit = {
+  def print(): Unit = {
     println(toString)
   }
 }
