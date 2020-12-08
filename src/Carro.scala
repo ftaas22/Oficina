@@ -24,7 +24,7 @@ object Carro{
 
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário
   def reparar(x: Carro):Carro ={
-      val Temp= x.trabalho.tempo-1
+      val Temp= x.trabalho.tempo- 0.25
       val NovoTrabalho= x.trabalho.copy(tempo=Temp)
       return x.copy(trabalho=NovoTrabalho)
   }

@@ -15,6 +15,7 @@ object Mecanico{
 
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
   //aqui é que se faz a gestão se o carro esta pronto ou não e se estiver tira lo da lista do mecanico e meter na lista de pronto
+  //copy mecanico no arranjar acho
   def arranjar(x: Mecanico) {
     if(x.lista_para_arr.head != null) {
       println(x.especializacao)
@@ -22,6 +23,7 @@ object Mecanico{
       if (x.lista_para_arr.head.pronto()) {
         carlist+= x.lista_para_arr.head
         x.lista_para_arr.drop(1)
+
       }else{
         x.lista_para_arr.updated(1,reparar(x.lista_para_arr.head))
       }
