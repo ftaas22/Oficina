@@ -1,5 +1,5 @@
-ENGELETRICO 30 Horario
-BATECHAPAS 20 Horario
-PINTOR 20 Horario
-ENGAUTOMOVEL 35 Horario
-ESTOFADOR 25 Horario
+ENGELETRICO 30 Horario José
+BATECHAPAS 20 Horario Eduardo
+PINTOR 20 Horario Rui
+ENGAUTOMOVEL 35 Horario Francisco
+ESTOFADOR 25 Horario Nuno

@@ -35,7 +35,7 @@ object UtilsApp {
   def download_Mec(source:Iterator[String]): Unit ={
     if(source.hasNext){
       val i = source.next()
-      var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), null)
+      var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), null, i.split(" ")(3))
       meclist+=mecanico
       println(mecanico)
       download_Mec(source:Iterator[String])
@@ -59,7 +59,7 @@ object UtilsApp {
 
   //alterar para dar write da lista de carros
   /*def mecListToFile(): Unit = {
-    val writer = new PrintWriter(new File("src\\mecanicos3.txt"))
+    val writer = new PrintWriter(new File("src\\mecanicos2.txt"))
     def writeList(list: List[Mecanico]): Unit = list match {
       case Nil => list
       case x :: xs => writer.write(x.especializacao + " " + x.salario + " " /*+ x.arranjarCarro*/ + "\n") :: writeList(xs) :: Nil
@@ -80,10 +80,9 @@ object UtilsApp {
     var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
     download_Cars(source)
-    //download_Mec(source2)
+    download_Mec(source2)
     println(carlist)
     carListToFile()
     //mecListToFile()
-
   }
 }
