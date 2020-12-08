@@ -7,7 +7,7 @@ import Especializacao._
 import scala.Console.println
 
 
-case class Trabalho(avaria: Avaria,
+case class Trabalho(TipoAvaria: TipoAvaria,
                     preco: Double,
                     tempo: Double,
                     especializacao: Especializacao ){

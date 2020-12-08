@@ -153,20 +153,20 @@ case class Avaria(Tipo_avaria: TipoAvaria){
     */
 }
 
-object Trabalho{
+object Avaria{
 
-  def apply(avaria: Avaria): Trabalho = new Trabalho(avaria)
+  def apply(Tipoavaria: TipoAvaria): Avaria = new Avaria(Tipoavaria)
 
   //var preco: Double = null
   //var tempo: Double = null
   //var especializacao: Especializacao = null
 
-  def defineTrabalho(x:Trabalho): List[Any] ={
-
-    x.avaria match{
-      case TipoAvaria.BATERIA => println("100, 2, Especializacao.ENGELETRICO") return List(100, 2, Especializacao.ENGELETRICO )
-      // case Avaria.FUSIVEIS =>
-      case _ => return List("ERRO")
+  def defineTrabalho(x:Avaria):Trabalho={
+    x.Tipo_avaria match{
+      case TipoAvaria.BATERIA => {
+        val Trab= new Trabalho(x.Tipo_avaria,100,2, Especializacao.ENGAUTOMOVEL)
+        return Trab
+      }
     }
   }
 

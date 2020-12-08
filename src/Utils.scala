@@ -42,20 +42,20 @@ object Utils {
     return rad
   }
 
-
   def carListToFile(): Unit = {
     val writer = new PrintWriter(new File("src\carros2.txt"))
-    carlist.foreach{
-      e => writer.write(e.modelo + " " + e.ano + " " +e.trabalho.avaria)
-        writer.println()
+    val carList2 = carlist.toList
+    def writeList[A](list: List[Carro]): Unit = list match {
+      case Nil => list
+      case x::xs => {
+        writer.write(x.modelo + " " + x.ano + " " + x.trabalho.avaria + "\n" )}:: writeList(xs) :: Nil
     }
-    writer.close()
-  }
 
   def main(args: Array[String]): Unit = {
     var source:Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     download_Cars(source)
     println(carlist)
+    carListToFile()
   }
 
 }
