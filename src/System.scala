@@ -30,16 +30,16 @@ case class System(){
     isVazia
   }
 
-  def existeOutroMecDisponivel(): Boolean = {
+  /*def existeOutroMecDisponivel(): Boolean = {
     for(mec <- Utils.meclist) {
       if(mec.getHorasParado() > 8) {
         return true
       }
     }
     return false
-  }
+  }*/
 
-  def mecDisponivel(): Mecanico = {
+  /*def mecDisponivel(): Mecanico = {
     var mecanicotemp: Mecanico = null
     for(mec <- Utils.meclist) {
       if(mec.getHorasParado() > 8) {
@@ -47,7 +47,7 @@ case class System(){
       }
     }
     return mecanicotemp
-  }
+  }*/
 
 
   def passarDias(): Unit = {
@@ -96,11 +96,8 @@ case class System(){
     }
   }
 
-
+  //refazer os mecanicos com a lista de carros
   def gestaoCarros(mec: Mecanico): Unit = {
-    //for(mec <-listaMecanicos) {
-    //if(mec.carro == null) {
-
 
     var trabalhou = false
     var observou = false
@@ -142,11 +139,7 @@ case class System(){
 
     }
   }
-      //if(mec.carro == null) mec.setHorasParado(mec.getHorasParado()+1)
-      /*if(mec.carro != null){
-        println("A ARRANJAR" + " " + mec.carro.getModel() + " " + mec.carro.getTrabalho().getTempo())
-      }*/
-    //}
+
 
 
 }
