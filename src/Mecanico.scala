@@ -34,9 +34,5 @@ object Mecanico{
     println(x.especializacao + " " + x.salario)
   }
 
-  def addCarro(car: Carro): Unit = {
-  carlist += car
-  }
-
 }
 
