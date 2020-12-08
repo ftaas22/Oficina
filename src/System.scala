@@ -86,13 +86,17 @@ case class System(){
       Thread.sleep(500)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
+      val newlist
+      for (mec <- UtilsApp.meclist) {
 
-      for (mec <- UtilsApp.meclist)
-        arranjar(mec)
+        val newlist:List[Carro]= mec
+      }
 
-      for (mec <- UtilsApp.meclist)
-        if (mec.carro == null || mec.carro.pronto)
+      for (mec <- UtilsApp.meclist) {
+        if (mec.carro == null || mec.carro.pronto) {
           gestaoCarros(mec)
+        }
+      }
     }
   }
 
