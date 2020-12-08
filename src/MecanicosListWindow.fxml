@@ -4,13 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MecanicosListController">
+<AnchorPane prefHeight="357.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MecanicosListController">
    <children>
-      <Label layoutX="75.0" layoutY="14.0" text="Lista de Mecânicos">
+      <Label layoutX="237.0" layoutY="23.0" text="Escolher Mecânico">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <Button fx:id="update" layoutX="115.0" layoutY="71.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Mostrar Mecânicos" />
+      <Button fx:id="addmec" layoutX="115.0" layoutY="261.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Adicionar Mecânico" />
+      <Button fx:id="remmec" layoutX="115.0" layoutY="298.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Remover Mecânico" />
+      <Label layoutX="24.0" layoutY="114.0" prefHeight="25.0" prefWidth="44.0" text="Nome" />
+      <TextField fx:id="nome" layoutX="115.0" layoutY="114.0" />
+      <Label layoutX="24.0" layoutY="150.0" prefHeight="25.0" prefWidth="89.0" text="Especialização" />
+      <TextField fx:id="especializacao" layoutX="115.0" layoutY="150.0" />
+      <Label layoutX="24.0" layoutY="185.0" prefHeight="25.0" prefWidth="89.0" text="Salário" />
+      <TextField fx:id="salario" layoutX="115.0" layoutY="185.0" />
+      <Button fx:id="mecanico" layoutX="115.0" layoutY="223.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Escolher Mecânico" />
+      <Label fx:id="mecanicos" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="75.0" prefHeight="248.0" prefWidth="263.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

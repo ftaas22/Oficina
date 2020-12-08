@@ -1,9 +1,9 @@
-//import javafx.fxml.FXML
-//import javafx.scene.control.{Label, TextField}
-//import Carro._
+import javafx.fxml.FXML
+import javafx.scene.control.{Label, TextField}
+import Carro._
 import UtilsApp._
 
-/*class ClientesController {
+class ClientesController {
 
   @FXML
   var modelo: TextField = _
@@ -22,7 +22,20 @@ import UtilsApp._
         labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
       }
       case false => {
+        RemoveCarIfReady(FindCar(modelo.getText, ano.getText, dono.getText))
+      }
+    }
+    println(carlist)
+  }
 
+  def RemoveCarIfReady(car: Carro): Unit = {
+    car.trabalho.tempo match {
+      case 0 => {
+        carlist = carlist.filterNot(_ == car)
+        labelpronto.setText("Recolheu o carro, obrigado pela confiança! Aqui está o seu recibo.")
+      }
+      case _ => {
+        labelpronto.setText("O Carro ainda não está pronto.")
       }
     }
   }
@@ -35,11 +48,12 @@ import UtilsApp._
       case false => {
         val avaria = Avaria(TipoAvaria.OBSERVACAO)
         val trabalho: Trabalho = Avaria.defineTrabalho(avaria)
-        val car = Carro(modelo.getText, ano.getText, dono.getText, trabalho)
+        val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
         carlist += car
-        labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\n Adicionado")
+        labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\nAdicionado")
       }
     }
+    println(carlist)
   }
 
   def CheckCar(): Unit = {
@@ -54,6 +68,7 @@ import UtilsApp._
           "\n Pronto: " + car.pronto())
       }
     }
+    println(carlist)
   }
 
   def CheckIfEmpty(a:String, b:String, c:String) = (a,b,c) match {
@@ -63,4 +78,4 @@ import UtilsApp._
     case _ => false
   }
 
-}*/
+}
