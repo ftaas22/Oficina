@@ -4,7 +4,7 @@ import Mecanico._
 
 import scala.collection.mutable.ListBuffer
 
-/*case class System(){
+case class System(){
   //observaºão precisa de esperar meia hora so depois gerar um random
   //mec disponivel muito tempo no if
   //eficiencia do horario, dar prioridade
@@ -19,27 +19,27 @@ import scala.collection.mutable.ListBuffer
 
   def setDayWeek(d: LocalDate): Unit = {
     dayWeek = d.getDayOfWeek
-  }*/
+  }
 
-  /*def allMecanicoIsVazia(): Boolean = {
+  def allMecanicoIsVazia(): Boolean = {
     var isVazia: Boolean = true
     for(mec <-UtilsApp.meclist) {
       if(mec.getArranjarCarro() == null)
         isVazia = false
     }
     isVazia
-  }*/
+  }
 
-  /*def existeOutroMecDisponivel(): Boolean = {
+  def existeOutroMecDisponivel(): Boolean = {
     for(mec <- Utils.meclist) {
       if(mec.getHorasParado() > 8) {
         return true
       }
     }
     return false
-  }*/
+  }
 
-  /*def mecDisponivel(): Mecanico = {
+  def mecDisponivel(): Mecanico = {
     var mecanicotemp: Mecanico = null
     for(mec <- Utils.meclist) {
       if(mec.getHorasParado() > 8) {
@@ -47,10 +47,10 @@ import scala.collection.mutable.ListBuffer
       }
     }
     return mecanicotemp
-  }*/
+  }
 
 
-  /*def passarDias(): Unit = {
+  def passarDias(): Unit = {
     while(true) {
       /*for(car <- listaCarros){
         if(!car.isPronto()) {
@@ -61,12 +61,12 @@ import scala.collection.mutable.ListBuffer
       trabalho()
       //if(allMecanicoIsVazia() && listaCarros.isEmpty) return
     }
-  }*/
+  }
 
 
 
   //só se trabalha em dias úteis
-  /*def trabalho() {
+  def trabalho() {
     println(dia.toString)
     if (dayWeek == DayOfWeek.SATURDAY) {
     } else if (dayWeek == DayOfWeek.SUNDAY) {
@@ -77,10 +77,10 @@ import scala.collection.mutable.ListBuffer
     setDayWeek(dia)
     print("Acabou o dia   ")
 
-  }*/
+  }
 
   //def de um dia de trabalho //alterei para correr o arranjo dos carros por mecanico
-  /*def diadetrabalho(): Unit = {
+  def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
     for(_ <- entrada to saida) {
       Thread.sleep(500)
@@ -94,10 +94,10 @@ import scala.collection.mutable.ListBuffer
         if (mec.carro == null || mec.carro.pronto)
           gestaoCarros(mec)
     }
-  }*/
+  }
 
   //refazer os mecanicos com a lista de carros
-  /*def gestaoCarros(mec: Mecanico): Unit = {
+  def gestaoCarros(mec: Mecanico): Unit = {
 
     var trabalhou = false
     var observou = false
@@ -142,4 +142,4 @@ import scala.collection.mutable.ListBuffer
 
 
 
-}*/
+}
