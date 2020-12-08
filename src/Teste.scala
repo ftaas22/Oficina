@@ -1,6 +1,6 @@
 import TipoAvaria._
 import Especializacao.Especializacao
-import Utils._
+import UtilsApp._
 //import javafx.stage.Stage
 
 import scala.collection.convert.ImplicitConversions.`collection asJava`

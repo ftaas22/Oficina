@@ -7,7 +7,7 @@ import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
-object Utils {
+object UtilsApp {
     //metodo de carregar os mecanicos e o carro
     //criar o log aqui
 

@@ -23,7 +23,7 @@ case class System(){
 
   def allMecanicoIsVazia(): Boolean = {
     var isVazia: Boolean = true
-    for(mec <-Utils.meclist) {
+    for(mec <-UtilsApp.meclist) {
       if(mec.getArranjarCarro() == null)
         isVazia = false
     }
@@ -87,10 +87,10 @@ case class System(){
       horasTrabalhadas += 1
       println(horasTrabalhadas)
 
-      for (mec <- Utils.meclist)
+      for (mec <- UtilsApp.meclist)
         arranjar(mec)
 
-      for (mec <- Utils.meclist)
+      for (mec <- UtilsApp.meclist)
         if (mec.carro == null || mec.carro.pronto)
           gestaoCarros(mec)
     }
@@ -103,7 +103,7 @@ case class System(){
     var observou = false
     var arranjou = false
 
-    for (car <- Utils.meclist) {
+    for (car <- UtilsApp.meclist) {
 
       if (!trabalhou) {
         if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.carro == null) {
@@ -118,7 +118,7 @@ case class System(){
     }
     if (!trabalhou) {
       for (car <- listaCarros) {
-        var ava = Utils.randomAvaria()
+        var ava = UtilsApp.randomAvaria()
         if (car.getTrabalho().getAvaria().equals(TipoAvaria.OBSERVACAO) && !observou) {
           car.getTrabalho().setAvaria(ava)
           car.getTrabalho().defineTrabalho()

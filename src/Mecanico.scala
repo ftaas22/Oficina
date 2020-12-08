@@ -1,6 +1,6 @@
 import Carro._
 import Especializacao._
-import Utils._
+import UtilsApp._
 
 
 case class Mecanico(
