@@ -3,6 +3,7 @@ import java.io.{File, PrintWriter}
 import TipoAvaria._
 import Trabalho._
 
+import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
@@ -12,7 +13,7 @@ object Utils {
 
   var carlist= ListBuffer[Carro]()
   var meclist = ListBuffer[Mecanico]()
-
+  @tailrec
   def download_Cars(source:Iterator[String]): Unit ={
    if(source.hasNext){
         val i = source.next()
@@ -29,7 +30,7 @@ object Utils {
       }
     }
 
-
+  @tailrec
   def download_Mec(source:Iterator[String]): Unit ={
     if(source.hasNext){
       val i = source.next()
@@ -55,10 +56,26 @@ object Utils {
     writer.close()
   }
 
-    def main(args: Array[String]): Unit = {
-      var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
-      download_Cars(source)
-      println(carlist)
-      carListToFile()
+
+  def mecListToFile(): Unit = {
+    val writer = new PrintWriter(new File("src\\mecanicos3.txt"))
+    def writeList(list: List[Mecanico]): Unit = list match {
+      case Nil => list
+      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " + x.arranjarCarro + "\n") :: writeList(xs) :: Nil
     }
+    writeList(meclist.toList)
+    writer.close()
+  }
+
+
+  def main(args: Array[String]): Unit = {
+    var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
+    var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
+    download_Cars(source)
+    download_Mec(source2)
+    //println(carlist)
+    //carListToFile()
+    mecListToFile()
+
+  }
 }
