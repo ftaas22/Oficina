@@ -24,6 +24,7 @@ object Mecanico{
       if (x.lista_para_arr.head.pronto()) {
 
       }else{
+
         reparar(x.lista_para_arr.head)
       }
     }

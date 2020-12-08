@@ -1,6 +1,7 @@
 case class Carro(
   modelo: String,
   ano: String,
+  dono:String,
   trabalho: Trabalho){
 
   def pronto():Boolean={

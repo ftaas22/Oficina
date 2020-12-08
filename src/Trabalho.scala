@@ -1,10 +1,8 @@
-import java.time.LocalDate
-import java.time.DayOfWeek
 
 import TipoAvaria._
 import Especializacao._
 
-import scala.Console.println
+
 
 
 case class Trabalho(
@@ -12,6 +10,7 @@ case class Trabalho(
   preco: Double,
   tempo: Double,
   especializacao: Especializacao ){
+  //para o andre dar commit
 
 }
 
