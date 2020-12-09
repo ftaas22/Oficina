@@ -9,6 +9,8 @@ class MainWindowController {
   var mecanicos: Button = _
   @FXML
   var clientes: Button = _
+  @FXML
+  var gestor: Button = _
 
   def OnMecanicosClicked(): Unit = {
     val secondStage: Stage = new Stage()
@@ -26,6 +28,17 @@ class MainWindowController {
     secondStage.initModality(Modality.APPLICATION_MODAL)
     secondStage.initOwner(clientes.getScene().getWindow)
     val fxmlLoader = new FXMLLoader(getClass.getResource("ClientesWindow.fxml"))
+    val mainViewRoot: Parent = fxmlLoader.load()
+    val scene = new Scene(mainViewRoot)
+    secondStage.setScene(scene)
+    secondStage.show()
+  }
+
+  def OnGestorClicked(): Unit = {
+    val secondStage: Stage = new Stage()
+    secondStage.initModality(Modality.APPLICATION_MODAL)
+    secondStage.initOwner(gestor.getScene().getWindow)
+    val fxmlLoader = new FXMLLoader(getClass.getResource("GestorWindow.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
     val scene = new Scene(mainViewRoot)
     secondStage.setScene(scene)
