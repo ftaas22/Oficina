@@ -1,8 +1,10 @@
 import java.io.{File, PrintWriter}
 
+import Mecanico._
 import TipoAvaria._
 import Trabalho._
 
+import scala.::
 import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
@@ -13,6 +15,9 @@ object UtilsApp {
 
   var carlist= ListBuffer[Carro]()
   var meclist = ListBuffer[Mecanico]()
+
+
+
 
 
   @tailrec

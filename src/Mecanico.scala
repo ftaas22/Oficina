@@ -12,7 +12,7 @@ case class Mecanico(
 }
 
 object Mecanico{
-  def apply(especializacao: Especializacao, salario: String, Lista_para_arr: List[Carro], nome: String): Mecanico = new Mecanico(especializacao, salario, Lista_para_arr, nome)
+  def apply(especializacao: Especializacao, salario: String, lista_para_arr: List[Carro], nome: String): Mecanico = new Mecanico(especializacao, salario, lista_para_arr, nome)
 
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
   //aqui é que se faz a gestão se o carro esta pronto ou não e se estiver tira lo da lista do mecanico e meter na lista de pronto
@@ -32,7 +32,8 @@ object Mecanico{
             return x.copy(lista_para_arr=x.lista_para_arr.drop(1))
           }
       }else{
-        return x.copy(lista_para_arr=x.lista_para_arr.updated(1,reparar(x.lista_para_arr.head)))
+
+          return x.copy(lista_para_arr=x.lista_para_arr.updated(1,reparar(x.lista_para_arr.head)))
           }
      }
      else

@@ -1,7 +1,7 @@
 import java.time.{DayOfWeek, LocalDate}
 
 import Mecanico._
-
+import UtilsApp._
 import scala.collection.mutable.ListBuffer
 
 case class System(){
@@ -21,35 +21,6 @@ case class System(){
     dayWeek = d.getDayOfWeek
   }
 
-  def allMecanicoIsVazia(): Boolean = {
-    var isVazia: Boolean = true
-    for(mec <-UtilsApp.meclist) {
-      if(mec.getArranjarCarro() == null)
-        isVazia = false
-    }
-    isVazia
-  }
-
-  def existeOutroMecDisponivel(): Boolean = {
-    for(mec <- Utils.meclist) {
-      if(mec.getHorasParado() > 8) {
-        return true
-      }
-    }
-    return false
-  }
-
-  def mecDisponivel(): Mecanico = {
-    var mecanicotemp: Mecanico = null
-    for(mec <- Utils.meclist) {
-      if(mec.getHorasParado() > 8) {
-        mecanicotemp = mec
-      }
-    }
-    return mecanicotemp
-  }
-
-
   def passarDias(): Unit = {
     while(true) {
       /*for(car <- listaCarros){
@@ -62,8 +33,6 @@ case class System(){
       //if(allMecanicoIsVazia() && listaCarros.isEmpty) return
     }
   }
-
-
 
   //só se trabalha em dias úteis
   def trabalho() {
@@ -79,18 +48,14 @@ case class System(){
 
   }
 
-  //def de um dia de trabalho //alterei para correr o arranjo dos carros por mecanico
   def diadetrabalho(): Unit = {
     var horasTrabalhadas = 0
     for(_ <- entrada to saida) {
       Thread.sleep(500)
       horasTrabalhadas += 1
       println(horasTrabalhadas)
-      val newlist
-      for (mec <- UtilsApp.meclist) {
 
-        val newlist:List[Carro]= mec
-      }
+      Trabalhar(meclist)
 
       for (mec <- UtilsApp.meclist) {
         if (mec.carro == null || mec.carro.pronto) {
@@ -100,13 +65,25 @@ case class System(){
     }
   }
 
-  //refazer os mecanicos com a lista de carros
+
+  def Trabalhar(meclist : ListBuffer[Mecanico]){
+    val Temp_mecList = meclist
+    def recursiveStep(lst: List[Mecanico]) {
+      meclist.clear()
+      lst match {
+        case Nil =>  lst
+        case h :: Nil => meclist += arranjar(h)
+        case h :: t => (meclist += arranjar(h))::recursiveStep(t)::Nil
+      }}
+  }
+
+
+  //so falta isto
   def gestaoCarros(mec: Mecanico): Unit = {
 
-    var trabalhou = false
     var observou = false
     var arranjou = false
-
+    var trabalhou = false
     for (car <- UtilsApp.meclist) {
 
       if (!trabalhou) {
@@ -133,7 +110,7 @@ case class System(){
         }
       }
 
-
+    //ultimo
       for (car <- listaCarros)
         if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() != null && existeOutroMecDisponivel()) {
           car.getTrabalho().setEspecializacao(mecDisponivel().getEspecializacao())
