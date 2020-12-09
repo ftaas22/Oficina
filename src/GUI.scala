@@ -1,11 +1,9 @@
-//import UtilsApp._
-//import javafx.application.Application
-//import javafx.fxml.FXMLLoader
-//import javafx.scene.{Parent, Scene}
-//import javafx.stage.Stage
-
-import scala.collection.mutable.ListBuffer
-/*import scala.io.Source
+import UtilsApp._
+import javafx.application.Application
+import javafx.fxml.FXMLLoader
+import javafx.scene.{Parent, Scene}
+import javafx.stage.Stage
+import scala.io.Source
 
 class GUI extends Application {
 
@@ -37,6 +35,6 @@ object FxApp {
     Application.launch(classOf[GUI], args: _*)
   }
 
-}*/
+}
 
 

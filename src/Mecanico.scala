@@ -19,8 +19,6 @@ object Mecanico{
   //copy mecanico no arranjar acho
   def arranjar(x: Mecanico):Mecanico ={
      if(x.lista_para_arr!=null) {
-        println(x.especializacao)
-        x.lista_para_arr.head.print()
         if (x.lista_para_arr.head.pronto()) {
           if(x.lista_para_arr.head.trabalho.TipoAvaria==TipoAvaria.OBSERVACAO) {
             val n_ava = Avaria(UtilsApp.randomAvaria())
@@ -32,8 +30,8 @@ object Mecanico{
             return x.copy(lista_para_arr=x.lista_para_arr.drop(1))
           }
       }else{
-
-          return x.copy(lista_para_arr=x.lista_para_arr.updated(1,reparar(x.lista_para_arr.head)))
+          val l1 = reparar(x.lista_para_arr.head) :: x.lista_para_arr.tail
+          return x.copy(lista_para_arr=l1)
           }
      }
      else

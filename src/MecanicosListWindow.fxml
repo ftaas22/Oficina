@@ -20,10 +20,10 @@
       <TextField fx:id="especializacao" layoutX="115.0" layoutY="150.0" />
       <Label layoutX="24.0" layoutY="185.0" prefHeight="25.0" prefWidth="89.0" text="Salário" />
       <TextField fx:id="salario" layoutX="115.0" layoutY="185.0" />
-      <Button fx:id="mecanico" layoutX="115.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#EscolherMecanico" prefHeight="25.0" prefWidth="150.0" text="Escolher Mecânico" />
+      <Button fx:id="mecanico" layoutX="115.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#EscolherMecanico" prefHeight="25.0" prefWidth="150.0" text="Mostrar Horário" />
       <Label fx:id="mecanicos" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="75.0" prefHeight="248.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="passarslot" layoutX="363.0" layoutY="377.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Passar Slot" />
-      <Button fx:id="vercar" layoutX="363.0" layoutY="419.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
+      <Button fx:id="passarslot" layoutX="363.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#PassarSlot" prefHeight="25.0" prefWidth="150.0" text="Passar Slot" />
+      <Button fx:id="vercar" layoutX="363.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#VerCar" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
       <Button fx:id="updatehorario" layoutX="363.0" layoutY="465.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Atualizar Horário" />
       <Label fx:id="cars" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="95.0" prefHeight="421.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
    </children>

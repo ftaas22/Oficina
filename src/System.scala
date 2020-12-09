@@ -1,72 +1,13 @@
-import java.time.{DayOfWeek, LocalDate}
-
 import Mecanico._
-import UtilsApp._
 import scala.collection.mutable.ListBuffer
 
-/*case class System(){
+case class System(){
   //observaºão precisa de esperar meia hora so depois gerar um random
   //mec disponivel muito tempo no if
   //eficiencia do horario, dar prioridade
   //a reducao das horas
-  var dia: LocalDate = LocalDate.now()
-  var dayWeek: DayOfWeek = dia.getDayOfWeek
-  val entrada = 9
-  val saida = 16
-  val totaldays = 5
 
-  def getDia: LocalDate = dia
-
-  def setDayWeek(d: LocalDate): Unit = {
-    dayWeek = d.getDayOfWeek
-  }
-
-  def passarDias(): Unit = {
-    while(true) {
-      /*for(car <- listaCarros){
-        if(!car.isPronto()) {
-          //println(car.getModel() + " " + car.isPronto() + " " + car.getTrabalho().getTempo())
-        }
-      }*/
-      //gestaoCarros()
-      trabalho()
-      //if(allMecanicoIsVazia() && listaCarros.isEmpty) return
-    }
-  }
-
-  //só se trabalha em dias úteis
-  def trabalho() {
-    println(dia.toString)
-    if (dayWeek == DayOfWeek.SATURDAY) {
-    } else if (dayWeek == DayOfWeek.SUNDAY) {
-    } else {
-      diadetrabalho()
-    }
-    dia = dia.plusDays(1)
-    setDayWeek(dia)
-    print("Acabou o dia   ")
-
-  }
-
-  def diadetrabalho(): Unit = {
-    var horasTrabalhadas = 0
-    for(_ <- entrada to saida) {
-      Thread.sleep(500)
-      horasTrabalhadas += 1
-      println(horasTrabalhadas)
-
-      Trabalhar(meclist)
-
-      for (mec <- UtilsApp.meclist) {
-        if (mec.carro == null || mec.carro.pronto) {
-          gestaoCarros(mec)
-        }
-      }
-    }
-  }
-
-
-  def Trabalhar(meclist : ListBuffer[Mecanico]){
+  def Trabalhar(meclist : ListBuffer[Mecanico]): Unit = {
     val Temp_mecList = meclist
     def recursiveStep(lst: List[Mecanico]) {
       meclist.clear()
@@ -77,9 +18,8 @@ import scala.collection.mutable.ListBuffer
       }}
   }
 
-
   //so falta isto
-  def gestaoCarros(mec: Mecanico): Unit = {
+  /*def gestaoCarros(mec: Mecanico): Unit = {
 
     var observou = false
     var arranjou = false
@@ -119,8 +59,8 @@ import scala.collection.mutable.ListBuffer
         }
 
     }
-  }
+  }*/
 
 
 
-}*/
+}

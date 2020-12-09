@@ -116,6 +116,21 @@ object UtilsApp {
     return temp1.head
   }
 
+  def Trabalhar(): Unit = {
+    val Temp_mecList = meclist.toList
+    meclist.clear()
+    def recursiveStep(lst: List[Mecanico]) {
+      lst match {
+        case h :: Nil => meclist += arranjar(lst.head)
+        case h :: t => {
+          (meclist += arranjar(lst.head))
+          recursiveStep(lst.tail)
+        }
+      }}
+    recursiveStep(Temp_mecList)
+    print("\n")
+    print(meclist)
+  }
 
   def main(args: Array[String]): Unit = {
     var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()

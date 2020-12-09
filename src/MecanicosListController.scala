@@ -1,8 +1,9 @@
-//import javafx.fxml.FXML
-//import javafx.scene.control.{Label, TextField}
-//import UtilsApp._
+import javafx.fxml.FXML
+import javafx.scene.control.{Label, TextField}
+import UtilsApp._
+import System._
 
-/*class MecanicosListController {
+class MecanicosListController {
 
   @FXML
   var mecanicos: Label = _
@@ -24,6 +25,7 @@
   def PrintMecs(list:List[Mecanico]): Unit = list match {
     case Nil => list
     case x :: xs => mecanicos.setText(mecanicos.getText + x.nome + " " + x.especializacao + "\n") :: PrintMecs(xs) :: Nil
+    case x :: Nil => mecanicos.setText(mecanicos.getText + x.nome + " " + x.especializacao + "\n")
   }
 
   def AddMec(): Unit = {
@@ -81,7 +83,26 @@
       cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
       WriteTable(x.trabalho.tempo + ind, xs)
     }
+    case x:: Nil => cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
     case Nil => cars.setText(cars.getText)
   }
 
-}*/
+  def PassarSlot(): Unit = {
+    Trabalhar()
+  }
+
+  def VerCar(): Unit = {
+    CheckIfTwoFirstEmpty(nome.getText, especializacao.getText) match {
+      case true => {
+        mecanicos.setText("Escolha um mecânico.")
+      }
+      case false => {
+        val car = FindCar(modelo.getText, ano.getText, dono.getText)
+        labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
+          "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
+          "\n Pronto: " + ProntoToString(car.pronto()))
+      }
+    }
+  }
+
+}
