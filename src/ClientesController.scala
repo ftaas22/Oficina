@@ -1,7 +1,8 @@
-import FxApp.carlist
-import javafx.fxml.FXML
-import javafx.scene.control.{Label, TextField}
+import javafx.fxml.{FXML, FXMLLoader}
+import javafx.scene.control.{Button, Label, TextField}
 import UtilsApp._
+import javafx.scene.{Parent, Scene}
+import javafx.stage.{Modality, Stage}
 
 class ClientesController {
 
@@ -15,6 +16,8 @@ class ClientesController {
   var labelcarro: Label = _
   @FXML
   var labelpronto: Label = _
+  @FXML
+  var takecar: Button = _
 
   def TakeCar(): Unit = {
     CheckIfEmpty(modelo.getText, ano.getText, dono.getText) match{
@@ -30,6 +33,14 @@ class ClientesController {
   def RemoveCarIfReady(car: Carro): Unit = {
     car.trabalho.tempo match {
       case 0 => {
+        val secondStage: Stage = new Stage()
+        secondStage.initModality(Modality.APPLICATION_MODAL)
+        secondStage.initOwner(takecar.getScene().getWindow)
+        val fxmlLoader = new FXMLLoader(getClass.getResource("ReciboWindow.fxml"))
+        val mainViewRoot: Parent = fxmlLoader.load()
+        val scene = new Scene(mainViewRoot)
+        secondStage.setScene(scene)
+        secondStage.show()
         carlist = carlist.filterNot(_ == car)
         labelpronto.setText("Recolheu o carro, obrigado pela confiança! Aqui está o seu recibo.")
       }
