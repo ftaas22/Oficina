@@ -36,6 +36,8 @@ object FxApp {
     val mec = new Mecanico(meclist.head.especializacao, meclist.head.salario, "Vilela", lista)
     meclist += mec
     Application.launch(classOf[GUI], args: _*)
+    carListToFile()
+    mecListToFile()
   }
 
 }
