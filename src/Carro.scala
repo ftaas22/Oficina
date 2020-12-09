@@ -11,7 +11,7 @@ case class Carro(
       return false
   }
 
-  override def toString: String = "A ARRANJAR " + modelo + " " + ano + " " + trabalho.TipoAvaria.toString + " " + trabalho.tempo + " " + dono
+  override def toString: String = modelo + " " + ano + " " + trabalho.TipoAvaria.toString + " " + trabalho.tempo + " " + dono
 
   def print(): Unit = {
     println(toString)

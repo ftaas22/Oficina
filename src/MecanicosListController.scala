@@ -1,8 +1,8 @@
-import javafx.fxml.FXML
-import javafx.scene.control.{Label, TextField}
-import UtilsApp._
+//import javafx.fxml.FXML
+//import javafx.scene.control.{Label, TextField}
+//import UtilsApp._
 
-class MecanicosListController {
+/*class MecanicosListController {
 
   @FXML
   var mecanicos: Label = _
@@ -84,4 +84,4 @@ class MecanicosListController {
     case Nil => cars.setText(cars.getText)
   }
 
-}
+}*/

@@ -1,6 +1,6 @@
-import javafx.fxml.FXML
-import javafx.scene.control.{Label, TextField}
-import UtilsApp._
+//import javafx.fxml.FXML
+//import javafx.scene.control.{Label, TextField}
+/*import UtilsApp._
 
 class ClientesController {
 
@@ -83,4 +83,4 @@ class ClientesController {
     case _ => false
   }
 
-}
+}*/

@@ -1,11 +1,11 @@
 import Especializacao.Especializacao
-
 import java.io.{File, PrintWriter}
+
 import Mecanico._
 import TipoAvaria._
 import Trabalho._
 
-import scala.::
+import scala.{+:, ::}
 import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
@@ -46,8 +46,23 @@ object UtilsApp {
       val carro: Carro = Carro("BMW","1980",trabalho,"Pedro")
       val carro2: Carro = Carro("Volkswagen","1920",trabalho,"José")
       val arranjarList : List[Carro] = List(carro, carro2)*/
-
-      var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1),i.split(" ")(2), null)
+      val carArranjarList : List[Carro] = List[Carro]()
+      def listaParaArranjar(i : String, a: Int, b: Int, list: List[Carro]): List[Carro] = (a, b) match{
+        case (_,_) => {
+          if (a<b) {
+            val string = i.split(" ")(a)
+            val avaria: Avaria =  Avaria(TipoAvaria.withName(string.split("_")(2)))
+            val trabalho = Avaria.defineTrabalho(avaria)
+            val trabalho2 = trabalho.copy(tempo = string.split("_")(3).toDouble)
+            val car: Carro = Carro(string.split("_")(0), string.split("_")(1), trabalho2, string.split("_")(4))
+            listaParaArranjar(i,a+1,b, list.::(car))
+          }else{
+            list
+          }
+        }
+      }
+      val carArranjarList2 = listaParaArranjar(i,3,i.split(" ").size, carArranjarList)
+      var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1),i.split(" ")(2), carArranjarList2)
       meclist+=mecanico
       println(mecanico)
       download_Mec(source:Iterator[String])
@@ -72,7 +87,7 @@ object UtilsApp {
 
   //alterar para dar write da lista de carros
   def mecListToFile(): Unit = {
-    val writer = new PrintWriter(new File("src\\mecanicos2.txt"))
+    val writer = new PrintWriter(new File("src\\mecanicos3.txt"))
     def writeCars(carList: List[Carro]): String = carList match{
       case Nil => ""
       case x :: xs => {
@@ -82,7 +97,7 @@ object UtilsApp {
     }
     def writeList(list: List[Mecanico]): Unit = list match {
       case Nil => list
-      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " + x.nome + " "  + writeCars(x.lista_para_arr) +/*+ x.arranjarCarro*/  /*x.lista_para_arr*/ "\n") :: writeList(xs) :: Nil
+      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " + x.nome + " "  + writeCars(x.lista_para_arr)+ "\n") :: writeList(xs) :: Nil
     }
     writeList(meclist.toList)
     writer.close()
