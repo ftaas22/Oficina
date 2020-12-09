@@ -6,7 +6,6 @@ case class Trabalho(
   preco: Double,
   tempo: Double,
   especializacao: Especializacao ){
-
 }
 
 object Trabalho{

@@ -23,28 +23,26 @@ object UtilsApp {
   @tailrec
   def download_Cars(source:Iterator[String]): Unit ={
    if(source.hasNext){
-        val i = source.next()
-        val avaria: Avaria =  Avaria(TipoAvaria.withName(i.split(" ")(2)))
-        val trabalho = Avaria.defineTrabalho(avaria)
-        //val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
-        //defineTrabalho(avaria)
-        val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, i.split(" ")(3))
-        //car.copy(ano= "1990")
-        carlist+=car
-        //println(car.toString)
-        download_Cars(source:Iterator[String])
-      }
-    }
+     val i = source.next()
+     val avaria: Avaria =  Avaria(TipoAvaria.withName(i.split(" ")(2)))
+
+     val trabalho = Avaria.defineTrabalho(avaria)
+     if(i.split(" ").size > 4 ){
+       val trabalho2 = trabalho.copy(tempo = 0)
+       val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho2, i.split(" ")(3))
+       carlist+=car
+     }else{
+       val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, i.split(" ")(3))
+       carlist+=car
+     }
+     download_Cars(source:Iterator[String])
+   }
+  }
 
   @tailrec
   def download_Mec(source:Iterator[String]): Unit ={
     if(source.hasNext){
       val i = source.next()
-      /*val avaria: Avaria = Avaria(Tipoavaria = OBSERVACAO)
-      val trabalho = Avaria.defineTrabalho(avaria)
-      val carro: Carro = Carro("BMW","1980",trabalho,"Pedro")
-      val carro2: Carro = Carro("Volkswagen","1920",trabalho,"José")
-      val arranjarList : List[Carro] = List(carro, carro2)*/
       val carArranjarList : List[Carro] = List[Carro]()
       def listaParaArranjar(i : String, a: Int, b: Int, list: List[Carro]): List[Carro] = (a, b) match{
         case (_,_) => {
@@ -77,12 +75,17 @@ object UtilsApp {
     val writer = new PrintWriter(new File("src\\carros2.txt"))
     def writeList(list: List[Carro]): Unit = list match {
       case Nil => list
-      case x :: xs => writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + "\n") :: writeList(xs) :: Nil
+      case x :: xs =>{
+        if(x.trabalho.tempo <= 0){
+          writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + " " + "Carro_Pronto"+ "\n")
+        }else{
+          writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + "\n")
+        }
+      }:: writeList(xs) :: Nil
     }
     writeList(carlist.toList)
     writer.close()
   }
-
 
   //alterar para dar write da lista de carros
   def mecListToFile(): Unit = {

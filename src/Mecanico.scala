@@ -25,14 +25,14 @@ object Mecanico{
             val n_ava = Avaria(UtilsApp.randomAvaria())
             val n_tra= Avaria.defineTrabalho(n_ava)
             carlist+= x.lista_para_arr.head.copy(trabalho= n_tra)
-            return x.copy(lista_para_arr=x.lista_para_arr.drop(1))
+            x.copy(lista_para_arr=x.lista_para_arr.drop(1))
           }else {
             carlist+= x.lista_para_arr.head
-            return x.copy(lista_para_arr=x.lista_para_arr.drop(1))
+            x.copy(lista_para_arr=x.lista_para_arr.drop(1))
           }
       }else{
           val l1 = reparar(x.lista_para_arr.head) :: x.lista_para_arr.tail
-          return x.copy(lista_para_arr=l1)
+          x.copy(lista_para_arr=l1)
           }
      }
      else
