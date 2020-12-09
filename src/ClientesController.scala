@@ -3,7 +3,7 @@ import javafx.scene.control.{Button, Label, TextField}
 import UtilsApp._
 import javafx.scene.{Parent, Scene}
 import javafx.stage.{Modality, Stage}
-
+/*
 class ClientesController {
 
   @FXML
@@ -95,4 +95,4 @@ class ClientesController {
     case _ => false
   }
 
-}
+}*/

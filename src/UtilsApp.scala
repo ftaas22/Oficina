@@ -4,7 +4,7 @@ import java.io.{File, PrintWriter}
 import Avaria.defineTrabalho
 import FxApp.{carlist, meclist}
 import Mecanico._
-import System.atribEspecializacao
+import System.{atriEspecializacao, atriOutraEspcializacao}
 import TipoAvaria._
 import Trabalho._
 
@@ -118,8 +118,6 @@ object UtilsApp {
 
 
 
-
-
   def main(args: Array[String]): Unit = {
     var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
@@ -132,12 +130,12 @@ object UtilsApp {
     val car = Carro("bmw","2002",tra , "João")
     val car2 = Carro("bmw","2002",tra , "João2")
     val car3 = Carro("bmw","2002",tra , "João3")
-    val mec= Mecanico(Especializacao.ENGELETRICO, "20", "Antonio", null)
+    val mec= Mecanico(Especializacao.PINTOR, "20", "Antonio", null)
     meclist+=mec
     carlist+=car
     carlist+=car2
     carlist+=car3
-    atribEspecializacao(Especializacao.ENGELETRICO)
+    atriOutraEspcializacao()
     println(meclist)
 
   }
