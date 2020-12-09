@@ -15,6 +15,8 @@ class MecanicosListController {
   var salario: TextField = _
   @FXML
   var cars: Label = _
+  @FXML
+  var carroatual: Label = _
 
   def UpdateMec(): Unit = {
     mecanicos.setText("")
@@ -97,11 +99,20 @@ class MecanicosListController {
         mecanicos.setText("Escolha um mecânico.")
       }
       case false => {
-        val car = FindCar(modelo.getText, ano.getText, dono.getText)
-        labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
-          "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
-          "\n Pronto: " + ProntoToString(car.pronto()))
+        val mec = FindMec(nome.getText, Especializacao.withName(especializacao.getText))
+        carroatual.setText("Modelo: " + mec.lista_para_arr.head.modelo + "\nAno: " + mec.lista_para_arr.head.ano + "\nDono: " + mec.lista_para_arr.head.dono +
+          "\n Tipo de Avaria: " + mec.lista_para_arr.head.trabalho.TipoAvaria + "\n Tempo restante: " + mec.lista_para_arr.head.trabalho.tempo +
+          "\n Pronto: " + ProntoToString(mec.lista_para_arr.head.pronto()))
       }
+    }
+  }
+
+  def ProntoToString(pronto: Boolean): String = pronto match {
+    case true => {
+      "Sim"
+    }
+    case false => {
+      "Não"
     }
   }
 
