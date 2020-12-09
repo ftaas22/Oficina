@@ -1,9 +1,9 @@
-import javafx.fxml.FXML
-import javafx.scene.control.{Label, TextField}
-import Carro._
+//import javafx.fxml.FXML
+//import javafx.scene.control.{Label, TextField}
+//import Carro._
 import UtilsApp._
 
-class ClientesController {
+/*class ClientesController {
 
   @FXML
   var modelo: TextField = _
@@ -78,4 +78,4 @@ class ClientesController {
     case _ => false
   }
 
-}
+}*/

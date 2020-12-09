@@ -40,7 +40,13 @@ object UtilsApp {
   def download_Mec(source:Iterator[String]): Unit ={
     if(source.hasNext){
       val i = source.next()
-      var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1), null, i.split(" ")(3))
+      /*val avaria: Avaria = Avaria(Tipoavaria = OBSERVACAO)
+      val trabalho = Avaria.defineTrabalho(avaria)
+      val carro: Carro = Carro("BMW","1980",trabalho,"Pedro")
+      val carro2: Carro = Carro("Volkswagen","1920",trabalho,"José")
+      val arranjarList : List[Carro] = List(carro, carro2)*/
+
+      var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1),i.split(" ")(2), null)
       meclist+=mecanico
       println(mecanico)
       download_Mec(source:Iterator[String])
@@ -53,7 +59,7 @@ object UtilsApp {
   }
 
   def carListToFile(): Unit = {
-    val writer = new PrintWriter(new File("src\\carros3.txt"))
+    val writer = new PrintWriter(new File("src\\carros2.txt"))
     def writeList(list: List[Carro]): Unit = list match {
       case Nil => list
       case x :: xs => writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + "\n") :: writeList(xs) :: Nil
@@ -62,16 +68,24 @@ object UtilsApp {
     writer.close()
   }
 
+
   //alterar para dar write da lista de carros
-  /*def mecListToFile(): Unit = {
+  def mecListToFile(): Unit = {
     val writer = new PrintWriter(new File("src\\mecanicos2.txt"))
+    def writeCars(carList: List[Carro]): String = carList match{
+      case Nil => ""
+      case x :: xs => {
+        val string = x.modelo +"_"+x.ano+"_"+x.trabalho.TipoAvaria+"_"+x.trabalho.tempo+"_"+x.dono+" "
+        string
+      }+writeCars(xs)
+    }
     def writeList(list: List[Mecanico]): Unit = list match {
       case Nil => list
-      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " /*+ x.arranjarCarro*/ + "\n") :: writeList(xs) :: Nil
+      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " + x.nome + " "  + writeCars(x.lista_para_arr) +/*+ x.arranjarCarro*/  /*x.lista_para_arr*/ "\n") :: writeList(xs) :: Nil
     }
     writeList(meclist.toList)
     writer.close()
-  }*/
+  }
 
   def FindCar(modelo:String, ano: String, dono: String): Carro = {
     val temp = carlist.filter(_.modelo == modelo)
@@ -86,8 +100,8 @@ object UtilsApp {
     var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
     download_Cars(source)
     download_Mec(source2)
-    println(carlist)
+    //println(carlist)
     carListToFile()
-    //mecListToFile()
+    mecListToFile()
   }
 }

@@ -6,13 +6,13 @@ import UtilsApp._
 case class Mecanico(
   especializacao: Especializacao,
   salario:String,
-  lista_para_arr: List[Carro],
-  nome:String) {
+  nome:String,
+  lista_para_arr: List[Carro]) {
 
 }
 
 object Mecanico{
-  def apply(especializacao: Especializacao, salario: String, lista_para_arr: List[Carro], nome: String): Mecanico = new Mecanico(especializacao, salario, lista_para_arr, nome)
+  def apply(especializacao: Especializacao, salario: String, nome: String,  Lista_para_arr: List[Carro]): Mecanico = new Mecanico(especializacao, salario, nome, Lista_para_arr)
 
   //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
   //aqui é que se faz a gestão se o carro esta pronto ou não e se estiver tira lo da lista do mecanico e meter na lista de pronto

@@ -4,7 +4,7 @@ import Mecanico._
 import UtilsApp._
 import scala.collection.mutable.ListBuffer
 
-case class System(){
+/*case class System(){
   //observaºão precisa de esperar meia hora so depois gerar um random
   //mec disponivel muito tempo no if
   //eficiencia do horario, dar prioridade
@@ -123,4 +123,4 @@ case class System(){
 
 
 
-}
+}*/

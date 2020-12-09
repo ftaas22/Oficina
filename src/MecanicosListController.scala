@@ -1,8 +1,8 @@
-import javafx.fxml.FXML
-import javafx.scene.control.{Label, TextField}
+//import javafx.fxml.FXML
+//import javafx.scene.control.{Label, TextField}
 import UtilsApp._
 
-class MecanicosListController {
+/*class MecanicosListController {
 
   @FXML
   var mecanicos: Label = _
@@ -35,4 +35,4 @@ class MecanicosListController {
     case _ => false
   }
 
-}
+}*/
