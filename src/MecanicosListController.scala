@@ -17,6 +17,8 @@ class MecanicosListController {
   var cars: Label = _
   @FXML
   var carroatual: Label = _
+  @FXML
+  var trabsemanal: Label = _
 
   def UpdateMec(): Unit = {
     mecanicos.setText("")
@@ -74,7 +76,7 @@ class MecanicosListController {
         mecanicos.setText("Tem de preencher os campos Nome e Especialização")
       }
       case false => {
-        cars.setText("Horário Semanal \n")
+        cars.setText("\n")
         WriteTable(0, FindMec(nome.getText, Especializacao.withName(especializacao.getText())).lista_para_arr)
       }
     }
@@ -83,6 +85,7 @@ class MecanicosListController {
   def WriteTable(ind: Double, lista: List[Carro]): Unit = lista match {
     case x::xs => {
       cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
+      trabsemanal.setText("Horas de Trabalho Semanal: " + ind)
       WriteTable(x.trabalho.tempo + ind, xs)
     }
     case x:: Nil => cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
