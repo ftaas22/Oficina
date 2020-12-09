@@ -3,6 +3,9 @@ import javafx.scene.control.{Button, Label, TextField}
 import UtilsApp._
 import javafx.scene.{Parent, Scene}
 import javafx.stage.{Modality, Stage}
+import FxApp._
+
+import scala.collection.mutable.ListBuffer
 
 class ClientesController {
 
@@ -25,14 +28,9 @@ class ClientesController {
         labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
       }
       case false => {
-        RemoveCarIfReady(FindCar(modelo.getText, ano.getText, dono.getText))
-      }
-    }
-  }
-
-  def RemoveCarIfReady(car: Carro): Unit = {
-    car.trabalho.tempo match {
-      case 0 => {
+        val tempcar = FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList)
+        val templist = carlist.filterNot(_ == tempcar)
+        carlist =  ListBuffer(tempcar)
         val secondStage: Stage = new Stage()
         secondStage.initModality(Modality.APPLICATION_MODAL)
         secondStage.initOwner(takecar.getScene().getWindow)
@@ -40,7 +38,17 @@ class ClientesController {
         val mainViewRoot: Parent = fxmlLoader.load()
         val scene = new Scene(mainViewRoot)
         secondStage.setScene(scene)
-        secondStage.show()
+        secondStage.showAndWait()
+        println("Teste")
+        carlist = templist
+        //RemoveCarIfReady(FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList))
+      }
+    }
+  }
+
+  def RemoveCarIfReady(car: Carro): Unit = {
+    car.trabalho.tempo match {
+      case 0 => {
         carlist = carlist.filterNot(_ == car)
         labelpronto.setText("Recolheu o carro, obrigado pela confiança! Aqui está o seu recibo.")
       }
@@ -71,10 +79,12 @@ class ClientesController {
         labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
       }
       case false => {
-        val car = FindCar(modelo.getText, ano.getText, dono.getText)
+        val car = FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList)
+        if (car != null) {
         labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
           "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
           "\n Pronto: " + ProntoToString(car.pronto()))
+        } else {labelcarro.setText("Não existe esse carro!")}
       }
     }
   }

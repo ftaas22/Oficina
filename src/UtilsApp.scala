@@ -105,11 +105,12 @@ object UtilsApp {
     writer.close()
   }
 
-  def FindCar(modelo:String, ano: String, dono: String): Carro = {
-    val temp = carlist.filter(_.modelo == modelo)
+  def FindCar(modelo:String, ano: String, dono: String, lista: List[Carro]): Carro = {
+    val temp = lista.filter(_.modelo == modelo)
     val temp1 = temp.filter(_.ano == ano)
     val temp2 = temp1.filter(_.dono == dono)
-    return temp2.head
+    if(!temp2.isEmpty) temp2.head
+    else null
   }
 
   def FindMec(nome: String, especializacao: Especializacao): Mecanico = {
@@ -131,15 +132,6 @@ object UtilsApp {
     //println(carlist)
     //carListToFile()
     //mecListToFile()
-    val tra= defineTrabalho(Avaria(TipoAvaria.FUSIVEIS))
-    val car = Carro("bmw","2002",tra , "João")
-    val car2 = Carro("bmw","2002",tra , "João2")
-    val car3 = Carro("bmw","2002",tra , "João3")
-    val mec= Mecanico(Especializacao.ENGELETRICO, "20", "Antonio", null)
-    meclist+=mec
-    carlist+=car
-    carlist+=car2
-    carlist+=car3
     atribEspecializacao(Especializacao.ENGELETRICO)
     println(meclist)
 
