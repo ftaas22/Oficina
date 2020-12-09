@@ -3,6 +3,8 @@ import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
+
+import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
 class GUI extends Application {
@@ -19,7 +21,8 @@ class GUI extends Application {
 }
 
 object FxApp {
-
+  var carlist= ListBuffer[Carro]()
+  var meclist = ListBuffer[Mecanico]()
   def main(args: Array[String]): Unit = {
     var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()

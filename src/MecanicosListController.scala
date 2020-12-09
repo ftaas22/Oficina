@@ -3,6 +3,8 @@ import javafx.scene.control.{Label, TextField}
 import UtilsApp._
 import System._
 
+import FxApp.meclist
+/*
 class MecanicosListController {
 
   @FXML
@@ -116,4 +118,4 @@ class MecanicosListController {
     }
   }
 
-}
+}*/

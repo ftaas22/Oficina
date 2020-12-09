@@ -1,5 +1,6 @@
 import Carro._
 import Especializacao._
+import FxApp.carlist
 import UtilsApp._
 
 

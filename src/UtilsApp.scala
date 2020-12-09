@@ -1,7 +1,10 @@
 import Especializacao.Especializacao
 import java.io.{File, PrintWriter}
 
+import Avaria.defineTrabalho
+import FxApp.{carlist, meclist}
 import Mecanico._
+import System.atribEspecializacao
 import TipoAvaria._
 import Trabalho._
 
@@ -13,10 +16,6 @@ import scala.io.Source
 object UtilsApp {
     //metodo de carregar os mecanicos e o carro
     //criar o log aqui
-
-  var carlist= ListBuffer[Carro]()
-  var meclist = ListBuffer[Mecanico]()
-
 
 
 
@@ -116,29 +115,33 @@ object UtilsApp {
     return temp1.head
   }
 
-  def Trabalhar(): Unit = {
-    val Temp_mecList = meclist.toList
-    meclist.clear()
-    def recursiveStep(lst: List[Mecanico]) {
-      lst match {
-        case h :: Nil => meclist += arranjar(lst.head)
-        case h :: t => {
-          (meclist += arranjar(lst.head))
-          recursiveStep(lst.tail)
-        }
-      }}
-    recursiveStep(Temp_mecList)
-    print("\n")
-    print(meclist)
-  }
+
+
+
+
 
   def main(args: Array[String]): Unit = {
     var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
-    download_Cars(source)
+    //download_Cars(source)
     download_Mec(source2)
     //println(carlist)
-    carListToFile()
-    mecListToFile()
+    //carListToFile()
+    //mecListToFile()
+    val tra= defineTrabalho(Avaria(TipoAvaria.FUSIVEIS))
+    val car = Carro("bmw","2002",tra , "João")
+    val car2 = Carro("bmw","2002",tra , "João2")
+    val car3 = Carro("bmw","2002",tra , "João3")
+    val mec= Mecanico(Especializacao.ENGELETRICO, "20", "Antonio", null)
+    meclist+=mec
+    carlist+=car
+    carlist+=car2
+    carlist+=car3
+    atribEspecializacao(Especializacao.ENGELETRICO)
+    println(meclist)
+
   }
+
+
+
 }

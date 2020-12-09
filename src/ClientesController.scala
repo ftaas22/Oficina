@@ -1,3 +1,4 @@
+import FxApp.carlist
 import javafx.fxml.FXML
 import javafx.scene.control.{Label, TextField}
 import UtilsApp._

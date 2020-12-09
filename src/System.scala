@@ -1,65 +1,69 @@
+import java.time.{DayOfWeek, LocalDate}
+
+import Especializacao.Especializacao
+import FxApp.{carlist, meclist}
 import Mecanico._
+
+import scala.collection.immutable.Nil.:::
 import scala.collection.mutable.ListBuffer
 
-case class System(){
-  //observaºão precisa de esperar meia hora so depois gerar um random
-  //mec disponivel muito tempo no if
-  //eficiencia do horario, dar prioridade
-  //a reducao das horas
+object System{
 
-  def Trabalhar(meclist : ListBuffer[Mecanico]): Unit = {
-    val Temp_mecList = meclist
+
+
+  def Trabalhar(): Unit = {
+    val Temp_mecList = meclist.toList
+    meclist.clear()
     def recursiveStep(lst: List[Mecanico]) {
-      meclist.clear()
       lst match {
-        case Nil =>  lst
-        case h :: Nil => meclist += arranjar(h)
-        case h :: t => (meclist += arranjar(h))::recursiveStep(t)::Nil
+        case h :: Nil => meclist += arranjar(lst.head)
+        case h :: t => {
+          (meclist += arranjar(lst.head))
+          recursiveStep(lst.tail)
+        }
       }}
+    recursiveStep(Temp_mecList)
+    print("\n")
+    print(meclist)
   }
 
-  //so falta isto
-  /*def gestaoCarros(mec: Mecanico): Unit = {
 
-    var observou = false
-    var arranjou = false
-    var trabalhou = false
-    for (car <- UtilsApp.meclist) {
+  //esta mal tem de adicionar a lista existente do mecaninco não substituila
+  def atribEspecializacao(especializacao: Especializacao): Unit = {
+    val lmec= meclist.filter(x=> x.especializacao == especializacao).toList
+    println(lmec+"confuso")
+    meclist=meclist.filterNot(x=> x.especializacao == especializacao)
 
-      if (!trabalhou) {
-        if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.carro == null) {
-          car.setReparando(true)
-          mec.setArranjarCarro(car)
-          println(mec.getEspecializacao() + "  " + car + "foi atribuido")
-          arranjou = true
-          trabalhou = true
-          mec.setHorasParado(0)
+    val lcar=carlist.filter(x=> x.trabalho.especializacao == especializacao).toList
+    carlist=carlist.filterNot(x=> x.trabalho.especializacao == especializacao)
+
+    def recursiveStep(lmec:List[Mecanico],lcar:List[Carro]) {
+      if(lmec.length!=0 && lcar.length!=0){
+        val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
+        if(lmec.head.lista_para_arr!=null){
+          val newl=  lmec.head.lista_para_arr ::: n_car_mec._1
+          meclist+=lmec.head.copy(lista_para_arr = newl)
         }
+        else{
+          val newl=n_car_mec._1
+          meclist+=lmec.head.copy(lista_para_arr = newl)
+        }
+
+        recursiveStep(lmec.tail,n_car_mec._2)
+      }
+      else {
+        null
       }
     }
-    if (!trabalhou) {
-      for (car <- listaCarros) {
-        var ava = UtilsApp.randomAvaria()
-        if (car.getTrabalho().getAvaria().equals(TipoAvaria.OBSERVACAO) && !observou) {
-          car.getTrabalho().setAvaria(ava)
-          car.getTrabalho().defineTrabalho()
-          car.setReparando(false)
-          println("Gerou avaria")
-          observou = true
-          trabalhou = true
-        }
-      }
+    recursiveStep(lmec,lcar)
+    println(meclist)
+  }
 
-    //ultimo
-      for (car <- listaCarros)
-        if (mec.getEspecializacao().equals(car.getTrabalho().getEspecializacao()) && !car.getReparando() && !arranjou && mec.getArranjarCarro() != null && existeOutroMecDisponivel()) {
-          car.getTrabalho().setEspecializacao(mecDisponivel().getEspecializacao())
-          car.getTrabalho().setTempo(car.getTrabalho().getTempo() * 2)
-          println("Trabalho nao especializado")
-        }
+  //as observações
+  //trabalho com penalidade
 
-    }
-  }*/
+
+
 
 
 
