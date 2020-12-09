@@ -1,5 +1,6 @@
-import java.io.{File, PrintWriter}
+import Especializacao.Especializacao
 
+import java.io.{File, PrintWriter}
 import Mecanico._
 import TipoAvaria._
 import Trabalho._
@@ -92,6 +93,12 @@ object UtilsApp {
     val temp1 = temp.filter(_.ano == ano)
     val temp2 = temp1.filter(_.dono == dono)
     return temp2.head
+  }
+
+  def FindMec(nome: String, especializacao: Especializacao): Mecanico = {
+    val temp = meclist.filter(_.nome == nome)
+    val temp1 = temp.filter(_.especializacao == especializacao)
+    return temp1.head
   }
 
 

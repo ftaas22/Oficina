@@ -1,9 +1,8 @@
-//import javafx.fxml.FXML
-//import javafx.scene.control.{Label, TextField}
-//import Carro._
+import javafx.fxml.FXML
+import javafx.scene.control.{Label, TextField}
 import UtilsApp._
 
-/*class ClientesController {
+class ClientesController {
 
   @FXML
   var modelo: TextField = _
@@ -25,7 +24,6 @@ import UtilsApp._
         RemoveCarIfReady(FindCar(modelo.getText, ano.getText, dono.getText))
       }
     }
-    println(carlist)
   }
 
   def RemoveCarIfReady(car: Carro): Unit = {
@@ -53,7 +51,6 @@ import UtilsApp._
         labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\nAdicionado")
       }
     }
-    println(carlist)
   }
 
   def CheckCar(): Unit = {
@@ -65,10 +62,18 @@ import UtilsApp._
         val car = FindCar(modelo.getText, ano.getText, dono.getText)
         labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
           "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
-          "\n Pronto: " + car.pronto())
+          "\n Pronto: " + ProntoToString(car.pronto()))
       }
     }
-    println(carlist)
+  }
+
+  def ProntoToString(pronto: Boolean): String = pronto match {
+    case true => {
+      "Sim"
+    }
+    case false => {
+      "Não"
+    }
   }
 
   def CheckIfEmpty(a:String, b:String, c:String) = (a,b,c) match {
@@ -78,4 +83,4 @@ import UtilsApp._
     case _ => false
   }
 
-}*/
+}

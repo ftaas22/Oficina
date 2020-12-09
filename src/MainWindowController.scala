@@ -1,9 +1,9 @@
-//import javafx.fxml.{FXML, FXMLLoader}
-//import javafx.scene.{Parent, Scene}
-//import javafx.scene.control.Button
-//import javafx.stage.{Modality, Stage}
+import javafx.fxml.{FXML, FXMLLoader}
+import javafx.scene.{Parent, Scene}
+import javafx.scene.control.Button
+import javafx.stage.{Modality, Stage}
 
-/*class MainWindowController {
+class MainWindowController {
 
   @FXML
   var mecanicos: Button = _
@@ -32,4 +32,4 @@
     secondStage.show()
   }
 
-}*/
+}
