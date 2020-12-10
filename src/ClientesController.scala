@@ -79,7 +79,7 @@ class ClientesController {
         labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
       }
       case false => {
-        val car = FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList)
+        val car = FindCarInMec(modelo.getText, ano.getText, dono.getText, meclist.toList)
         if (car != null) {
         labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
           "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
