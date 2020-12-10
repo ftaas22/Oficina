@@ -106,13 +106,15 @@ object UtilsApp {
     val temp = list.filter(_.modelo == modelo)
     val temp1 = temp.filter(_.ano == ano)
     val temp2 = temp1.filter(_.dono == dono)
-    return temp2.head
+    if(temp2.head != null) temp2.head
+    else null
   }
 
   def FindMec(nome: String, especializacao: Especializacao): Mecanico = {
     val temp = meclist.filter(_.nome == nome)
     val temp1 = temp.filter(_.especializacao == especializacao)
-    return temp1.head
+    if(temp1.head != null) temp1.head
+    else null
   }
 
   def FindCarInMec(modelo:String, ano: String, dono: String, list: List[Mecanico]): Carro = list match {
@@ -120,7 +122,7 @@ object UtilsApp {
       val tempcar = FindCar(modelo,ano,dono,x.lista_para_arr)
       if(tempcar == null) {
         val tempcar2 = FindCarInMec(modelo,ano,dono,xs)
-        return tempcar2
+        tempcar2
       }
       else tempcar
     }
