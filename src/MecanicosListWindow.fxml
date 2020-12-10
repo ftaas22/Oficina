@@ -33,7 +33,7 @@
          </font>
       </Label>
       <Label fx:id="trabsemanal" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="478.0" prefHeight="65.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-      <TableView fx:id="tv1" layoutX="678.0" layoutY="290.0" prefHeight="200.0" prefWidth="376.0">
+      <TableView fx:id="tv1" layoutX="529.0" layoutY="290.0" prefHeight="200.0" prefWidth="599.0">
         <columns>
           <TableColumn fx:id="tc1" prefWidth="75.0" text="2a" />
             <TableColumn fx:id="tc2" prefWidth="75.0" text="3a" />

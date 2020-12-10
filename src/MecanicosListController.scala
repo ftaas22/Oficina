@@ -121,7 +121,7 @@ class MecanicosListController {
     tempototal match {
       case 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 => {
         if (tempoavaria > 0) {
-          writer. ("2 " + tempototal + " " + s + "\n")
+          writer.write("2 " + tempototal + " " + s + "\n")
           WriteInPrint(tempototal + 1, tempoavaria - 1, s)
         }
       }
