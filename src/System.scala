@@ -11,6 +11,19 @@ import scala.collection.mutable.ListBuffer
 object System{
 
 
+  def atualizarCarros_Mec(): Unit ={
+
+
+
+  }
+
+
+  def esvaziarMec(): Unit ={
+
+
+
+  }
+
 
   def Trabalhar(): Unit = {
     val Temp_mecList = meclist.toList
@@ -40,8 +53,8 @@ object System{
         if(lmec.length!=0 && lcar.length!=0){
           val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
           if(lmec.head.lista_para_arr!=null){
-          val newl=  lmec.head.lista_para_arr ::: n_car_mec._1
-          meclist+=lmec.head.copy(lista_para_arr = newl)
+            val newl=  lmec.head.lista_para_arr ::: n_car_mec._1
+            meclist+=lmec.head.copy(lista_para_arr = newl)
           }
           else{
             val newl=n_car_mec._1
@@ -89,30 +102,27 @@ object System{
     def recursiveStep(lmec:List[Mecanico],lcar:List[Carro]): Unit ={
       if(lmec.length!=0 && lcar.length!=0){
         val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
-        if(lmec.head.lista_para_arr!=null){
 
-          def anotherRecursiveStep(l2:List[Carro],n_l:List[Carro]):List[Carro] = l2 match {
-            case Nil => l2
-            case x::xs => {
-            val trab=  x.trabalho.copy(tempo = x.trabalho.tempo * 2)
-            val car= x.copy(trabalho = trab)
-              val n:List[Carro]= List[Carro]()
-              n.::(car)
-              anotherRecursiveStep(xs,n)
+          def anotherRecursiveStep(l2: List[Carro], n_l: List[Carro]): List[Carro] = {
+            if (l2 != null) {
+              val trab = l2.head.trabalho.copy(tempo = l2.head.trabalho.tempo * 2)
+              val car = l2.head.copy(trabalho = trab)
+              val lc = n_l:::List(car)
+              anotherRecursiveStep(l2.tail,lc)
+            }
+            else{
+              n_l
             }
           }
-
-
-
-
-          val outralissta = n_car_mec._1.
-          //val newl:List[Carro] =  lmec.head.lista_para_arr ::: mapped
-          //meclist+=lmec.head.copy(lista_para_arr = newl)
+        val a: List[Carro] = List[Carro]()
+        val aux= anotherRecursiveStep(n_car_mec._1,a)
+        if(lmec.head.lista_para_arr!=null){
+          val newl=  lmec.head.lista_para_arr ::: aux
+          meclist+=lmec.head.copy(lista_para_arr = newl)
         }
         else{
-          val newl=n_car_mec._1.map(x => x.trabalho.tempo*2)
-          println(newl+"else")
-          //meclist+=lmec.head.copy(lista_para_arr = newl)
+          val newl=aux
+          meclist+=lmec.head.copy(lista_para_arr = newl)
         }
 
         recursiveStep(lmec.tail,n_car_mec._2)
@@ -120,7 +130,6 @@ object System{
       else {}
     }
     recursiveStep(lmec,lcar)
-
   }
 
 
