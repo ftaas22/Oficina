@@ -10,7 +10,7 @@ import scala.util.Try
 
 class GUI extends Application {
 
-  override def start(primaryStage: Stage): Try[Unit] = Try{
+  override def start(primaryStage: Stage): Unit = {
     primaryStage.setTitle("GUI")
     val fxmlLoader =
       new FXMLLoader(getClass.getResource("MainWindow.fxml"))
@@ -33,7 +33,7 @@ object FxApp {
     val car2 = Carro("Dacia", "2019", Avaria.defineTrabalho(Avaria(TipoAvaria.ALTERNADOR)), "Diogo")
     val car4 = Carro("Mercedes", "1989", Avaria.defineTrabalho(Avaria(TipoAvaria.PINTAR_INTEIOR)), "João")
     val car3 = Carro("Dacia", "2018", Avaria.defineTrabalho(Avaria(TipoAvaria.DIRECAO)), "Vilela")
-    val lista: List[Carro] = List(car3, car4, car3, car1, car2, car3, car1, car1)
+    val lista: List[Carro] = List(car1,car2,car3)
 
     val mec = new Mecanico(meclist.head.especializacao, meclist.head.salario, "Vilela", lista)
     meclist += mec

@@ -101,14 +101,14 @@ object UtilsApp {
     val temp = list.filter(_.modelo == modelo)
     val temp1 = temp.filter(_.ano == ano)
     val temp2 = temp1.filter(_.dono == dono)
-    if(temp2.head != null) temp2.head
+    if(temp2 != Nil) temp2.head
     else null
   }
 
   def FindMec(nome: String, especializacao: Especializacao): Mecanico = {
     val temp = meclist.filter(_.nome == nome)
     val temp1 = temp.filter(_.especializacao == especializacao)
-    if(temp1.head != null) temp1.head
+    if(temp1 != Nil) temp1.head
     else null
   }
 

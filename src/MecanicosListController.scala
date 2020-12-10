@@ -94,8 +94,8 @@ class MecanicosListController {
     case x::xs =>
       if(ind <= 40) {
         cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
-        trabsemanal.setText("Horas de Trabalho Semanal: " + ind)
         WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
+        trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
         WriteTable(x.trabalho.tempo + ind, xs)
       }
     case x:: Nil =>
@@ -137,33 +137,6 @@ class MecanicosListController {
     writer.close()
   }
 
- /* def WriteAAA(tempototal: Double, tempoavaria: Double, s: String): ObservableList[Calendar] = {
-    val linha1: Calendar = Calendar("","","","","")
-    val linha2: Calendar = Calendar("","","","","")
-    val linha3: Calendar = Calendar("","","","","")
-    val linha4: Calendar = Calendar("","","","","")
-    val linha5: Calendar = Calendar("","","","","")
-    val linha6: Calendar = Calendar("","","","","")
-    val linha7: Calendar = Calendar("","","","","")
-    val linha8: Calendar = Calendar("","","","","")
-    /*tempototal match {
-      case 0 => if(tempoavaria > 0) linha1.copy()
-    }*/
-  }*/
-
-  /*def WriteTableView(): Unit = {
-    val lst:ObservableList[Calendar] = FXCollections.observableArrayList(
-      new Calendar("Jose", 1.5),
-      new Calendar("Maria", 1.27),
-      new Calendar("Pedro", 1.80),
-      new Calendar("Carlos", 1.70)
-    )
-
-    tc1.setCellValueFactory(new PropertyValueFactory("name"));
-    tc2.setCellValueFactory(new PropertyValueFactory("size"));
-    tv1.setItems(lst)
-  }*/
-
   def PassarSlot(): Unit = {
     Trabalhar()
   }
@@ -182,6 +155,10 @@ class MecanicosListController {
     "Sim"
   } else {
     "Não"
+  }
+
+  def AtualizarHorario(): Unit = {
+
   }
 
 }
