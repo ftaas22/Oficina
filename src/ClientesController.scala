@@ -1,9 +1,11 @@
 import javafx.fxml.{FXML, FXMLLoader}
-import javafx.scene.control.{Button, Label, TextField}
+import javafx.scene.control.{Button, ChoiceBox, Label, TextField}
 import UtilsApp._
 import javafx.scene.{Parent, Scene}
 import javafx.stage.{Modality, Stage}
 import FxApp._
+import TipoAvaria.TipoAvaria
+import javafx.collections.FXCollections
 
 import scala.collection.mutable.ListBuffer
 import scala.util.Try
@@ -22,6 +24,12 @@ class ClientesController {
   var labelpronto: Label = _
   @FXML
   var takecar: Button = _
+  /*@FXML
+  var avaria: ChoiceBox[TipoAvaria] = new ChoiceBox[TipoAvaria]
+
+  def fill(): Unit = {
+    avaria.setItems(FXCollections.observableArrayList(TipoAvaria.values))
+  }*/
 
   def TakeCar(): Try[Unit] = Try{
     if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
