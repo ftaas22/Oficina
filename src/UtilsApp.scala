@@ -66,7 +66,7 @@ object UtilsApp {
       println(mecanico)
       download_Mec(source:Iterator[String])
     }
-  }
+  }//para
 
   def randomAvaria(): TipoAvaria = {
      val rad = TipoAvaria(scala.util.Random.nextInt(maxID))
