@@ -6,8 +6,6 @@ import UtilsApp._
 import javafx.fxml.FXML
 import javafx.scene.control.{Label, TableColumn, TableView, TextField}
 
-import scala.util.Try
-
 class MecanicosListController {
 
   @FXML
@@ -37,7 +35,7 @@ class MecanicosListController {
   @FXML
   var tc5: TableColumn[String, String] = _
 
-  def UpdateMec(): Try[Unit] = Try{
+  def UpdateMec(): Unit = {
     mecanicos.setText("")
     val temp: List[Mecanico] = meclist.toList
     PrintMecs(temp)
@@ -49,7 +47,7 @@ class MecanicosListController {
     case x :: Nil => mecanicos.setText(mecanicos.getText + x.nome + " " + x.especializacao + "\n")
   }
 
-  def AddMec(): Try[Unit] = Try{
+  def AddMec(): Unit = {
     if (CheckIfAnyEmpty(nome.getText, especializacao.getText, salario.getText)) {
       mecanicos.setText("Tem de preencher todos os campos.")
     } else {
@@ -59,7 +57,7 @@ class MecanicosListController {
     }
   }
 
-  def RemMec(): Try[Unit] = Try {
+  def RemMec(): Unit = {
     if (CheckIfTwoFirstEmpty(nome.getText, especializacao.getText)) {
       mecanicos.setText("Tem de preencher os campos Nome e Especialização")
     } else {
@@ -81,7 +79,7 @@ class MecanicosListController {
     case _ => false
   }
 
-  def EscolherMecanico(): Try[Unit] = Try{
+  def EscolherMecanico(): Unit = {
     if (CheckIfTwoFirstEmpty(nome.getText, especializacao.getText)) {
       mecanicos.setText("Tem de preencher os campos Nome e Especialização")
     } else {
@@ -94,17 +92,17 @@ class MecanicosListController {
     case x::xs =>
       if(ind <= 40) {
         cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
-        WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
+        //WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
         trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
         WriteTable(x.trabalho.tempo + ind, xs)
       }
     case x:: Nil =>
       cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
-      WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
+      //WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
     case Nil => cars.setText(cars.getText)
   }
 
-  def WriteInPrint(tempototal: Double, tempoavaria: Double, s: String): Unit = {
+  /*def WriteInPrint(tempototal: Double, tempoavaria: Double, s: String): Unit = {
     val writer = new PrintWriter(new File("src\\Horario.txt"))
     writer.write("")
     tempototal match {
@@ -135,12 +133,12 @@ class MecanicosListController {
         }
     }
     writer.close()
-  }
+  }*/
 
   def PassarSlot(): Unit = {
     Trabalhar()
   }
-  def VerCar(): Try[Unit] = Try{
+  def VerCar(): Unit = {
     if (CheckIfTwoFirstEmpty(nome.getText, especializacao.getText)) {
       mecanicos.setText("Escolha um mecânico.")
     } else {

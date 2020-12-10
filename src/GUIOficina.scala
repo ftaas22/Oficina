@@ -25,18 +25,18 @@ object FxApp {
   var carlist: ListBuffer[Carro] = ListBuffer[Carro]()
   var meclist: ListBuffer[Mecanico] = ListBuffer[Mecanico]()
   def main(args: Array[String]): Unit = {
-    val source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
-    val source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
+    val source: Iterator[String] = Source.fromFile("src\\carros2.txt").getLines()
+    val source2: Iterator[String] = Source.fromFile("src\\mecanicos3.txt").getLines()
     download_Cars(source)
     download_Mec(source2)
-    val car1 = Carro("Dacia", "2020", Avaria.defineTrabalho(Avaria(TipoAvaria.MOTOR)), "André")
+    /*val car1 = Carro("Dacia", "2020", Avaria.defineTrabalho(Avaria(TipoAvaria.MOTOR)), "André")
     val car2 = Carro("Dacia", "2019", Avaria.defineTrabalho(Avaria(TipoAvaria.ALTERNADOR)), "Diogo")
     val car4 = Carro("Mercedes", "1989", Avaria.defineTrabalho(Avaria(TipoAvaria.PINTAR_INTEIOR)), "João")
     val car3 = Carro("Dacia", "2018", Avaria.defineTrabalho(Avaria(TipoAvaria.DIRECAO)), "Vilela")
     val lista: List[Carro] = List(car1,car2,car3)
 
     val mec = new Mecanico(Especializacao.ENGAUTOMOVEL, meclist.head.salario, "Vilela", lista)
-    meclist += mec
+    meclist += mec*/
     Application.launch(classOf[GUI], args: _*)
     carListToFile()
     mecListToFile()

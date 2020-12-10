@@ -12,7 +12,7 @@ object System{
   def atualizarCarros_Mec(): Unit ={
     esvaziarMec()
     println(meclist)
-    /*atriEspecializacao(Especializacao.ENGELETRICO)
+    atriEspecializacao(Especializacao.ENGELETRICO)
     println(meclist)
     atriEspecializacao(Especializacao.ENGAUTOMOVEL)
     println(meclist)
@@ -24,7 +24,7 @@ object System{
     println(meclist)
     atriObservacao()
     println(meclist)
-    atriOutraEspcializacao()
+    /*atriOutraEspcializacao()
     print(meclist)*/
   }
 
@@ -52,12 +52,12 @@ object System{
       anotherRecursiveStep(mec.head.lista_para_arr)
       val a: List[Carro] = List[Carro]()
       val aux = mec.head.copy(lista_para_arr = null)
+       println(aux)
       meclist += aux
-       if(mec.tail != null) recusiveStep(mec.tail)
+       if(mec.tail.length != 0) recusiveStep(mec.tail)
       }
     }
-
-  recusiveStep(mec)
+  if(mec!=null) recusiveStep(mec)
   }
 
 
@@ -143,7 +143,7 @@ object System{
         val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
 
           def anotherRecursiveStep(l2: List[Carro], n_l: List[Carro]): List[Carro] = {
-            if (l2 != null) {
+            if (l2.length != 0) {
               val trab = l2.head.trabalho.copy(tempo = l2.head.trabalho.tempo * 2)
               val car = l2.head.copy(trabalho = trab)
               val lc = n_l:::List(car)
@@ -155,7 +155,7 @@ object System{
           }
         val a: List[Carro] = List[Carro]()
         val aux= anotherRecursiveStep(n_car_mec._1,a)
-        if(lmec.head.lista_para_arr!=null){
+        if(lmec.head.lista_para_arr.length!=0){
           val newl=  lmec.head.lista_para_arr ::: aux
           meclist+=lmec.head.copy(lista_para_arr = newl)
           println(meclist)

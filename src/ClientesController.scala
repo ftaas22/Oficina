@@ -1,11 +1,9 @@
 import javafx.fxml.{FXML, FXMLLoader}
-import javafx.scene.control.{Button, ChoiceBox, Label, TextField}
+import javafx.scene.control.{Button, Label, TextField}
 import UtilsApp._
 import javafx.scene.{Parent, Scene}
 import javafx.stage.{Modality, Stage}
 import FxApp._
-import TipoAvaria.TipoAvaria
-import javafx.collections.FXCollections
 
 import scala.collection.mutable.ListBuffer
 import scala.util.Try
@@ -24,12 +22,8 @@ class ClientesController {
   var labelpronto: Label = _
   @FXML
   var takecar: Button = _
-  /*@FXML
-  var avaria: ChoiceBox[TipoAvaria] = new ChoiceBox[TipoAvaria]
-
-  def fill(): Unit = {
-    avaria.setItems(FXCollections.observableArrayList(TipoAvaria.values))
-  }*/
+  @FXML
+  var avaria: Label = _
 
   def TakeCar(): Try[Unit] = Try{
     if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
@@ -64,11 +58,18 @@ class ClientesController {
     if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
       labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
     } else {
-      val avaria = Avaria(TipoAvaria.OBSERVACAO)
-      val trabalho: Trabalho = Avaria.defineTrabalho(avaria)
-      val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
-      carlist += car
-      labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\nAdicionado")
+      if(avaria.getText == "") {
+        val ava = Avaria(TipoAvaria.OBSERVACAO)
+        val trabalho: Trabalho = Avaria.defineTrabalho(ava)
+        val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
+        carlist += car
+      } else {
+        val ava = Avaria(TipoAvaria.withName(avaria.getText.toUpperCase()))
+        val trabalho: Trabalho = Avaria.defineTrabalho(ava)
+        val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
+        carlist += car
+      }
+      labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\n Avaria: " + avaria.getText + "\nAdicionado")
     }
   }
 
