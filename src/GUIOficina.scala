@@ -35,7 +35,7 @@ object FxApp {
     val car3 = Carro("Dacia", "2018", Avaria.defineTrabalho(Avaria(TipoAvaria.DIRECAO)), "Vilela")
     val lista: List[Carro] = List(car1,car2,car3)
 
-    val mec = new Mecanico(meclist.head.especializacao, meclist.head.salario, "Vilela", lista)
+    val mec = new Mecanico(Especializacao.ENGAUTOMOVEL, meclist.head.salario, "Vilela", lista)
     meclist += mec
     Application.launch(classOf[GUI], args: _*)
     carListToFile()

@@ -158,7 +158,7 @@ class MecanicosListController {
   }
 
   def AtualizarHorario(): Unit = {
-
+    atualizarCarros_Mec()
   }
 
 }
