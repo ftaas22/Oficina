@@ -23,7 +23,7 @@ class ClientesController {
   @FXML
   var takecar: Button = _
   @FXML
-  var avaria: Label = _
+  var avaria: TextField = _
 
   def TakeCar(): Try[Unit] = Try{
     if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
@@ -40,6 +40,7 @@ class ClientesController {
         val templist = carlist.filterNot(_ == car)
         carlist =  ListBuffer(car)
         val secondStage: Stage = new Stage()
+        secondStage.setTitle("Recibo")
         secondStage.initModality(Modality.APPLICATION_MODAL)
         secondStage.initOwner(takecar.getScene.getWindow)
         val fxmlLoader = new FXMLLoader(getClass.getResource("ReciboWindow.fxml"))

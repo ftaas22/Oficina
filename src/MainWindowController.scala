@@ -3,8 +3,6 @@ import javafx.scene.{Parent, Scene}
 import javafx.scene.control.Button
 import javafx.stage.{Modality, Stage}
 
-import scala.util.Try
-
 class MainWindowController {
 
   @FXML
@@ -14,8 +12,9 @@ class MainWindowController {
   @FXML
   var gestor: Button = _
 
-  def OnMecanicosClicked(): Try[Unit] = Try{
+  def OnMecanicosClicked(): Unit ={
     val secondStage: Stage = new Stage()
+    secondStage.setTitle("Mecânicos")
     secondStage.initModality(Modality.APPLICATION_MODAL)
     secondStage.initOwner(mecanicos.getScene.getWindow)
     val fxmlLoader = new FXMLLoader(getClass.getResource("MecanicosListWindow.fxml"))
@@ -25,8 +24,9 @@ class MainWindowController {
     secondStage.show()
   }
 
-  def OnClientsClicked(): Try[Unit] = Try{
+  def OnClientsClicked(): Unit ={
     val secondStage: Stage = new Stage()
+    secondStage.setTitle("Clientes")
     secondStage.initModality(Modality.APPLICATION_MODAL)
     secondStage.initOwner(clientes.getScene.getWindow)
     val fxmlLoader = new FXMLLoader(getClass.getResource("ClientesWindow.fxml"))
@@ -36,7 +36,7 @@ class MainWindowController {
     secondStage.show()
   }
 
-  def OnGestorClicked(): Try[Unit] = Try {
+  def OnGestorClicked(): Unit = {
     val secondStage: Stage = new Stage()
     secondStage.initModality(Modality.APPLICATION_MODAL)
     secondStage.initOwner(gestor.getScene.getWindow)
