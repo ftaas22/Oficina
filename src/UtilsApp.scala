@@ -102,8 +102,8 @@ object UtilsApp {
     writer.close()
   }
 
-  def FindCar(modelo:String, ano: String, dono: String): Carro = {
-    val temp = carlist.filter(_.modelo == modelo)
+  def FindCar(modelo:String, ano: String, dono: String, list: List[Carro]): Carro = {
+    val temp = list.filter(_.modelo == modelo)
     val temp1 = temp.filter(_.ano == ano)
     val temp2 = temp1.filter(_.dono == dono)
     return temp2.head
