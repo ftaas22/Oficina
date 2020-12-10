@@ -7,7 +7,6 @@ import System.atriOutraEspcializacao
 import TipoAvaria._
 
 import scala.annotation.tailrec
-import scala.io.Source
 
 object UtilsApp {
     //metodo de carregar os mecanicos e o carro
@@ -127,9 +126,9 @@ object UtilsApp {
 
 
   def main(args: Array[String]): Unit = {
-    val source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
+    //val source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
     //download_Cars(source)
-    download_Mec(source2)
+    //download_Mec(source2)
     //println(carlist)
     //carListToFile()
     //mecListToFile()
