@@ -1,28 +1,52 @@
-import java.time.{DayOfWeek, LocalDate}
 
-import Especializacao.Especializacao
+
+import Especializacao.{ENGELETRICO, Especializacao}
 import FxApp.{carlist, meclist}
 import Mecanico._
 
-import scala.::
-import scala.collection.immutable.Nil.:::
 import scala.collection.mutable.ListBuffer
 
 object System{
 
 
   def atualizarCarros_Mec(): Unit ={
-
-
-
+    esvaziarMec()
+    atriEspecializacao(Especializacao.ENGELETRICO)
+    atriEspecializacao(Especializacao.ENGAUTOMOVEL)
+    atriEspecializacao(Especializacao.BATECHAPAS)
+    atriEspecializacao(Especializacao.PINTOR)
+    atriEspecializacao(Especializacao.ESTOFADOR)
+    atriObservacao()
+    atriOutraEspcializacao()
   }
 
 
   def esvaziarMec(): Unit ={
+    val mec= meclist.toList
+    meclist.clear()
+    def recusiveStep(mec:List[Mecanico]): Unit ={
+     if(mec!=null){
+      def anotherRecursiveStep(lst: List[Carro]) {
+        lst match {
+          case h :: Nil => carlist += lst.head
+          case h :: t => {
+            carlist += lst.head
+            anotherRecursiveStep(lst.tail)
+          }
+        }}
 
-
+      anotherRecursiveStep(mec.head.lista_para_arr)
+      val a: List[Carro] = List[Carro]()
+      val aux= mec.head.copy(lista_para_arr = a)
+      meclist +=aux
+      recusiveStep(mec.tail)
+      }
+    }
 
   }
+
+
+
 
 
   def Trabalhar(): Unit = {
