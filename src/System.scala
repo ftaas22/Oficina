@@ -1,10 +1,10 @@
 
 
-import Especializacao.Especializacao
+import Especializacao.{ENGELETRICO, Especializacao}
 import FxApp.{carlist, meclist}
 import Mecanico._
 
-import scala.annotation.tailrec
+import scala.collection.mutable.ListBuffer
 
 object System{
 
@@ -22,7 +22,26 @@ object System{
 
 
   def esvaziarMec(): Unit ={
+    val mec= meclist.toList
     meclist.clear()
+    def recusiveStep(mec:List[Mecanico]): Unit ={
+     if(mec!=null){
+      def anotherRecursiveStep(lst: List[Carro]) {
+        lst match {
+          case h :: Nil => carlist += lst.head
+          case h :: t => {
+            carlist += lst.head
+            anotherRecursiveStep(lst.tail)
+          }
+        }}
+
+      anotherRecursiveStep(mec.head.lista_para_arr)
+      val a: List[Carro] = List[Carro]()
+      val aux= mec.head.copy(lista_para_arr = a)
+      meclist +=aux
+      recusiveStep(mec.tail)
+      }
+    }
 
   }
 
@@ -33,13 +52,13 @@ object System{
   def Trabalhar(): Unit = {
     val Temp_mecList = meclist.toList
     meclist.clear()
-    @tailrec
     def recursiveStep(lst: List[Mecanico]) {
       lst match {
-        case _ :: Nil => meclist += arranjar(lst.head)
-        case _ :: _ =>
-          meclist += arranjar(lst.head)
+        case h :: Nil => meclist += arranjar(lst.head)
+        case h :: t => {
+          (meclist += arranjar(lst.head))
           recursiveStep(lst.tail)
+        }
       }}
     recursiveStep(Temp_mecList)
     print("\n")
@@ -54,9 +73,8 @@ object System{
       meclist=meclist.filterNot(x=> x.especializacao == especializacao)
       val lcar=carlist.filter(x=> x.trabalho.especializacao == especializacao).toList
       carlist=carlist.filterNot(x=> x.trabalho.especializacao == especializacao)
-      @tailrec
-      def recursiveStep(lmec:List[Mecanico], lcar:List[Carro]) {
-        if(lmec.nonEmpty && lcar.nonEmpty){
+      def recursiveStep(lmec:List[Mecanico],lcar:List[Carro]) {
+        if(lmec.length!=0 && lcar.length!=0){
           val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
           if(lmec.head.lista_para_arr!=null){
             val newl=  lmec.head.lista_para_arr ::: n_car_mec._1
@@ -82,9 +100,8 @@ object System{
     meclist.clear()
     val lcar= carlist.filter(x=> x.trabalho.especializacao== Especializacao.OBSERVACAO).toList
     carlist=carlist.filterNot(x=> x.trabalho.especializacao== Especializacao.OBSERVACAO)
-    @tailrec
-    def recursiveStep(lmec:List[Mecanico], lcar:List[Carro]): Unit ={
-      if(lmec.nonEmpty && lcar.nonEmpty){
+    def recursiveStep(lmec:List[Mecanico],lcar:List[Carro]): Unit ={
+      if(lmec.length!=0 && lcar.length!=0){
         val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
         if(lmec.head.lista_para_arr!=null){
           val newl=  lmec.head.lista_para_arr ::: n_car_mec._1
@@ -106,12 +123,10 @@ object System{
     meclist.clear()
     val lcar= carlist.toList
     carlist.clear()
-    @tailrec
-    def recursiveStep(lmec:List[Mecanico], lcar:List[Carro]): Unit ={
-      if(lmec.nonEmpty && lcar.nonEmpty){
+    def recursiveStep(lmec:List[Mecanico],lcar:List[Carro]): Unit ={
+      if(lmec.length!=0 && lcar.length!=0){
         val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
 
-          @tailrec
           def anotherRecursiveStep(l2: List[Carro], n_l: List[Carro]): List[Carro] = {
             if (l2 != null) {
               val trab = l2.head.trabalho.copy(tempo = l2.head.trabalho.tempo * 2)
