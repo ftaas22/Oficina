@@ -1,16 +1,12 @@
-import Especializacao.Especializacao
 import java.io.{File, PrintWriter}
 
 import Avaria.defineTrabalho
+import Especializacao.Especializacao
 import FxApp.{carlist, meclist}
-import Mecanico._
-import System.{atriEspecializacao, atriOutraEspcializacao}
+import System.atriOutraEspcializacao
 import TipoAvaria._
-import Trabalho._
 
-import scala.{+:, ::}
 import scala.annotation.tailrec
-import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
 object UtilsApp {
@@ -46,8 +42,9 @@ object UtilsApp {
       val carro2: Carro = Carro("Volkswagen","1920",trabalho,"José")
       val arranjarList : List[Carro] = List(carro, carro2)*/
       val carArranjarList : List[Carro] = List[Carro]()
+      @tailrec
       def listaParaArranjar(i : String, a: Int, b: Int, list: List[Carro]): List[Carro] = (a, b) match{
-        case (_,_) => {
+        case (_,_) =>
           if (a<b) {
             val string = i.split(" ")(a)
             val avaria: Avaria =  Avaria(TipoAvaria.withName(string.split("_")(2)))
@@ -58,9 +55,8 @@ object UtilsApp {
           }else{
             list
           }
-        }
       }
-      val carArranjarList2 = listaParaArranjar(i,3,i.split(" ").size, carArranjarList)
+      val carArranjarList2 = listaParaArranjar(i,3,i.split(" ").length, carArranjarList)
       var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1),i.split(" ")(2), carArranjarList2)
       meclist+=mecanico
       println(mecanico)
@@ -70,13 +66,13 @@ object UtilsApp {
 
   def randomAvaria(): TipoAvaria = {
      val rad = TipoAvaria(scala.util.Random.nextInt(maxID))
-    return rad
+    rad
   }
 
   def carListToFile(): Unit = {
     val writer = new PrintWriter(new File("src\\carros2.txt"))
     def writeList(list: List[Carro]): Unit = list match {
-      case Nil => list
+      case Nil =>
       case x :: xs => writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + "\n") :: writeList(xs) :: Nil
     }
     writeList(carlist.toList)
@@ -95,7 +91,7 @@ object UtilsApp {
       }+writeCars(xs)
     }
     def writeList(list: List[Mecanico]): Unit = list match {
-      case Nil => list
+      case Nil =>
       case x :: xs => writer.write(x.especializacao + " " + x.salario + " " + x.nome + " "  + writeCars(x.lista_para_arr)+ "\n") :: writeList(xs) :: Nil
     }
     writeList(meclist.toList)
@@ -118,22 +114,20 @@ object UtilsApp {
   }
 
   def FindCarInMec(modelo:String, ano: String, dono: String, list: List[Mecanico]): Carro = list match {
-    case x :: xs => {
+    case x :: xs =>
       val tempcar = FindCar(modelo,ano,dono,x.lista_para_arr)
       if(tempcar == null) {
         val tempcar2 = FindCarInMec(modelo,ano,dono,xs)
         tempcar2
       }
       else tempcar
-    }
   }
 
 
 
 
   def main(args: Array[String]): Unit = {
-    var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
-    var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
+    val source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
     //download_Cars(source)
     download_Mec(source2)
     //println(carlist)
@@ -150,7 +144,6 @@ object UtilsApp {
     carlist+=car3
     atriOutraEspcializacao()
     println(meclist)
-
   }
 
 

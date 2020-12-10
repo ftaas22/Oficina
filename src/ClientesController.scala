@@ -6,6 +6,7 @@ import javafx.stage.{Modality, Stage}
 import FxApp._
 
 import scala.collection.mutable.ListBuffer
+import scala.util.Try
 
 class ClientesController {
 
@@ -22,26 +23,23 @@ class ClientesController {
   @FXML
   var takecar: Button = _
 
-  def TakeCar(): Unit = {
-    CheckIfEmpty(modelo.getText, ano.getText, dono.getText) match{
-      case true => {
-        labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
-      }
-      case false => {
-        RemoveCarIfReady(FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList))
-      }
+  def TakeCar(): Try[Unit] = Try{
+    if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
+      labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
+    } else {
+      RemoveCarIfReady(FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList))
     }
   }
 
-  def RemoveCarIfReady(car: Carro): Unit = {
+  def RemoveCarIfReady(car: Carro): Try[Unit] = Try{
     car.trabalho.tempo match {
-      case 0 => {
+      case 0 =>
         labelpronto.setText("Recolheu o carro, obrigado pela confiança!")
         val templist = carlist.filterNot(_ == car)
         carlist =  ListBuffer(car)
         val secondStage: Stage = new Stage()
         secondStage.initModality(Modality.APPLICATION_MODAL)
-        secondStage.initOwner(takecar.getScene().getWindow)
+        secondStage.initOwner(takecar.getScene.getWindow)
         val fxmlLoader = new FXMLLoader(getClass.getResource("ReciboWindow.fxml"))
         val mainViewRoot: Parent = fxmlLoader.load()
         val scene = new Scene(mainViewRoot)
@@ -49,64 +47,55 @@ class ClientesController {
         secondStage.showAndWait()
         println("Teste")
         carlist = templist
-      }
-      case _ => {
+      case _ =>
         labelpronto.setText("O Carro ainda não está pronto.")
-      }
     }
   }
 
-  def AddCar(): Unit = {
-    CheckIfEmpty(modelo.getText, ano.getText, dono.getText) match{
-      case true => {
-        labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
-      }
-      case false => {
-        val avaria = Avaria(TipoAvaria.OBSERVACAO)
-        val trabalho: Trabalho = Avaria.defineTrabalho(avaria)
-        val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
-        carlist += car
-        labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\nAdicionado")
-      }
+  def AddCar(): Try[Unit] = Try{
+    if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
+      labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
+    } else {
+      val avaria = Avaria(TipoAvaria.OBSERVACAO)
+      val trabalho: Trabalho = Avaria.defineTrabalho(avaria)
+      val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
+      carlist += car
+      labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\nAdicionado")
     }
   }
 
-  def CheckCar(): Unit = {
-    CheckIfEmpty(modelo.getText, ano.getText, dono.getText) match{
-      case true => {
-        labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
-      }
-      case false => {
-        val car = FindCarInMec(modelo.getText, ano.getText, dono.getText, meclist.toList)
-        if (car != null) {
+  def CheckCar():Unit = {
+    if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
+      labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
+    } else {
+      val car = FindCarInMec(modelo.getText, ano.getText, dono.getText, meclist.toList)
+      if (car != null) {
         labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
           "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
           "\n Pronto: " + ProntoToString(car.pronto()))
+      } else {
+        val car1 = FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList)
+        if (car1 != null) {
+          labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
+            "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
+            "\n Pronto: " + ProntoToString(car.pronto()))
         } else {
-          val car1 = FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList)
-          if(car1 != null) {
-            labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
-              "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
-              "\n Pronto: " + ProntoToString(car.pronto()))
-          } else {labelcarro.setText("Não foi possível encontrar este carro!")}
+          labelcarro.setText("Não foi possível encontrar este carro!")
         }
       }
     }
   }
 
-  def ProntoToString(pronto: Boolean): String = pronto match {
-    case true => {
-      "Sim"
-    }
-    case false => {
-      "Não"
-    }
+  def ProntoToString(pronto: Boolean): String = if (pronto) {
+    "Sim"
+  } else {
+    "Não"
   }
 
-  def CheckIfEmpty(a:String, b:String, c:String) = (a,b,c) match {
-    case ("",b,c) => true
-    case (a,"",c) => true
-    case (a,b,"") => true
+  def CheckIfEmpty(a:String, b:String, c:String): Boolean = (a,b,c) match {
+    case ("", _, _) => true
+    case (_,"", _) => true
+    case (_, _,"") => true
     case _ => false
   }
 

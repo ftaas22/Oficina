@@ -3,6 +3,8 @@ import javafx.scene.{Parent, Scene}
 import javafx.scene.control.Button
 import javafx.stage.{Modality, Stage}
 
+import scala.util.Try
+
 class MainWindowController {
 
   @FXML
@@ -12,10 +14,10 @@ class MainWindowController {
   @FXML
   var gestor: Button = _
 
-  def OnMecanicosClicked(): Unit = {
+  def OnMecanicosClicked(): Try[Unit] = Try{
     val secondStage: Stage = new Stage()
     secondStage.initModality(Modality.APPLICATION_MODAL)
-    secondStage.initOwner(mecanicos.getScene().getWindow)
+    secondStage.initOwner(mecanicos.getScene.getWindow)
     val fxmlLoader = new FXMLLoader(getClass.getResource("MecanicosListWindow.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
     val scene = new Scene(mainViewRoot)
@@ -23,10 +25,10 @@ class MainWindowController {
     secondStage.show()
   }
 
-  def OnClientsClicked(): Unit = {
+  def OnClientsClicked(): Try[Unit] = Try{
     val secondStage: Stage = new Stage()
     secondStage.initModality(Modality.APPLICATION_MODAL)
-    secondStage.initOwner(clientes.getScene().getWindow)
+    secondStage.initOwner(clientes.getScene.getWindow)
     val fxmlLoader = new FXMLLoader(getClass.getResource("ClientesWindow.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
     val scene = new Scene(mainViewRoot)
@@ -34,10 +36,10 @@ class MainWindowController {
     secondStage.show()
   }
 
-  def OnGestorClicked(): Unit = {
+  def OnGestorClicked(): Try[Unit] = Try {
     val secondStage: Stage = new Stage()
     secondStage.initModality(Modality.APPLICATION_MODAL)
-    secondStage.initOwner(gestor.getScene().getWindow)
+    secondStage.initOwner(gestor.getScene.getWindow)
     val fxmlLoader = new FXMLLoader(getClass.getResource("GestorWindow.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
     val scene = new Scene(mainViewRoot)

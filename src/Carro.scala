@@ -1,3 +1,5 @@
+
+
 case class Carro(
   modelo: String,
   ano: String,
@@ -6,9 +8,9 @@ case class Carro(
 
   def pronto():Boolean={
     if(trabalho.tempo <= 0)
-      return true
+      true
     else
-      return false
+      false
   }
 
   override def toString: String = modelo + " " + ano + " " + trabalho.TipoAvaria.toString + " " + trabalho.tempo + " " + dono
@@ -23,10 +25,10 @@ object Carro{
   def apply(modelo: String, ano: String, trabalho: Trabalho , dono: String): Carro = new Carro(modelo, ano,trabalho, dono)
 
   //passa tempo no carro e marca como arranjado se já passou o tempo necessário
-  def reparar(x: Carro):Carro ={
+  def reparar(x: Carro):Carro = {
       val Temp= x.trabalho.tempo- 0.25
       val NovoTrabalho= x.trabalho.copy(tempo=Temp)
-      return x.copy(trabalho=NovoTrabalho)
+      x.copy(trabalho=NovoTrabalho)
   }
 
 }

@@ -1,8 +1,9 @@
 import FxApp._
 import javafx.fxml.FXML
 import javafx.scene.control.{Label, TextField}
-
 import java.io.{File, PrintWriter}
+
+import scala.util.Try
 
 class ReciboWindowController() {
 
@@ -11,7 +12,7 @@ class ReciboWindowController() {
   @FXML
   var recibo: Label = _
 
-  def Receipt(): Unit = {
+  def Receipt(): Try[Unit] = Try{
     val tempcar:Carro = carlist.head
     val avaria = Avaria(tempcar.trabalho.TipoAvaria)
     val temptrabalho = Avaria.defineTrabalho(avaria)
