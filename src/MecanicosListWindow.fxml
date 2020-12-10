@@ -4,32 +4,54 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="572.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MecanicosListController">
+<AnchorPane prefHeight="572.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MecanicosListController">
    <Label layoutX="237.0" layoutY="23.0" text="Escolher Mecânico">
       <font>
-         <Font size="20.0" />
+         <Font size="20.0"/>
       </font>
    </Label>
-   <Button fx:id="update" layoutX="115.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#UpdateMec" prefHeight="25.0" prefWidth="150.0" text="Mostrar Mecânicos" />
-   <Button fx:id="addmec" alignment="CENTER" contentDisplay="CENTER" layoutX="115.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#AddMec" prefHeight="25.0" prefWidth="150.0" text="Adicionar Mecânico" />
-   <Button fx:id="remmec" layoutX="115.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#RemMec" prefHeight="25.0" prefWidth="150.0" text="Remover Mecânico" />
-   <Label layoutX="24.0" layoutY="114.0" prefHeight="25.0" prefWidth="44.0" text="Nome" />
-   <TextField fx:id="nome" layoutX="115.0" layoutY="114.0" />
-   <Label layoutX="24.0" layoutY="150.0" prefHeight="25.0" prefWidth="89.0" text="Especialização" />
-   <TextField fx:id="especializacao" layoutX="115.0" layoutY="150.0" />
-   <Label layoutX="24.0" layoutY="185.0" prefHeight="25.0" prefWidth="89.0" text="Salário" />
-   <TextField fx:id="salario" layoutX="115.0" layoutY="185.0" />
-   <Button fx:id="mecanico" layoutX="115.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#EscolherMecanico" prefHeight="25.0" prefWidth="150.0" text="Mostrar Horário" />
-   <Label fx:id="mecanicos" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="75.0" prefHeight="248.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true" />
-   <Button fx:id="passarslot" layoutX="363.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#PassarSlot" prefHeight="25.0" prefWidth="150.0" text="Passar Slot" />
-   <Button fx:id="vercar" layoutX="363.0" layoutY="427.0" mnemonicParsing="false" onMouseClicked="#VerCar" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
-   <Button fx:id="updatehorario" layoutX="363.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#AtualizarHorario" prefHeight="25.0" prefWidth="150.0" text="Atualizar Horário" />
-   <Label fx:id="cars" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="79.0" prefHeight="384.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-   <Label fx:id="carroatual" alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="336.0" prefHeight="207.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true" />
+   <Button fx:id="update" layoutX="115.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#UpdateMec"
+           prefHeight="25.0" prefWidth="150.0" text="Mostrar Mecânicos"/>
+   <Button fx:id="addmec" alignment="CENTER" contentDisplay="CENTER" layoutX="115.0" layoutY="261.0"
+           mnemonicParsing="false" onMouseClicked="#AddMec" prefHeight="25.0" prefWidth="150.0"
+           text="Adicionar Mecânico"/>
+   <Button fx:id="remmec" layoutX="115.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#RemMec"
+           prefHeight="25.0" prefWidth="150.0" text="Remover Mecânico"/>
+   <Label layoutX="24.0" layoutY="114.0" prefHeight="25.0" prefWidth="44.0" text="Nome"/>
+   <TextField fx:id="nome" layoutX="115.0" layoutY="114.0"/>
+   <Label layoutX="24.0" layoutY="150.0" prefHeight="25.0" prefWidth="89.0" text="Especialização"/>
+   <TextField fx:id="especializacao" layoutX="115.0" layoutY="150.0"/>
+   <Label layoutX="24.0" layoutY="185.0" prefHeight="25.0" prefWidth="89.0" text="Salário"/>
+   <TextField fx:id="salario" layoutX="115.0" layoutY="185.0"/>
+   <Button fx:id="mecanico" layoutX="115.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#EscolherMecanico"
+           prefHeight="25.0" prefWidth="150.0" text="Mostrar Horário"/>
+   <Label fx:id="mecanicos" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="75.0" prefHeight="248.0"
+          prefWidth="193.0" textAlignment="CENTER" wrapText="true"/>
+   <Button fx:id="passarslot" layoutX="363.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#PassarSlot"
+           prefHeight="25.0" prefWidth="150.0" text="Passar Slot"/>
+   <Button fx:id="vercar" layoutX="363.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#VerCar"
+           prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual"/>
+   <Button fx:id="updatehorario" layoutX="363.0" layoutY="465.0" mnemonicParsing="false" prefHeight="25.0"
+           prefWidth="150.0" text="Atualizar Horário"/>
+   <Label fx:id="cars" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="79.0" prefHeight="181.0"
+          prefWidth="421.0" textAlignment="CENTER" wrapText="true"/>
+   <Label fx:id="carroatual" alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="349.0"
+          prefHeight="207.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true"/>
    <Label layoutX="792.0" layoutY="23.0" text="Horário Semanal">
       <font>
-         <Font size="20.0" />
+         <Font size="20.0"/>
       </font>
    </Label>
-   <Label fx:id="trabsemanal" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="478.0" prefHeight="65.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
+   <Label fx:id="trabsemanal" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="478.0"
+          prefHeight="65.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true"/>
+   <TableView fx:id="tv1" layoutX="529.0" layoutY="290.0" prefHeight="200.0" prefWidth="599.0">
+      <columns>
+         <TableColumn fx:id="tc1" prefWidth="75.0" text="2a"/>
+         <TableColumn fx:id="tc2" prefWidth="75.0" text="3a"/>
+         <TableColumn fx:id="tc3" prefWidth="75.0" text="4a"/>
+         <TableColumn fx:id="tc4" prefWidth="75.0" text="5a"/>
+         <TableColumn fx:id="tc5" prefWidth="75.0" text="6a"/>
+      </columns>
+   </TableView>
 </AnchorPane>
