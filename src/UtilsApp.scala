@@ -119,7 +119,16 @@ object UtilsApp {
     return temp1.head
   }
 
-
+  def FindCarInMec(modelo:String, ano: String, dono: String, list: List[Mecanico]): Carro = list match {
+    case x :: xs => {
+      val tempcar = FindCar(modelo,ano,dono,x.lista_para_arr)
+      if(tempcar == null) {
+        val tempcar2 = FindCarInMec(modelo,ano,dono,xs)
+        return tempcar2
+      }
+      else tempcar
+    }
+  }
 
 
 
