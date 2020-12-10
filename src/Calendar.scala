@@ -1,6 +1,11 @@
-case class Calendar(name:String, size:Double) {
+import javafx.beans.property.{SimpleStringProperty, StringProperty}
 
-  def nameProperty: StringProperty = new SimpleStringProperty(this.name)
-  def sizeProperty: DoubleProperty = new SimpleDoubleProperty(this.size)
+case class Calendar(seg:String, ter:String, qua:String,qui:String,sex:String) {
+
+  def segProperty: StringProperty = new SimpleStringProperty(this.seg)
+  def terProperty: StringProperty = new SimpleStringProperty(this.ter)
+  def quaProperty: StringProperty = new SimpleStringProperty(this.qua)
+  def quiProperty: StringProperty = new SimpleStringProperty(this.qui)
+  def sexProperty: StringProperty = new SimpleStringProperty(this.sex)
 
 }

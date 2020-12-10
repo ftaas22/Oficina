@@ -3,6 +3,10 @@ import javafx.scene.control.{Label, TableColumn, TableView, TextField}
 import UtilsApp._
 import System._
 import FxApp.meclist
+import javafx.collections.{FXCollections, ObservableList}
+import javafx.scene.control.cell.PropertyValueFactory
+
+import java.io.{File, PrintWriter}
 
 class MecanicosListController {
 
@@ -100,50 +104,81 @@ class MecanicosListController {
       if(ind <= 40) {
         cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
         trabsemanal.setText("Horas de Trabalho Semanal: " + ind)
-        WriteInTableView(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
+        WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
         WriteTable(x.trabalho.tempo + ind, xs)
       }
     }
     case x:: Nil => {
       cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
-      WriteInTableView(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
+      WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
     }
     case Nil => cars.setText(cars.getText)
   }
 
-  def WriteInTableView (tempototal: Double, tempoavaria: Double, s: String): Unit = tempototal match {
-    case 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 => {
-      if(tempoavaria > 0) {
-        println("Segunda-feira " + " " + s)
-        WriteInTableView(tempototal+1,tempoavaria-1,s)
+  def WriteInPrint(tempototal: Double, tempoavaria: Double, s: String): Unit = {
+    val writer = new PrintWriter(new File("src\\Horario.txt"))
+    writer.write("")
+    tempototal match {
+      case 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 => {
+        if (tempoavaria > 0) {
+          writer. ("2 " + tempototal + " " + s + "\n")
+          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
+        }
+      }
+      case 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 => {
+        if (tempoavaria > 0) {
+          writer.append("3 " + (tempototal-8) + " " + s + "\n")
+          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
+        }
+      }
+      case 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 => {
+        if (tempoavaria > 0) {
+          writer.append("4 " + (tempototal-16) + " " + s + "\n")
+          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
+        }
+      }
+      case 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 => {
+        if (tempoavaria > 0) {
+          writer.append("5 " + (tempototal-24) + " " + s + "\n")
+          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
+        }
+      }
+      case 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 => {
+        if (tempoavaria > 0) {
+          writer.append("6 " + (tempototal-32) + " " + s + "\n")
+          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
+        }
       }
     }
-    case 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 => {
-      if (tempoavaria > 0) {
-        println("Terça-feira " + tempototal + " " + s)
-        WriteInTableView(tempototal + 1, tempoavaria - 1, s)
-      }
-    }
-    case 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 => {
-      if (tempoavaria > 0) {
-        println("Quarta-feira " + tempototal + " " + s)
-        WriteInTableView(tempototal + 1, tempoavaria - 1, s)
-      }
-    }
-    case 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 => {
-      if (tempoavaria > 0) {
-        println("Quinta-feira " + tempototal + " " + s)
-        WriteInTableView(tempototal + 1, tempoavaria - 1, s)
-      }
-    }
-    case 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 => {
-      if (tempoavaria > 0) {
-        println("Sexta-feira " + tempototal + " " + s)
-        WriteInTableView(tempototal + 1, tempoavaria - 1, s)
-      }
-    }
+    writer.close()
   }
 
+ /* def WriteAAA(tempototal: Double, tempoavaria: Double, s: String): ObservableList[Calendar] = {
+    val linha1: Calendar = Calendar("","","","","")
+    val linha2: Calendar = Calendar("","","","","")
+    val linha3: Calendar = Calendar("","","","","")
+    val linha4: Calendar = Calendar("","","","","")
+    val linha5: Calendar = Calendar("","","","","")
+    val linha6: Calendar = Calendar("","","","","")
+    val linha7: Calendar = Calendar("","","","","")
+    val linha8: Calendar = Calendar("","","","","")
+    /*tempototal match {
+      case 0 => if(tempoavaria > 0) linha1.copy()
+    }*/
+  }*/
+
+  /*def WriteTableView(): Unit = {
+    val lst:ObservableList[Calendar] = FXCollections.observableArrayList(
+      new Calendar("Jose", 1.5),
+      new Calendar("Maria", 1.27),
+      new Calendar("Pedro", 1.80),
+      new Calendar("Carlos", 1.70)
+    )
+
+    tc1.setCellValueFactory(new PropertyValueFactory("name"));
+    tc2.setCellValueFactory(new PropertyValueFactory("size"));
+    tv1.setItems(lst)
+  }*/
 
   def PassarSlot(): Unit = {
     Trabalhar()
