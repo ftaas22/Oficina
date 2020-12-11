@@ -24,13 +24,22 @@ object UtilsApp {
   def download_Cars(source:Iterator[String]): Unit ={
    if(source.hasNext){
         val i = source.next()
+        println(i.split(" ").size)
         val avaria: Avaria =  Avaria(TipoAvaria.withName(i.split(" ")(2)))
         val trabalho = Avaria.defineTrabalho(avaria)
+     if(i.split(" ").size == 5) {
+       val trabalho2 = trabalho.copy(tempo = 0)
+       val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho2, i.split(" ")(3))
+       carlist+=car
+     }else{
+       val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, i.split(" ")(3))
+       carlist+=car
+     }
         //val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
         //defineTrabalho(avaria)
-        val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, i.split(" ")(3))
+
         //car.copy(ano= "1990")
-        carlist+=car
+
         //println(car.toString)
         download_Cars(source:Iterator[String])
       }
@@ -50,10 +59,10 @@ object UtilsApp {
         case (_,_) => {
           if (a<b) {
             val string = i.split(" ")(a)
-            val avaria: Avaria =  Avaria(TipoAvaria.withName(string.split("_")(2)))
+            val avaria: Avaria =  Avaria(TipoAvaria.withName(string.split("//")(2)))
             val trabalho = Avaria.defineTrabalho(avaria)
-            val trabalho2 = trabalho.copy(tempo = string.split("_")(3).toDouble)
-            val car: Carro = Carro(string.split("_")(0), string.split("_")(1), trabalho2, string.split("_")(4))
+            val trabalho2 = trabalho.copy(tempo = string.split("//")(3).toDouble)
+            val car: Carro = Carro(string.split("//")(0), string.split("//")(1), trabalho2, string.split("//")(4))
             listaParaArranjar(i,a+1,b, list.::(car))
           }else{
             list
@@ -74,10 +83,16 @@ object UtilsApp {
   }
 
   def carListToFile(): Unit = {
-    val writer = new PrintWriter(new File("src\\carros2.txt"))
+    val writer = new PrintWriter(new File("src\\Base De Dados\\carros.txt"))
     def writeList(list: List[Carro]): Unit = list match {
       case Nil => list
-      case x :: xs => writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + "\n") :: writeList(xs) :: Nil
+      case x :: xs =>{
+        if(x.trabalho.tempo <=0) {
+          writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + " PRONTO" + "\n")
+        }else{
+          writer.write(x.modelo + " " + x.ano + " " +x.trabalho.TipoAvaria + " " + x.dono + "\n")
+        }
+      }:: writeList(xs) :: Nil
     }
     writeList(carlist.toList)
     writer.close()
@@ -86,11 +101,11 @@ object UtilsApp {
 
   //alterar para dar write da lista de carros
   def mecListToFile(): Unit = {
-    val writer = new PrintWriter(new File("src\\mecanicos3.txt"))
+    val writer = new PrintWriter(new File("src\\Base De Dados\\mecanicos.txt"))
     def writeCars(carList: List[Carro]): String = carList match{
       case Nil => ""
       case x :: xs => {
-        val string = x.modelo +"_"+x.ano+"_"+x.trabalho.TipoAvaria+"_"+x.trabalho.tempo+"_"+x.dono+" "
+        val string = x.modelo +"//"+x.ano+"//"+x.trabalho.TipoAvaria+"//"+x.trabalho.tempo+"//"+x.dono+" "
         string
       }+writeCars(xs)
     }
@@ -129,11 +144,9 @@ object UtilsApp {
   }
 
 
-
-
   def main(args: Array[String]): Unit = {
-    /*var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
-    var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
+    var source: Iterator[String] = Source.fromFile("src\\Base De Dados\\carros.txt").getLines()
+    var source2: Iterator[String] = Source.fromFile("src\\Base De Dados\\mecanicos.txt").getLines()
     //download_Cars(source)
     download_Mec(source2)
     //println(carlist)
@@ -148,8 +161,8 @@ object UtilsApp {
     carlist+=car
     carlist+=car2
     carlist+=car3
-
-    println(meclist)*/
+    atriOutraEspcializacao()
+    println(meclist)
 
   }
 

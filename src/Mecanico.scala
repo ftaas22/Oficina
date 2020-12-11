@@ -1,6 +1,7 @@
 import Carro.reparar
 import Especializacao.Especializacao
 import FxApp.carlist
+import UtilsApp._
 
 
 case class Mecanico(
@@ -30,12 +31,12 @@ object Mecanico{
           x.copy(lista_para_arr=x.lista_para_arr.drop(1))
         }
       }else{
-        val l1 = reparar(x.lista_para_arr.head):: x.lista_para_arr.tail
+        val l1 = reparar(x.lista_para_arr.head) :: x.lista_para_arr.tail
         x.copy(lista_para_arr = l1)
       }
     }
     else
-      x
+      return x
   }
 
   def printMecanico(x: Mecanico): Unit = {

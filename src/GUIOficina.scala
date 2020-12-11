@@ -24,8 +24,8 @@ object FxApp {
   var carlist: ListBuffer[Carro] = ListBuffer[Carro]()
   var meclist: ListBuffer[Mecanico] = ListBuffer[Mecanico]()
   def main(args: Array[String]): Unit = {
-    val source: Iterator[String] = Source.fromFile("src\\carros2.txt").getLines()
-    val source2: Iterator[String] = Source.fromFile("src\\mecanicos3.txt").getLines()
+    val source: Iterator[String] = Source.fromFile("src\\Base De Dados\\carros.txt").getLines()
+    val source2: Iterator[String] = Source.fromFile("src\\Base De Dados\\mecanicos.txt").getLines()
     download_Cars(source)
     download_Mec(source2)
     Application.launch(classOf[GUI], args: _*)
