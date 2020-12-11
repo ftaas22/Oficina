@@ -28,38 +28,6 @@ class MecanicosListController {
     case x :: Nil => mecanicosView.getItems.add(x)
   }
 
-  /*def AddMec(): Unit = {
-    if (CheckIfAnyEmpty(nome.getText, especializacao.getText, salario.getText)) {
-      mecanicos.setText("Tem de preencher todos os campos.")
-    } else {
-      var mec = Mecanico(Especializacao.withName(especializacao.getText()), salario.getText, nome.getText, null)
-      meclist += mec
-      mecanicos.setText("Mecânico Adicionado:\n" + nome.getText + "\n" + especializacao.getText + "\n" + salario.getText)
-    }
-  }
-
-  def RemMec(): Unit = {
-    if (CheckIfTwoFirstEmpty(nome.getText, especializacao.getText)) {
-      mecanicos.setText("Tem de preencher os campos Nome e Especialização")
-    } else {
-      meclist = meclist.filterNot(_ == FindMec(nome.getText, Especializacao.withName(especializacao.getText())))
-      mecanicos.setText("Removido com sucesso!")
-    }
-  }
-
-  def CheckIfAnyEmpty(a:String, b:String, c:String): Boolean = (a,b,c) match {
-    case ("", _, _) => true
-    case (_,"", _) => true
-    case (_, _,"") => true
-    case _ => false
-  }
-
-  def CheckIfTwoFirstEmpty(a:String, b:String): Boolean = (a,b) match {
-    case ("", _) => true
-    case (_,"") => true
-    case _ => false
-  }*/
-
   def EscolherMecanico(): Unit = mecanicosView.getSelectionModel.getSelectedItem match {
     case null => {
       errorLabel.setText("Tem de preencher os campos Nome e Especialização")
@@ -93,7 +61,7 @@ class MecanicosListController {
     case _ => {
       val mec = mecanicosView.getSelectionModel.getSelectedItem
       println(mec)
-      if(mec.lista_para_arr.head!=null) {
+      if(mec.lista_para_arr.length!=0) {
         errorLabel.setText("Modelo: " + mec.lista_para_arr.head.modelo + "\nAno: " + mec.lista_para_arr.head.ano + "\nDono: " + mec.lista_para_arr.head.dono +
           "\n Tipo de Avaria: " + mec.lista_para_arr.head.trabalho.TipoAvaria + "\n Tempo restante: " + mec.lista_para_arr.head.trabalho.tempo +
           "\n Pronto: " + ProntoToString(mec.lista_para_arr.head.pronto()))

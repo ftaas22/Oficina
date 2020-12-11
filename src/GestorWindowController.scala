@@ -1,13 +1,9 @@
-import Especializacao.Especializacao
-import FxApp.carlist
+import FxApp._
 import System._
 import javafx.fxml.FXML
 import UtilsApp.getCarList
 import UtilsApp.getMecList
-import javafx.event.EventHandler
 import javafx.scene.control.{Label, ListView, TextField}
-import javafx.event.EventHandler
-import javafx.scene.input.MouseEvent
 
 class GestorWindowController {
 
@@ -23,6 +19,14 @@ class GestorWindowController {
   var errorLabel: Label = _
   @FXML
   var especializacaoView: TextField = _
+  @FXML
+  var nome: TextField = _
+  @FXML
+  var especializacao: TextField = _
+  @FXML
+  var salario: TextField = _
+  @FXML
+  var mecanicos: Label = _
 
   def checkCarList(): Unit ={
     carListView.getItems.clear()
@@ -140,5 +144,30 @@ class GestorWindowController {
     }
     adicionar(listaEspcecializacoes)*/
   }*/
+
+  def AddMec(): Unit = {
+    if (CheckIfAnyEmpty(nome.getText, especializacao.getText, salario.getText)) {
+      mecanicos.setText("Tem de preencher todos os campos.")
+    } else {
+      var mec = Mecanico(Especializacao.withName(especializacao.getText()), salario.getText, nome.getText, null)
+      meclist += mec
+      mecanicos.setText("Mecânico Adicionado!")
+    }
+  }
+
+  def RemMec(): Unit = mecListView.getSelectionModel.getSelectedItems match {
+    case null => mecanicos.setText("Tem de selecionar um mecânico")
+    case _ => {
+      meclist = meclist.filterNot(_ == mecListView.getSelectionModel.getSelectedItems)
+      mecanicos.setText("Removido com sucesso!")
+    }
+  }
+
+  def CheckIfAnyEmpty(a:String, b:String, c:String): Boolean = (a,b,c) match {
+    case ("", _, _) => true
+    case (_,"", _) => true
+    case (_, _,"") => true
+    case _ => false
+  }
 
 }
