@@ -206,7 +206,7 @@ object System{
   def adicionarCar_Mec_Inicio(mec:Mecanico,car:Carro){
     carlist = carlist.filterNot(x=>x.dono == car.dono && x.trabalho == car.trabalho )
     if(mec.lista_para_arr!=0 && mec.lista_para_arr!=null){
-      println("ENtrou")
+
       val newl = List(car):::mec.lista_para_arr
       println(newl)
       val n_mec=mec.copy(lista_para_arr = newl)
@@ -251,6 +251,8 @@ object System{
 
   def horas_Extra(mec:Mecanico,horas:Double): Unit ={
     //tiralo da mec list com o filternot,chamar o arranjar do mec adicionando o a lista
+
+
 
   }
 
