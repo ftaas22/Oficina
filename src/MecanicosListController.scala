@@ -155,8 +155,4 @@ class MecanicosListController {
     "Não"
   }
 
-  def AtualizarHorario(): Unit = {
-    atualizarCarros_Mec()
-  }
-
 }
