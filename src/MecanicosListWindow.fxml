@@ -30,7 +30,7 @@
       <ChoiceBox fx:id="hora" layoutX="102.0" layoutY="335.0" prefWidth="150.0" value="0">
             <items>
                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="0" />
+                  <String fx:value= "0" />
                   <String fx:value= "0.25" />
                   <String fx:value= "0.5" />
                   <String fx:value= "0.75" />
