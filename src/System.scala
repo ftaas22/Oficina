@@ -60,19 +60,22 @@ object System{
     //meter os ifs de não haver mecanicos e se não tiver carros para arranjar
 
     val Temp_mecList = meclist.toList
+    if(Temp_mecList.length!=0){
     meclist.clear()
-    def recursiveStep(lst: List[Mecanico]) {
-      if(lst.head.lista_para_arr.length!=0){
-        lst match {
-          case h :: Nil => meclist += arranjar(lst.head)
-          case h :: t => {
-            (meclist += arranjar(lst.head))
-            recursiveStep(lst.tail)
+
+      def recursiveStep(lst: List[Mecanico]) {
+        if(lst.head.lista_para_arr.length!=0){
+          lst match {
+            case h :: Nil => meclist += arranjar(lst.head)
+            case h :: t => {
+              (meclist += arranjar(lst.head))
+              recursiveStep(lst.tail)
+            }
           }
         }
       }
-    }
     recursiveStep(Temp_mecList)
+    }
     print("\n")
     print(meclist)
   }

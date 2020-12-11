@@ -1,6 +1,6 @@
 import Avaria.defineTrabalho
 import FxApp.{carlist, meclist}
-import System.{adicionarCar_Mec_Final, adicionarCar_Mec_Inicio, atualizarCarros_Mec}
+import System.{Trabalhar, adicionarCar_Mec_Final, adicionarCar_Mec_Inicio, atualizarCarros_Mec}
 import UtilsApp.{download_Cars, download_Mec}
 
 import scala.io.Source
@@ -18,7 +18,7 @@ object Teste {
     val mec= Mecanico(Especializacao.PINTOR, "20", "Antonio", List(car,car2))
     meclist+=mec
     println(meclist)
-    adicionarCar_Mec_Inicio(meclist.head,car)
+    Trabalhar()
     println(meclist)
   }
 }
