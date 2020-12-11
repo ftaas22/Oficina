@@ -254,4 +254,22 @@ object System{
 
   }
 
+  def esvaziar_mec(mec:Mecanico): Unit ={
+
+    def RecursiveStep(lst: List[Carro]) {
+      lst match {
+        case h :: Nil => carlist += lst.head
+        case h :: t => {
+          carlist += lst.head
+          RecursiveStep(lst.tail)
+        }
+      }}
+    if(mec.lista_para_arr.length!=0 && mec.lista_para_arr!=null ){
+      RecursiveStep(mec.lista_para_arr)
+      meclist=meclist.filterNot(x=>x.nome == mec.nome && x.especializacao == mec.especializacao )
+      val a: List[Carro] = List[Carro]()
+      val aux= mec.copy(lista_para_arr = a)
+      meclist +=aux
+    }
+  }
 }
