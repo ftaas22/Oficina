@@ -216,7 +216,7 @@ object System{
   }
 
   def adicionarCar_Mec_Final(mec:Mecanico,car:Carro){
-    carlist = carlist.filterNot(x=>x.dono == car.dono && x.trabalho == car.trabalho )
+    carlist = carlist.filterNot(x=>(x.dono == car.dono )&&(x.trabalho == car.trabalho))
     if(mec.lista_para_arr!=0 && mec.lista_para_arr!=null){
       println(mec.lista_para_arr+"antes")
       val newl = mec.lista_para_arr:::List(car)
@@ -234,11 +234,18 @@ object System{
   }
 
   def removerCarro_Mec(mec:Mecanico,car:Carro): Unit ={
-    //é so utilizar o filternot para remover na lista do mecanico,remover o mecanico da meclist, adicionar o novo mecanico
+   if(car!=null) {
+    val newl = mec.lista_para_arr.filterNot(x=> (x.dono == car.dono)&&(x.trabalho == car.trabalho))
+    val n_mec = mec.copy(lista_para_arr = newl)
+    meclist = meclist.filterNot(x=>x.nome == n_mec.nome && x.especializacao == n_mec.especializacao)
+    meclist += n_mec
+    carlist+=car
+    }
   }
 
-  def horas_Extra(mec:Mecanico): Unit ={
+  def horas_Extra(mec:Mecanico,horas:Double): Unit ={
     //tiralo da mec list com o filternot,chamar o arranjar do mec adicionando o a lista
+
   }
 
 }
