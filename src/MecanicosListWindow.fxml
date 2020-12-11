@@ -32,6 +32,6 @@
          </font>
       </Label>
       <Label fx:id="trabsemanal" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="478.0" prefHeight="65.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-      <ListView layoutX="782.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="horario" layoutX="561.0" layoutY="160.0" prefHeight="200.0" prefWidth="421.0" />
    </children>
 </AnchorPane>

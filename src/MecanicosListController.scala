@@ -5,7 +5,7 @@ import UtilsApp._
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
 import javafx.scene.control.cell.PropertyValueFactory
-import javafx.scene.control.{Label, TableColumn, TableView, TextField}
+import javafx.scene.control.{Label, ListView, TableColumn, TableView, TextField}
 
 class MecanicosListController {
 
@@ -24,13 +24,7 @@ class MecanicosListController {
   @FXML
   var trabsemanal: Label = _
   @FXML
-  var tv1: TableView[Carro] = _
-  @FXML
-  var car: TableColumn[String, String] = _
-  @FXML
-  var ano: TableColumn[String, String] = _
-  @FXML
-  var dono: TableColumn[String, String] = _
+  var horario: ListView[Carro] = _
 
   def UpdateMec(): Unit = {
     mecanicos.setText("")
@@ -81,31 +75,36 @@ class MecanicosListController {
       mecanicos.setText("Tem de preencher os campos Nome e Especialização")
     } else {
       cars.setText("\n")
-      WriteTableView()
+      horario.getItems.clear()
+      WriteTable(0, FindMec(nome.getText, Especializacao.withName(especializacao.getText())).lista_para_arr)
     }
   }
 
-  def WriteTable(ind: Double, lista: List[Carro]): List[Carro] = lista match {
+  def WriteTable(ind: Double, lista: List[Carro]): Unit = lista match {
     case x::xs =>
       if(ind <= 8) {
-        cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
+        //cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
         trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
         //val temp: List[] = FXCollections.observableArrayList(x)
         //val lista: ObservableList[Carro] = FXCollections.observableArrayList(temp, WriteTable(x.trabalho.tempo + ind, xs).)
-        val Li
-        lista
+        //val temp = List(x)
+        //val lista: List[Carro] = x + WriteTable(x.trabalho.tempo + ind, xs)
+        //lista
+        horario.getItems.add(x)
+        WriteTable(x.trabalho.tempo + ind, xs)
       }
-    /*case x:: Nil =>
-      cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")*/
+    case x:: Nil =>
+      cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
+      horario.getItems.add(x)
     case Nil => cars.setText(cars.getText)
   }
 
-  def WriteTableView(): Unit = {
+  /*def WriteTableView(): Unit = {
     car.setCellValueFactory(new PropertyValueFactory("modelo"))
     ano.setCellValueFactory(new PropertyValueFactory("ano"))
     dono.setCellValueFactory(new PropertyValueFactory("dono"))
     tv1.setItems(WriteTable(0, FindMec(nome.getText, Especializacao.withName(especializacao.getText())).lista_para_arr))
-  }
+  }*/
 
   def PassarSlot(): Unit = {
     Trabalhar()
