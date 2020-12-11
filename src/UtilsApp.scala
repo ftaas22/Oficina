@@ -132,7 +132,7 @@ object UtilsApp {
 
 
   def main(args: Array[String]): Unit = {
-    var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
+    /*var source: Iterator[String] = Source.fromFile("src\\carros.txt").getLines()
     var source2: Iterator[String] = Source.fromFile("src\\mecanicos.txt").getLines()
     //download_Cars(source)
     download_Mec(source2)
@@ -148,8 +148,8 @@ object UtilsApp {
     carlist+=car
     carlist+=car2
     carlist+=car3
-    atriOutraEspcializacao()
-    println(meclist)
+
+    println(meclist)*/
 
   }
 

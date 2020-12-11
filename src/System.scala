@@ -144,7 +144,6 @@ object System{
           def anotherRecursiveStep(l2: List[Carro], n_l: List[Carro]): List[Carro] = {
             if (l2.length != 0) {
               val trab = l2.head.trabalho.copy(tempo = l2.head.trabalho.tempo * 2)
-              println(trab)
               val car = l2.head.copy(trabalho = trab)
               val lc = n_l:::List(car)
               //println(lc+ "lista vai adicionando")
@@ -198,7 +197,48 @@ object System{
     }
   }
 
+  def adicionarCar_Mec_Inicio(mec:Mecanico,car:Carro){
+    carlist = carlist.filterNot(x=>x.dono == car.dono && x.trabalho == car.trabalho )
+    if(mec.lista_para_arr!=0 && mec.lista_para_arr!=null){
+      println("ENtrou")
+      val newl = List(car):::mec.lista_para_arr
+      println(newl)
+      val n_mec=mec.copy(lista_para_arr = newl)
+      meclist = meclist.filterNot(x=>x.nome == n_mec.nome && x.especializacao == n_mec.especializacao )
+      meclist+=n_mec
+    }
+    else{
+      val newl = List(car)
+      val n_mec=mec.copy(lista_para_arr = newl)
+      meclist = meclist.filterNot(x=>x.nome == n_mec.nome && x.especializacao == n_mec.especializacao )
+      meclist+=n_mec
+    }
+  }
 
+  def adicionarCar_Mec_Final(mec:Mecanico,car:Carro){
+    carlist = carlist.filterNot(x=>x.dono == car.dono && x.trabalho == car.trabalho )
+    if(mec.lista_para_arr!=0 && mec.lista_para_arr!=null){
+      println(mec.lista_para_arr+"antes")
+      val newl = mec.lista_para_arr:::List(car)
+      println(newl+"depois")
+      val n_mec=mec.copy(lista_para_arr = newl)
+      meclist = meclist.filterNot(x=>x.nome == n_mec.nome && x.especializacao == n_mec.especializacao )
+      meclist+=n_mec
+    }
+    else{
+      val newl = List(car)
+      val n_mec=mec.copy(lista_para_arr = newl)
+      meclist = meclist.filterNot(x=>x.nome == n_mec.nome && x.especializacao == n_mec.especializacao )
+      meclist+=n_mec
+    }
+  }
 
+  def removerCarro_Mec(mec:Mecanico,car:Carro): Unit ={
+    //é so utilizar o filternot para remover na lista do mecanico,remover o mecanico da meclist, adicionar o novo mecanico
+  }
+
+  def horas_Extra(mec:Mecanico): Unit ={
+    //tiralo da mec list com o filternot,chamar o arranjar do mec adicionando o a lista
+  }
 
 }
