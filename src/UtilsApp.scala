@@ -24,7 +24,6 @@ object UtilsApp {
   def download_Cars(source:Iterator[String]): Unit ={
    if(source.hasNext){
         val i = source.next()
-        println(i.split(" ").size)
         val avaria: Avaria =  Avaria(TipoAvaria.withName(i.split(" ")(2)))
         val trabalho = Avaria.defineTrabalho(avaria)
      if(i.split(" ").size == 5) {
@@ -133,6 +132,7 @@ object UtilsApp {
   }
 
   def FindCarInMec(modelo:String, ano: String, dono: String, list: List[Mecanico]): Carro = list match {
+    case Nil => null
     case x :: xs => {
       val tempcar = FindCar(modelo,ano,dono,x.lista_para_arr)
       if(tempcar == null) {
@@ -163,9 +163,5 @@ object UtilsApp {
     carlist+=car3
     atriOutraEspcializacao()
     println(meclist)
-
   }
-
-
-
 }

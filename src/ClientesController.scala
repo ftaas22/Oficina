@@ -87,8 +87,8 @@ class ClientesController {
         val car1 = FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList)
         if (car1 != null) {
           labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText +
-            "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
-            "\n Pronto: " + ProntoToString(car.pronto()))
+            "\n Tipo de Avaria: " + car1.trabalho.TipoAvaria + "\n Tempo restante: " + car1.trabalho.tempo +
+            "\n Pronto: " + ProntoToString(car1.pronto()))
         } else {
           labelcarro.setText("Não foi possível encontrar este carro!")
         }

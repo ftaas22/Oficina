@@ -17,9 +17,11 @@ class ReciboWindowController() {
     val avaria = Avaria(tempcar.trabalho.TipoAvaria)
     val temptrabalho = Avaria.defineTrabalho(avaria)
     val temp: String = "Cliente: " + tempcar.dono + "\nContribuinte: " + Contri() + "\nModelo: " + tempcar.modelo +
-      "\nAno: " + tempcar.ano + "\nTipo de Avaria: " + tempcar.trabalho.TipoAvaria + "\nTempo demorado: " + temptrabalho.tempo
+      "\nAno: " + tempcar.ano + "\nTipo de Avaria: " + tempcar.trabalho.TipoAvaria + "\nTempo demorado: " + temptrabalho.tempo +
+      "\nPreço de Reparo: " + tempcar.trabalho.preco
+
     recibo.setText(temp)
-    val writer = new PrintWriter(new File("src\\Recibos\\Recibo " + tempcar.dono + ".txt"))
+    val writer = new PrintWriter(new File("src\\Base De Dados\\Recibos\\Recibo de " + tempcar.dono + ".txt"))
     writer.write(temp)
     writer.close()
   }
