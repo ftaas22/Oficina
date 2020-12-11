@@ -24,22 +24,19 @@
       <Label fx:id="mecanicos" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="75.0" prefHeight="248.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="passarslot" layoutX="363.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#PassarSlot" prefHeight="25.0" prefWidth="150.0" text="Passar Slot" />
       <Button fx:id="vercar" layoutX="363.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#VerCar" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
-      <Button fx:id="updatehorario" layoutX="363.0" layoutY="465.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Atualizar Horário" />
       <Label fx:id="cars" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="79.0" prefHeight="181.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-      <Label fx:id="carroatual" alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="349.0" prefHeight="207.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true" />
-      <Label layoutX="792.0" layoutY="23.0" text="Horário Semanal">
+      <Label fx:id="carroatual" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="341.0" prefHeight="207.0" prefWidth="330.0" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="803.0" layoutY="23.0" text="Horário Diário">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Label fx:id="trabsemanal" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="478.0" prefHeight="65.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-      <TableView fx:id="tv1" layoutX="529.0" layoutY="290.0" prefHeight="200.0" prefWidth="599.0">
+      <TableView fx:id="tv1" layoutX="701.0" layoutY="96.0" prefHeight="306.0" prefWidth="330.0">
         <columns>
-          <TableColumn fx:id="tc1" prefWidth="75.0" text="2a" />
-            <TableColumn fx:id="tc2" prefWidth="75.0" text="3a" />
-            <TableColumn fx:id="tc3" prefWidth="75.0" text="4a" />
-            <TableColumn fx:id="tc4" prefWidth="75.0" text="5a" />
-            <TableColumn fx:id="tc5" prefWidth="75.0" text="6a" />
+          <TableColumn fx:id="car" prefWidth="144.0" text="Carro" />
+            <TableColumn fx:id="ano" minWidth="6.0" prefWidth="65.0" text="Ano" />
+            <TableColumn fx:id="dono" minWidth="9.0" prefWidth="120.0" text="Dono" />
         </columns>
       </TableView>
    </children>

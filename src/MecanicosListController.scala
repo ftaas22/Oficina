@@ -1,9 +1,10 @@
 import java.io.{File, PrintWriter}
-
 import FxApp.meclist
 import System._
 import UtilsApp._
+import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
+import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.control.{Label, TableColumn, TableView, TextField}
 
 class MecanicosListController {
@@ -25,15 +26,11 @@ class MecanicosListController {
   @FXML
   var tv1: TableView[Carro] = _
   @FXML
-  var tc1: TableColumn[String, String] = _
+  var car: TableColumn[String, String] = _
   @FXML
-  var tc2: TableColumn[String, String] = _
+  var ano: TableColumn[String, String] = _
   @FXML
-  var tc3: TableColumn[String, String] = _
-  @FXML
-  var tc4: TableColumn[String, String] = _
-  @FXML
-  var tc5: TableColumn[String, String] = _
+  var dono: TableColumn[String, String] = _
 
   def UpdateMec(): Unit = {
     mecanicos.setText("")
@@ -84,56 +81,30 @@ class MecanicosListController {
       mecanicos.setText("Tem de preencher os campos Nome e Especialização")
     } else {
       cars.setText("\n")
-      WriteTable(0, FindMec(nome.getText, Especializacao.withName(especializacao.getText())).lista_para_arr)
+      WriteTableView()
     }
   }
 
-  def WriteTable(ind: Double, lista: List[Carro]): Unit = lista match {
+  def WriteTable(ind: Double, lista: List[Carro]): ObservableList[Carro] = lista match {
     case x::xs =>
-      if(ind <= 40) {
+      if(ind <= 8) {
         cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
-        //WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
         trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
-        WriteTable(x.trabalho.tempo + ind, xs)
+        /*val temp: ObservableList[Carro] = FXCollections.observableArrayList(x)
+        val lista: ObservableList[Carro] = FXCollections.observableArrayList(temp, WriteTable(x.trabalho.tempo + ind, xs).)
+        lista*/
       }
-    case x:: Nil =>
-      cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
-      //WriteInPrint(ind, x.trabalho.tempo, x.modelo + x.ano + x.dono)
+    /*case x:: Nil =>
+      cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")*/
     case Nil => cars.setText(cars.getText)
   }
 
-  /*def WriteInPrint(tempototal: Double, tempoavaria: Double, s: String): Unit = {
-    val writer = new PrintWriter(new File("src\\Horario.txt"))
-    writer.write("")
-    tempototal match {
-      case 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 =>
-        if (tempoavaria > 0) {
-          writer.write("2 " + tempototal + " " + s + "\n")
-          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
-        }
-      case 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 =>
-        if (tempoavaria > 0) {
-          writer.append("3 " + (tempototal-8) + " " + s + "\n")
-          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
-        }
-      case 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 =>
-        if (tempoavaria > 0) {
-          writer.append("4 " + (tempototal-16) + " " + s + "\n")
-          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
-        }
-      case 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 =>
-        if (tempoavaria > 0) {
-          writer.append("5 " + (tempototal-24) + " " + s + "\n")
-          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
-        }
-      case 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 =>
-        if (tempoavaria > 0) {
-          writer.append("6 " + (tempototal-32) + " " + s + "\n")
-          WriteInPrint(tempototal + 1, tempoavaria - 1, s)
-        }
-    }
-    writer.close()
-  }*/
+  def WriteTableView(): Unit = {
+    car.setCellValueFactory(new PropertyValueFactory("modelo"))
+    ano.setCellValueFactory(new PropertyValueFactory("ano"))
+    dono.setCellValueFactory(new PropertyValueFactory("dono"))
+    tv1.setItems(WriteTable(0, FindMec(nome.getText, Especializacao.withName(especializacao.getText())).lista_para_arr))
+  }
 
   def PassarSlot(): Unit = {
     Trabalhar()

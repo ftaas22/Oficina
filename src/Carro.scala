@@ -1,3 +1,5 @@
+import javafx.beans.property.{SimpleStringProperty, StringProperty}
+
 import scala.util.Try
 
 case class Carro(
@@ -18,6 +20,10 @@ case class Carro(
   def print(): Unit = {
     println(toString)
   }
+
+  def modeloProperty: StringProperty = new SimpleStringProperty(this.modelo)
+  def anoProperty: StringProperty = new SimpleStringProperty(this.ano)
+  def donoProperty: StringProperty = new SimpleStringProperty(this.dono)
 }
 
 object Carro{
