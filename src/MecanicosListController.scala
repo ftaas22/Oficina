@@ -1,11 +1,8 @@
 import java.io.{File, PrintWriter}
 import FxApp.meclist
 import System._
-import UtilsApp._
-import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
-import javafx.scene.control.cell.PropertyValueFactory
-import javafx.scene.control.{Label, ListView, TableColumn, TableView, TextField}
+import javafx.scene.control.{Label, ListView}
 
 class MecanicosListController {
 

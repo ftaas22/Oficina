@@ -111,17 +111,19 @@ class GestorWindowController {
     case (_,_) => true
   }
 
-  def sortMaior(): Unit = mecListView.getSelectionModel.getSelectedItems match {
+  def sortMaior(): Unit = mecListView.getSelectionModel.getSelectedItem match {
     case null => errorLabel.setText("Tem de selecionar um mecânico")
     case _ => {
-      sortMaisTempo(_)
+      sortMaisTempo(mecListView.getSelectionModel.getSelectedItem)
+      errorLabel.setText("Organizado por tempo mais longo")
     }
   }
 
-  def sortMenor(): Unit = mecListView.getSelectionModel.getSelectedItems match {
+  def sortMenor(): Unit = mecListView.getSelectionModel.getSelectedItem match {
     case null => errorLabel.setText("Tem de selecionar um mecânico")
     case _ => {
-      sortMenosTempo(_)
+      sortMenosTempo(mecListView.getSelectionModel.getSelectedItem)
+      errorLabel.setText("Organizado por tempo mais curto")
     }
   }
 
@@ -155,10 +157,10 @@ class GestorWindowController {
     }
   }
 
-  def RemMec(): Unit = mecListView.getSelectionModel.getSelectedItems match {
+  def RemMec(): Unit = mecListView.getSelectionModel.getSelectedItem match {
     case null => mecanicos.setText("Tem de selecionar um mecânico")
     case _ => {
-      meclist = meclist.filterNot(_ == mecListView.getSelectionModel.getSelectedItems)
+      meclist = meclist.filterNot(_ == mecListView.getSelectionModel.getSelectedItem)
       mecanicos.setText("Removido com sucesso!")
     }
   }
