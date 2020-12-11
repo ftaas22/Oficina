@@ -180,14 +180,23 @@ object System{
   }
 
 
+  def sortMenosTempo(mec:Mecanico): Unit = {
+    if (mec.lista_para_arr.length != 0) {
+      val sortedlist = mec.lista_para_arr.sortBy(_.trabalho.tempo)
+      val n_mec= mec.copy(lista_para_arr = sortedlist)
+      meclist = meclist.filterNot(x=>x.nome == n_mec.nome && x.especializacao == n_mec.especializacao )
+      meclist+=n_mec
+    }
+  }
 
-
-
-
-  //as observações
-  //trabalho com penalidade
-
-
+  def sortMaisTempo(mec:Mecanico): Unit = {
+    if (mec.lista_para_arr.length != 0) {
+      val sortedlist = mec.lista_para_arr.sortBy(_.trabalho.tempo)(Ordering[Double].reverse)
+      val n_mec= mec.copy(lista_para_arr = sortedlist)
+      meclist = meclist.filterNot(x=>x.nome == n_mec.nome && x.especializacao == n_mec.especializacao )
+      meclist+=n_mec
+    }
+  }
 
 
 
