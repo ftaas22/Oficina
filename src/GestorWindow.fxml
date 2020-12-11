@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GestorWindowController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestorWindowController">
+   <children>
+      <ListView fx:id="carListView" editable="true" layoutX="160.0" layoutY="55.0" prefHeight="228.0" prefWidth="200.0" />
+      <Button fx:id="verCarros" layoutX="23.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#checkCarList" prefHeight="33.0" prefWidth="113.0" text="Ver Carros" />
+      <ListView fx:id="mecListView" layoutX="371.0" layoutY="55.0" onMouseClicked="#showCarsToFix" prefHeight="228.0" prefWidth="200.0" />
+      <Button fx:id="verMecanicos" layoutX="23.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#checkMecList" prefHeight="33.0" prefWidth="113.0" text="Ver Mecânicos" />
+      <Label layoutX="227.0" layoutY="14.0" text="Carros">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="417.0" layoutY="14.0" text="Mecânicos">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <ListView fx:id="carrosPorArranjar" layoutX="371.0" layoutY="312.0" prefHeight="74.0" prefWidth="200.0" visible="false" />
+      <Label layoutX="371.0" layoutY="283.0" text="Carros Por Arranjar" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="carrosPorArranjarLabel" layoutX="367.0" layoutY="287.0" text="Carros Por Arranjar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="carrosPorArranjarListView" editable="true" layoutX="371.0" layoutY="312.0" onMouseClicked="#carrosPorArranjarListView" prefHeight="74.0" prefWidth="200.0" />
+   </children>
 </AnchorPane>

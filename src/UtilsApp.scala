@@ -110,7 +110,13 @@ object UtilsApp {
     }
     def writeList(list: List[Mecanico]): Unit = list match {
       case Nil => list
-      case x :: xs => writer.write(x.especializacao + " " + x.salario + " " + x.nome + " "  + writeCars(x.lista_para_arr)+ "\n") :: writeList(xs) :: Nil
+      case x :: xs => {
+        if(x.lista_para_arr == null){
+          writer.write(x.especializacao + " " + x.salario + " " + x.nome + "\n")
+        }else{
+          writer.write(x.especializacao + " " + x.salario + " " + x.nome + " "  + writeCars(x.lista_para_arr)+ "\n")
+        }
+      } :: writeList(xs) :: Nil
     }
     writeList(meclist.toList)
     writer.close()
@@ -141,6 +147,14 @@ object UtilsApp {
       }
       else tempcar
     }
+  }
+
+  def getCarList(): List[Carro] ={
+    carlist.toList
+  }
+
+  def getMecList(): List[Mecanico] ={
+    meclist.toList
   }
 
 
