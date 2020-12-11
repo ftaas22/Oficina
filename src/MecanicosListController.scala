@@ -10,35 +10,25 @@ import javafx.scene.control.{Label, ListView, TableColumn, TableView, TextField}
 class MecanicosListController {
 
   @FXML
-  var mecanicos: Label = _
-  @FXML
-  var nome: TextField = _
-  @FXML
-  var especializacao: TextField = _
-  @FXML
-  var salario: TextField = _
-  @FXML
-  var cars: Label = _
-  @FXML
-  var carroatual: Label = _
-  @FXML
-  var trabsemanal: Label = _
+  var errorLabel: Label = _
   @FXML
   var horario: ListView[Carro] = _
+  @FXML
+  var mecanicosView: ListView[Mecanico] = _
 
   def UpdateMec(): Unit = {
-    mecanicos.setText("")
+    mecanicosView.getItems.clear()
     val temp: List[Mecanico] = meclist.toList
     PrintMecs(temp)
   }
 
   def PrintMecs(list:List[Mecanico]): Unit = list match {
     case Nil =>
-    case x :: xs => mecanicos.setText(mecanicos.getText + x.nome + " " + x.especializacao + "\n") :: PrintMecs(xs) :: Nil
-    case x :: Nil => mecanicos.setText(mecanicos.getText + x.nome + " " + x.especializacao + "\n")
+    case x :: xs => mecanicosView.getItems.add(x) :: PrintMecs(xs) :: Nil
+    case x :: Nil => mecanicosView.getItems.add(x)
   }
 
-  def AddMec(): Unit = {
+  /*def AddMec(): Unit = {
     if (CheckIfAnyEmpty(nome.getText, especializacao.getText, salario.getText)) {
       mecanicos.setText("Tem de preencher todos os campos.")
     } else {
@@ -68,55 +58,46 @@ class MecanicosListController {
     case ("", _) => true
     case (_,"") => true
     case _ => false
-  }
+  }*/
 
-  def EscolherMecanico(): Unit = {
-    if (CheckIfTwoFirstEmpty(nome.getText, especializacao.getText)) {
-      mecanicos.setText("Tem de preencher os campos Nome e Especialização")
-    } else {
-      cars.setText("\n")
+  def EscolherMecanico(): Unit = mecanicosView.getSelectionModel.getSelectedItem match {
+    case null => {
+      errorLabel.setText("Tem de preencher os campos Nome e Especialização")
+    }
+    case _ => {
       horario.getItems.clear()
-      WriteTable(0, FindMec(nome.getText, Especializacao.withName(especializacao.getText())).lista_para_arr)
+      WriteTable(0, mecanicosView.getSelectionModel.getSelectedItem.lista_para_arr)
     }
   }
 
   def WriteTable(ind: Double, lista: List[Carro]): Unit = lista match {
     case x::xs =>
-      if(ind <= 8) {
-        //cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
-        trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
-        //val temp: List[] = FXCollections.observableArrayList(x)
-        //val lista: ObservableList[Carro] = FXCollections.observableArrayList(temp, WriteTable(x.trabalho.tempo + ind, xs).)
-        //val temp = List(x)
-        //val lista: List[Carro] = x + WriteTable(x.trabalho.tempo + ind, xs)
-        //lista
+      if(ind < 8) {
+        //trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
         horario.getItems.add(x)
         WriteTable(x.trabalho.tempo + ind, xs)
       }
     case x:: Nil =>
-      cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
       horario.getItems.add(x)
-    case Nil => cars.setText(cars.getText)
+    case Nil =>
   }
-
-  /*def WriteTableView(): Unit = {
-    car.setCellValueFactory(new PropertyValueFactory("modelo"))
-    ano.setCellValueFactory(new PropertyValueFactory("ano"))
-    dono.setCellValueFactory(new PropertyValueFactory("dono"))
-    tv1.setItems(WriteTable(0, FindMec(nome.getText, Especializacao.withName(especializacao.getText())).lista_para_arr))
-  }*/
 
   def PassarSlot(): Unit = {
     Trabalhar()
   }
-  def VerCar(): Unit = {
-    if (CheckIfTwoFirstEmpty(nome.getText, especializacao.getText)) {
-      mecanicos.setText("Escolha um mecânico.")
-    } else {
-      val mec = FindMec(nome.getText, Especializacao.withName(especializacao.getText))
-      carroatual.setText("Modelo: " + mec.lista_para_arr.head.modelo + "\nAno: " + mec.lista_para_arr.head.ano + "\nDono: " + mec.lista_para_arr.head.dono +
-        "\n Tipo de Avaria: " + mec.lista_para_arr.head.trabalho.TipoAvaria + "\n Tempo restante: " + mec.lista_para_arr.head.trabalho.tempo +
-        "\n Pronto: " + ProntoToString(mec.lista_para_arr.head.pronto()))
+
+  def VerCar(): Unit = mecanicosView.getSelectionModel.getSelectedItem match {
+    case null => {
+      errorLabel.setText("Escolha um mecânico.")
+    }
+    case _ => {
+      val mec = mecanicosView.getSelectionModel.getSelectedItem
+      println(mec)
+      if(mec.lista_para_arr.head!=null) {
+        errorLabel.setText("Modelo: " + mec.lista_para_arr.head.modelo + "\nAno: " + mec.lista_para_arr.head.ano + "\nDono: " + mec.lista_para_arr.head.dono +
+          "\n Tipo de Avaria: " + mec.lista_para_arr.head.trabalho.TipoAvaria + "\n Tempo restante: " + mec.lista_para_arr.head.trabalho.tempo +
+          "\n Pronto: " + ProntoToString(mec.lista_para_arr.head.pronto()))
+      } else errorLabel.setText("O mecânico não tem carros")
     }
   }
 
@@ -124,6 +105,10 @@ class MecanicosListController {
     "Sim"
   } else {
     "Não"
+  }
+
+  def HorasExtra(): Unit = {
+
   }
 
 }

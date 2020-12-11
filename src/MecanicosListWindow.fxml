@@ -4,34 +4,51 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="572.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MecanicosListController">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import scala.Double?>
+<AnchorPane prefHeight="694.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MecanicosListController">
    <children>
-      <Label layoutX="237.0" layoutY="23.0" text="Escolher Mecânico">
+      <Label layoutX="224.0" layoutY="23.0" text="Escolher Mecânico">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="update" layoutX="115.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#UpdateMec" prefHeight="25.0" prefWidth="150.0" text="Mostrar Mecânicos" />
-      <Button fx:id="addmec" alignment="CENTER" contentDisplay="CENTER" layoutX="115.0" layoutY="261.0" mnemonicParsing="false" onMouseClicked="#AddMec" prefHeight="25.0" prefWidth="150.0" text="Adicionar Mecânico" />
-      <Button fx:id="remmec" layoutX="115.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#RemMec" prefHeight="25.0" prefWidth="150.0" text="Remover Mecânico" />
-      <Label layoutX="24.0" layoutY="114.0" prefHeight="25.0" prefWidth="44.0" text="Nome" />
-      <TextField fx:id="nome" layoutX="115.0" layoutY="114.0" />
-      <Label layoutX="24.0" layoutY="150.0" prefHeight="25.0" prefWidth="89.0" text="Especialização" />
-      <TextField fx:id="especializacao" layoutX="115.0" layoutY="150.0" />
-      <Label layoutX="24.0" layoutY="185.0" prefHeight="25.0" prefWidth="89.0" text="Salário" />
-      <TextField fx:id="salario" layoutX="115.0" layoutY="185.0" />
-      <Button fx:id="mecanico" layoutX="115.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#EscolherMecanico" prefHeight="25.0" prefWidth="150.0" text="Mostrar Horário" />
-      <Label fx:id="mecanicos" alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="75.0" prefHeight="248.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="passarslot" layoutX="363.0" layoutY="377.0" mnemonicParsing="false" onMouseClicked="#PassarSlot" prefHeight="25.0" prefWidth="150.0" text="Passar Slot" />
-      <Button fx:id="vercar" layoutX="363.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#VerCar" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
-      <Label fx:id="cars" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="79.0" prefHeight="181.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-      <Label fx:id="carroatual" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="341.0" prefHeight="207.0" prefWidth="330.0" textAlignment="CENTER" wrapText="true" />
-      <Label layoutX="803.0" layoutY="23.0" text="Horário Diário">
+      <Button fx:id="update" layoutX="102.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#UpdateMec" prefHeight="25.0" prefWidth="150.0" text="Mostrar Mecânicos" />
+      <Button fx:id="mecanico" layoutX="102.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#EscolherMecanico" prefHeight="25.0" prefWidth="150.0" text="Mostrar Horário" />
+      <Button fx:id="passarslot" layoutX="102.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#PassarSlot" prefHeight="25.0" prefWidth="150.0" text="Passar Slot" />
+      <Button fx:id="vercar" layoutX="102.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#VerCar" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
+      <Label fx:id="carroatual" alignment="CENTER" contentDisplay="CENTER" layoutX="306.0" layoutY="247.0" prefHeight="108.0" prefWidth="234.0" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="165.0" layoutY="373.0" text="Próximas 8 Horas de Trabalho:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="trabsemanal" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="478.0" prefHeight="65.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-      <ListView fx:id="horario" layoutX="561.0" layoutY="160.0" prefHeight="200.0" prefWidth="421.0" />
+      <ListView fx:id="horario" layoutX="89.0" layoutY="424.0" prefHeight="248.0" prefWidth="421.0" />
+      <ListView fx:id="mecanicosView" layoutX="306.0" layoutY="71.0" prefHeight="161.0" prefWidth="234.0" />
+      <Button fx:id="horasextras" layoutX="102.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#HorasExtra" prefHeight="25.0" prefWidth="150.0" text="Horas Extras" />
+      <ChoiceBox fx:id="hora" layoutX="102.0" layoutY="335.0" prefWidth="150.0" value="0">
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="0" />
+                  <String fx:value= "0.25" />
+                  <String fx:value= "0.5" />
+                  <String fx:value= "0.75" />
+                  <String fx:value="1" />
+                  <String fx:value= "1.25" />
+                  <String fx:value= "1.5" />
+                  <String fx:value= "1.75" />
+                  <String fx:value="2" />
+                  <String fx:value= "2.25" />
+                  <String fx:value= "2.5" />
+                  <String fx:value= "2.75" />
+                  <String fx:value="3" />
+                  <String fx:value= "3.25" />
+                  <String fx:value= "3.5" />
+                  <String fx:value= "3.75" />
+                  <String fx:value="4" />
+               </FXCollections>
+            </items>
+      </ChoiceBox>
    </children>
 </AnchorPane>
