@@ -32,12 +32,6 @@
          </font>
       </Label>
       <Label fx:id="trabsemanal" alignment="CENTER" contentDisplay="CENTER" layoutX="655.0" layoutY="478.0" prefHeight="65.0" prefWidth="421.0" textAlignment="CENTER" wrapText="true" />
-      <TableView fx:id="tv1" layoutX="701.0" layoutY="96.0" prefHeight="306.0" prefWidth="330.0">
-        <columns>
-          <TableColumn fx:id="car" prefWidth="144.0" text="Carro" />
-            <TableColumn fx:id="ano" minWidth="6.0" prefWidth="65.0" text="Ano" />
-            <TableColumn fx:id="dono" minWidth="9.0" prefWidth="120.0" text="Dono" />
-        </columns>
-      </TableView>
+      <ListView layoutX="782.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

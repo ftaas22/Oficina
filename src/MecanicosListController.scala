@@ -85,14 +85,15 @@ class MecanicosListController {
     }
   }
 
-  def WriteTable(ind: Double, lista: List[Carro]): ObservableList[Carro] = lista match {
+  def WriteTable(ind: Double, lista: List[Carro]): List[Carro] = lista match {
     case x::xs =>
       if(ind <= 8) {
         cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")
         trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
-        /*val temp: ObservableList[Carro] = FXCollections.observableArrayList(x)
-        val lista: ObservableList[Carro] = FXCollections.observableArrayList(temp, WriteTable(x.trabalho.tempo + ind, xs).)
-        lista*/
+        //val temp: List[] = FXCollections.observableArrayList(x)
+        //val lista: ObservableList[Carro] = FXCollections.observableArrayList(temp, WriteTable(x.trabalho.tempo + ind, xs).)
+        val Li
+        lista
       }
     /*case x:: Nil =>
       cars.setText(cars.getText + "Modelo: " + x.modelo + ", Ano: " + x.ano + ", Dono: " + x.dono + ", Tempo Restante: " + x.trabalho.tempo + "\n")*/
