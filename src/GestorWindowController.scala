@@ -169,5 +169,6 @@ class GestorWindowController {
     case (_, _,"") => true
     case _ => false
   }
+  //para push
 
 }

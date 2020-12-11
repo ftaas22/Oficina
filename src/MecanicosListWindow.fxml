@@ -34,19 +34,35 @@
                   <String fx:value= "0.25" />
                   <String fx:value= "0.5" />
                   <String fx:value= "0.75" />
-                  <String fx:value="1" />
+                  <String fx:value= "1" />
                   <String fx:value= "1.25" />
                   <String fx:value= "1.5" />
                   <String fx:value= "1.75" />
-                  <String fx:value="2" />
+                  <String fx:value= "2" />
                   <String fx:value= "2.25" />
                   <String fx:value= "2.5" />
                   <String fx:value= "2.75" />
-                  <String fx:value="3" />
+                  <String fx:value= "3" />
                   <String fx:value= "3.25" />
                   <String fx:value= "3.5" />
                   <String fx:value= "3.75" />
-                  <String fx:value="4" />
+                  <String fx:value= "4" />
+                  <String fx:value= "4.25" />
+                  <String fx:value= "4.5" />
+                  <String fx:value= "4.75" />
+                  <String fx:value= "5" />
+                  <String fx:value= "5.25" />
+                  <String fx:value= "5.5" />
+                  <String fx:value= "5.75" />
+                  <String fx:value= "6" />
+                  <String fx:value= "6.25" />
+                  <String fx:value= "6.5" />
+                  <String fx:value= "6.75" />
+                  <String fx:value= "7" />
+                  <String fx:value= "7.25" />
+                  <String fx:value= "7.5" />
+                  <String fx:value= "7.75" />
+                  <String fx:value= "8" />
                </FXCollections>
             </items>
       </ChoiceBox>
