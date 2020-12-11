@@ -1,6 +1,6 @@
 import Avaria.defineTrabalho
 import FxApp.{carlist, meclist}
-import System.{Trabalhar, adicionarCar_Mec_Final, adicionarCar_Mec_Inicio, atualizarCarros_Mec}
+import System.{Trabalhar, adicionarCar_Mec_Final, adicionarCar_Mec_Inicio, atualizarCarros_Mec, removerCarro_Mec}
 import UtilsApp.{download_Cars, download_Mec}
 
 import scala.io.Source
@@ -15,10 +15,13 @@ object Teste {
     val car = Carro("bmw","2002",tra , "João")
     val car2 = Carro("bmw","2002",tra , "João2")
     val car3 = Carro("bmw","2002",tra , "João3")
-    val mec= Mecanico(Especializacao.PINTOR, "20", "Antonio", List(car,car2))
+    val mec= Mecanico(Especializacao.PINTOR, "20", "Antonio", List(car,car3,car2))
+    carlist+=car2
     meclist+=mec
+    println(carlist)
     println(meclist)
-    Trabalhar()
+    removerCarro_Mec(mec:Mecanico,car:Carro)
     println(meclist)
+    println(carlist)
   }
 }

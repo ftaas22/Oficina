@@ -64,14 +64,12 @@ object System{
     meclist.clear()
 
       def recursiveStep(lst: List[Mecanico]) {
-        if(lst.head.lista_para_arr.length!=0){
           lst match {
             case h :: Nil => meclist += arranjar(lst.head)
             case h :: t => {
               (meclist += arranjar(lst.head))
               recursiveStep(lst.tail)
             }
-          }
         }
       }
     recursiveStep(Temp_mecList)

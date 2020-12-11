@@ -19,7 +19,7 @@ object Mecanico{
   //aqui é que se faz a gestão se o carro esta pronto ou não e se estiver tira lo da lista do mecanico e meter na lista de pronto
   //copy mecanico no arranjar acho
   def arranjar(x: Mecanico):Mecanico ={
-    if(x.lista_para_arr!=null) {
+    if(x.lista_para_arr.length!=0) {
       if (x.lista_para_arr.head.pronto()) {
         if(x.lista_para_arr.head.trabalho.TipoAvaria==TipoAvaria.OBSERVACAO) {
           val n_ava = Avaria(UtilsApp.randomAvaria())
