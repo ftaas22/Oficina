@@ -23,8 +23,6 @@ class GestorWindowController {
   var especializacao: TextField = _
   @FXML
   var salario: TextField = _
-  @FXML
-  var mecanicos: Label = _
 
   def checkCarList(): Unit ={
     carListView.getItems.clear()
@@ -124,19 +122,19 @@ class GestorWindowController {
 
   def AddMec(): Unit = {
     if (CheckIfAnyEmpty(nome.getText, especializacao.getText, salario.getText)) {
-      mecanicos.setText("Tem de preencher todos os campos.")
+      errorLabel.setText("Tem de preencher todos os campos.")
     } else {
       var mec = Mecanico(Especializacao.withName(especializacao.getText()), salario.getText, nome.getText, null)
       meclist += mec
-      mecanicos.setText("Mecânico Adicionado!")
+      errorLabel.setText("Mecânico Adicionado!")
     }
   }
 
   def RemMec(): Unit = mecListView.getSelectionModel.getSelectedItem match {
-    case null => mecanicos.setText("Tem de selecionar um mecânico")
+    case null => errorLabel.setText("Tem de selecionar um mecânico")
     case _ => {
       meclist = meclist.filterNot(_ == mecListView.getSelectionModel.getSelectedItem)
-      mecanicos.setText("Removido com sucesso!")
+      errorLabel.setText("Removido com sucesso!")
     }
   }
 
@@ -148,9 +146,10 @@ class GestorWindowController {
   }
 
   def CleanList(): Unit = mecListView.getSelectionModel.getSelectedItem match {
-    case null => mecanicos.setText("Tem de selecionar um mecânico")
+    case null => errorLabel.setText("Tem de selecionar um mecânico")
     case _ => {
-
+      esvaziar_mec(mecListView.getSelectionModel.getSelectedItem)
+      errorLabel.setText("Mecânico sem carros na lista")
     }
   }
 
