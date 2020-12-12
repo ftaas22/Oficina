@@ -29,30 +29,32 @@ class ClientesController {
     if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
       labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
     } else {
-      RemoveCarIfReady(FindCar(modelo.getText, ano.getText, dono.getText, carlist.toList))
+      RemoveCarIfReady(FindInAll(modelo.getText, ano.getText, dono.getText))
     }
   }
 
-  def RemoveCarIfReady(car: Carro): Try[Unit] = Try{
-    car.trabalho.tempo match {
-      case 0 =>
-        labelpronto.setText("Recolheu o carro, obrigado pela confiança!")
-        val templist = carlist.filterNot(_ == car)
-        carlist =  ListBuffer(car)
-        val secondStage: Stage = new Stage()
-        secondStage.setTitle("Recibo")
-        secondStage.initModality(Modality.APPLICATION_MODAL)
-        secondStage.initOwner(takecar.getScene.getWindow)
-        val fxmlLoader = new FXMLLoader(getClass.getResource("ReciboWindow.fxml"))
-        val mainViewRoot: Parent = fxmlLoader.load()
-        val scene = new Scene(mainViewRoot)
-        secondStage.setScene(scene)
-        secondStage.showAndWait()
-        println("Teste")
-        carlist = templist
-      case _ =>
-        labelpronto.setText("O Carro ainda não está pronto.")
-    }
+  def RemoveCarIfReady(car: Carro): Unit = /*Try[Unit] = Try*/ {
+    if (car != null) {
+      car.trabalho.tempo match {
+        case 0 =>
+          labelpronto.setText("Recolheu o carro, obrigado pela confiança!")
+          val templist = carlist.filterNot(_ == car)
+          carlist = ListBuffer(car)
+          val secondStage: Stage = new Stage()
+          secondStage.setTitle("Recibo")
+          secondStage.initModality(Modality.APPLICATION_MODAL)
+          secondStage.initOwner(takecar.getScene.getWindow)
+          val fxmlLoader = new FXMLLoader(getClass.getResource("ReciboWindow.fxml"))
+          val mainViewRoot: Parent = fxmlLoader.load()
+          val scene = new Scene(mainViewRoot)
+          secondStage.setScene(scene)
+          secondStage.showAndWait()
+          println("Teste")
+          carlist = templist
+        case _ =>
+          labelpronto.setText("O Carro ainda não está pronto.")
+      }
+    } else labelpronto.setText("Não foi possível encontrar este carro!")
   }
 
   def AddCar(): Try[Unit] = Try{
