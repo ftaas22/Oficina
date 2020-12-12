@@ -250,9 +250,13 @@ object System{
   }
 
   def horas_Extra(mec:Mecanico,horas:Double): Unit ={
-    //tiralo da mec list com o filternot,chamar o arranjar do mec adicionando o a lista
-
-
+    if(horas>0){
+      meclist = meclist.filterNot(x=>x.nome == mec.nome && x.especializacao == mec.especializacao)
+      val hor=horas-0.25
+      val n_mec = arranjar(mec)
+      meclist +=n_mec
+      horas_Extra(n_mec,hor)
+    }
 
   }
 
@@ -268,7 +272,7 @@ object System{
       }}
     if(mec.lista_para_arr.length!=0 && mec.lista_para_arr!=null ){
       RecursiveStep(mec.lista_para_arr)
-      meclist=meclist.filterNot(x=>x.nome == mec.nome && x.especializacao == mec.especializacao )
+      meclist=meclist.filterNot(x=>x.nome == mec.nome && x.especializacao == mec.especializacao)
       val a: List[Carro] = List[Carro]()
       val aux= mec.copy(lista_para_arr = a)
       meclist +=aux

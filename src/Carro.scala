@@ -5,7 +5,7 @@ case class Carro(
   dono:String){
 
   def pronto():Boolean={
-    if(trabalho.tempo <= 0)
+    if(trabalho.tempo <= 0.25)
       true
     else
       false
