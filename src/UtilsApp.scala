@@ -56,7 +56,6 @@ object UtilsApp {
       val carArranjarList2 = listaParaArranjar(i,3,i.split(" ").size, carArranjarList)
       var mecanico: Mecanico = Mecanico(Especializacao.withName(i.split(" ")(0)), i.split(" ")(1),i.split(" ")(2), carArranjarList2)
       meclist+=mecanico
-      println(mecanico)
       download_Mec(source:Iterator[String])
     }
   }//para
