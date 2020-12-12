@@ -14,11 +14,6 @@ import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
 object UtilsApp {
-    //metodo de carregar os mecanicos e o carro
-    //criar o log aqui
-
-
-
 
   @tailrec
   def download_Cars(source:Iterator[String]): Unit ={
@@ -34,12 +29,7 @@ object UtilsApp {
        val car: Carro = Carro(i.split(" ")(0),i.split(" ")(1),trabalho, i.split(" ")(3))
        carlist+=car
      }
-        //val trabalho: Trabalho= Trabalho(TipoAvaria.withName(i.split(" ")(2)))
-        //defineTrabalho(avaria)
 
-        //car.copy(ano= "1990")
-
-        //println(car.toString)
         download_Cars(source:Iterator[String])
       }
     }
@@ -48,11 +38,6 @@ object UtilsApp {
   def download_Mec(source:Iterator[String]): Unit ={
     if(source.hasNext){
       val i = source.next()
-      /*val avaria: Avaria = Avaria(Tipoavaria = OBSERVACAO)
-      val trabalho = Avaria.defineTrabalho(avaria)
-      val carro: Carro = Carro("BMW","1980",trabalho,"Pedro")
-      val carro2: Carro = Carro("Volkswagen","1920",trabalho,"José")
-      val arranjarList : List[Carro] = List(carro, carro2)*/
       val carArranjarList : List[Carro] = List[Carro]()
       def listaParaArranjar(i : String, a: Int, b: Int, list: List[Carro]): List[Carro] = (a, b) match{
         case (_,_) => {
@@ -98,7 +83,7 @@ object UtilsApp {
   }
 
 
-  //alterar para dar write da lista de carros
+
   def mecListToFile(): Unit = {
     val writer = new PrintWriter(new File("src\\Base De Dados\\mecanicos.txt"))
     def writeCars(carList: List[Carro]): String = carList match{
@@ -166,25 +151,4 @@ object UtilsApp {
     meclist.toList
   }
 
-
-  def main(args: Array[String]): Unit = {
-    var source: Iterator[String] = Source.fromFile("src\\Base De Dados\\carros.txt").getLines()
-    var source2: Iterator[String] = Source.fromFile("src\\Base De Dados\\mecanicos.txt").getLines()
-    //download_Cars(source)
-    download_Mec(source2)
-    //println(carlist)
-    //carListToFile()
-    //mecListToFile()
-    val tra= defineTrabalho(Avaria(TipoAvaria.FUSIVEIS))
-    val car = Carro("bmw","2002",tra , "João")
-    val car2 = Carro("bmw","2002",tra , "João2")
-    val car3 = Carro("bmw","2002",tra , "João3")
-    val mec= Mecanico(Especializacao.PINTOR, "20", "Antonio", null)
-    meclist+=mec
-    carlist+=car
-    carlist+=car2
-    carlist+=car3
-    atriOutraEspcializacao()
-    println(meclist)
-  }
 }

@@ -11,8 +11,7 @@ class GUI extends Application {
 
   override def start(primaryStage: Stage): Unit = {
     primaryStage.setTitle("GUI")
-    val fxmlLoader =
-      new FXMLLoader(getClass.getResource("MainWindow.fxml"))
+    val fxmlLoader = new FXMLLoader(getClass.getResource("MainWindow.fxml"))
     val mainViewRoot: Parent = fxmlLoader.load()
     val scene = new Scene(mainViewRoot)
     primaryStage.setScene(scene)

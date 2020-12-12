@@ -15,9 +15,6 @@ case class Mecanico(
 object Mecanico{
   def apply(especializacao: Especializacao, salario: String, nome: String,  Lista_para_arr: List[Carro]): Mecanico = new Mecanico(especializacao, salario, nome, Lista_para_arr)
 
-  //passa tempo no carro a arranjar e limpa carro da lista se já estiver arranjado
-  //aqui é que se faz a gestão se o carro esta pronto ou não e se estiver tira lo da lista do mecanico e meter na lista de pronto
-  //copy mecanico no arranjar acho
   def arranjar(x: Mecanico):Mecanico ={
     if(x.lista_para_arr.length!=0) {
       if (x.lista_para_arr.head.pronto()) {
