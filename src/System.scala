@@ -10,23 +10,15 @@ object System{
 
 
   def atualizarCarros_Mec(): Unit ={
-    println(carlist)
+
     esvaziarMec()
-    println(carlist)
     atriEspecializacao(Especializacao.ENGELETRICO)
-    println(carlist)
     atriEspecializacao(Especializacao.ENGAUTOMOVEL)
-    println(carlist)
     atriEspecializacao(Especializacao.BATECHAPAS)
-    println(carlist)
     atriEspecializacao(Especializacao.PINTOR)
-    println(carlist)
     atriEspecializacao(Especializacao.ESTOFADOR)
-    println(carlist)
     atriObservacao()
-    println(carlist)
     atriOutraEspcializacao()
-    println(carlist)
   }
 
 
@@ -57,7 +49,6 @@ object System{
 
 
   def Trabalhar(): Unit = {
-    //meter os ifs de não haver mecanicos e se não tiver carros para arranjar
 
     val Temp_mecList = meclist.toList
     if(Temp_mecList.length!=0){
@@ -74,8 +65,6 @@ object System{
       }
     recursiveStep(Temp_mecList)
     }
-    print("\n")
-    print(meclist)
   }
 
 
@@ -140,23 +129,19 @@ object System{
   def atriOutraEspcializacao(): Unit ={
     val lmec= meclist.toList
     meclist.clear()
-    //println("carlist"+carlist)
     val lcar= carlist.filter(x=>x.trabalho.tempo != 0.0).toList
     carlist= carlist.filterNot(x=>x.trabalho.tempo != 0.0)
     def recursiveStep(lmec:List[Mecanico],lcar:List[Carro]): Unit ={
       if(lmec.length!=0 ){
         val n_car_mec=lcar.splitAt(lcar.length/lmec.length)
-        //println("lista dos carros para adicionar"+n_car_mec)
           def anotherRecursiveStep(l2: List[Carro], n_l: List[Carro]): List[Carro] = {
             if (l2.length != 0) {
               val trab = l2.head.trabalho.copy(tempo = l2.head.trabalho.tempo * 2)
               val car = l2.head.copy(trabalho = trab)
               val lc = n_l:::List(car)
-              //println(lc+ "lista vai adicionando")
               anotherRecursiveStep(l2.tail,lc)
             }
             else{
-              //println("else")
               n_l
             }
           }
@@ -165,16 +150,11 @@ object System{
         //println(aux+ "AUX")
         if(lmec.head.lista_para_arr.length!=0){
           val newl=  lmec.head.lista_para_arr ::: aux
-
           meclist+=lmec.head.copy(lista_para_arr = newl)
-          //println(meclist+"lista do mec NAO estava null")
-          //println(meclist)
         }
         else{
           val newl=aux
           meclist+=lmec.head.copy(lista_para_arr = newl)
-          //println(meclist+"lista do mec ESTAVA null")
-          //println(meclist)
         }
 
         recursiveStep(lmec.tail,n_car_mec._2)
@@ -206,7 +186,6 @@ object System{
   def adicionarCar_Mec_Inicio(mec:Mecanico,car:Carro){
     carlist = carlist.filterNot(x=>x.dono == car.dono && x.trabalho == car.trabalho )
     if(mec.lista_para_arr!=0 && mec.lista_para_arr!=null){
-
       val newl = List(car):::mec.lista_para_arr
       println(newl)
       val n_mec=mec.copy(lista_para_arr = newl)
