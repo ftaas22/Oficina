@@ -18,8 +18,6 @@ class GestorWindowController {
   @FXML
   var errorLabel: Label = _
   @FXML
-  var especializacaoView: TextField = _
-  @FXML
   var nome: TextField = _
   @FXML
   var especializacao: TextField = _
@@ -64,23 +62,12 @@ class GestorWindowController {
     if(mecListView.getSelectionModel.getSelectedItem.lista_para_arr!=null){
       addCars(mecListView.getSelectionModel.getSelectedItem.lista_para_arr)
     }
-    /*print(carrosPorArranjarListView.getOnMouseClicked.handle(MouseEvent))
-    carrosPorArranjarListView.setOnMouseClicked(new EventHandler[MouseEvent]() {
-       def handle(event: MouseEvent): Unit = {
-        println("clicked on " + carrosPorArranjarListView.getSelectionModel.getSelectedItem)
-      }
-    })
-    carrosPorArranjarListView.getOnMouseClicked(new EventHandler[MouseEvent]() {
-      def handle(event: MouseEvent): Unit = {
-        println("clicked on " + carrosPorArranjarListView.getSelectionModel.getSelectedItem)
-      }
-    })*/
   }
 
-  def atribuirEspecializacao(): Unit = especializacaoView.getText match {
+  def atribuirEspecializacao(): Unit = especializacao.getText match {
     case "" => errorLabel.setText("Tem de escolher uma Especialização")
     case _ => {
-      atriEspecializacao(Especializacao.withName(especializacaoView.getText.toUpperCase))
+      atriEspecializacao(Especializacao.withName(especializacao.getText.toUpperCase))
       errorLabel.setText("Concluído")
     }
   }
@@ -135,18 +122,6 @@ class GestorWindowController {
     atualizarCarros_Mec()
   }
 
-  /*def viewEspecializacao(): Unit = {
-    /*val listaEspcecializacoes = Especializacao.values.toList
-    def adicionar(esp: List[Especializacao.Value]): Unit = {
-      case Nil => Nil
-      case x :: xs => {
-        especializacaoView.getItems.add(esp.head)
-        adicionar(esp.tail)
-      }
-    }
-    adicionar(listaEspcecializacoes)*/
-  }*/
-
   def AddMec(): Unit = {
     if (CheckIfAnyEmpty(nome.getText, especializacao.getText, salario.getText)) {
       mecanicos.setText("Tem de preencher todos os campos.")
@@ -171,6 +146,12 @@ class GestorWindowController {
     case (_, _,"") => true
     case _ => false
   }
-  //para push
+
+  def CleanList(): Unit = mecListView.getSelectionModel.getSelectedItem match {
+    case null => mecanicos.setText("Tem de selecionar um mecânico")
+    case _ => {
+
+    }
+  }
 
 }

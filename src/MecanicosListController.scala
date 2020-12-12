@@ -2,7 +2,7 @@ import java.io.{File, PrintWriter}
 import FxApp.meclist
 import System._
 import javafx.fxml.FXML
-import javafx.scene.control.{Label, ListView}
+import javafx.scene.control.{ChoiceBox, Label, ListView}
 
 class MecanicosListController {
 
@@ -12,6 +12,8 @@ class MecanicosListController {
   var horario: ListView[Carro] = _
   @FXML
   var mecanicosView: ListView[Mecanico] = _
+  @FXML
+  var hora: ChoiceBox[String] = _
 
   def UpdateMec(): Unit = {
     mecanicosView.getItems.clear()
@@ -53,7 +55,7 @@ class MecanicosListController {
   def VerificarCarroAtual(): Unit = {
     mecanicosView.getSelectionModel.getSelectedItem match {
       case null => {
-        carroatual.setText("Escolha um mecânico.")
+        carroatual.setText("É necessário escolher um mecânico.")
       }
       case _ => {
         val car = mecanicosView.getSelectionModel.getSelectedItem.lista_para_arr.head
@@ -72,8 +74,14 @@ class MecanicosListController {
     "Não"
   }
 
-  def HorasExtra(): Unit = {
-    //por preencher
+  def HorasExtra(): Unit = mecanicosView.getSelectionModel.getSelectedItem match {
+    case null => carroatual.setText("É necessário escolher um mecânico.")
+    case _ => {
+      if(hora.getSelectionModel.getSelectedItem.toDouble != 0) {
+        horas_Extra(mecanicosView.getSelectionModel.getSelectedItem,hora.getSelectionModel.getSelectedItem.toDouble)
+        carroatual.setText("Foram adicionadas " + hora.getSelectionModel.getSelectedItem + " horas extras trabalhadas!")
+      } else carroatual.setText("Tem de escolher uma hora diferente de 0.")
+    }
   }
 
 }
