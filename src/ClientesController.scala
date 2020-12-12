@@ -34,9 +34,11 @@ class ClientesController {
   }
 
   def RemoveCarIfReady(car: Carro): Unit = /*Try[Unit] = Try*/ {
+    println(car)
+    println(car.trabalho.tempo)
     if (car != null) {
-      car.trabalho.tempo match {
-        case 0 =>
+      car.pronto() match {
+        case true=>
           labelpronto.setText("Recolheu o carro, obrigado pela confiança!")
           val templist = carlist.filterNot(_ == car)
           carlist = ListBuffer(car)
@@ -49,9 +51,8 @@ class ClientesController {
           val scene = new Scene(mainViewRoot)
           secondStage.setScene(scene)
           secondStage.showAndWait()
-          println("Teste")
           carlist = templist
-        case _ =>
+        case false =>
           labelpronto.setText("O Carro ainda não está pronto.")
       }
     } else labelpronto.setText("Não foi possível encontrar este carro!")
