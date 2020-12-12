@@ -1,5 +1,5 @@
 import javafx.fxml.{FXML, FXMLLoader}
-import javafx.scene.control.{Button, Label, TextField}
+import javafx.scene.control.{Button, ChoiceBox, Label, TextField}
 import UtilsApp._
 import javafx.scene.{Parent, Scene}
 import javafx.stage.{Modality, Stage}
@@ -23,7 +23,7 @@ class ClientesController {
   @FXML
   var takecar: Button = _
   @FXML
-  var avaria: TextField = _
+  var avaria: ChoiceBox[String] = _
 
   def TakeCar(): Try[Unit] = Try{
     if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
@@ -61,18 +61,18 @@ class ClientesController {
     if (CheckIfEmpty(modelo.getText, ano.getText, dono.getText)) {
       labelcarro.setText("Tem de preencher os campos de Modelo, Ano e Dono")
     } else {
-      if(avaria.getText == "") {
+      if(avaria.getSelectionModel.getSelectedItem == "OBSERVCACAO") {
         val ava = Avaria(TipoAvaria.OBSERVACAO)
         val trabalho: Trabalho = Avaria.defineTrabalho(ava)
         val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
         carlist += car
       } else {
-        val ava = Avaria(TipoAvaria.withName(avaria.getText.toUpperCase()))
+        val ava = Avaria(TipoAvaria.withName(avaria.getSelectionModel.getSelectedItem.toUpperCase()))
         val trabalho: Trabalho = Avaria.defineTrabalho(ava)
         val car = Carro(modelo.getText, ano.getText, trabalho, dono.getText)
         carlist += car
       }
-      labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\n Avaria: " + avaria.getText + "\nAdicionado")
+      labelcarro.setText("Modelo: " + modelo.getText + "\nAno: " + ano.getText + "\nDono: " + dono.getText + "\n Avaria: " + avaria.getSelectionModel.getSelectedItem + "\nAdicionado")
     }
   }
 
@@ -105,9 +105,9 @@ class ClientesController {
   }
 
   def CheckIfEmpty(a:String, b:String, c:String): Boolean = (a,b,c) match {
-    case ("", _, _) => true
-    case (_,"", _) => true
-    case (_, _,"") => true
+    case ("",_,_) => true
+    case (_,"",_) => true
+    case (_,_,"") => true
     case _ => false
   }
 

@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="761.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestorWindowController">
    <children>
       <ListView fx:id="carListView" editable="true" layoutX="160.0" layoutY="55.0" prefHeight="603.0" prefWidth="237.0" />
@@ -42,12 +44,22 @@
       <Button fx:id="passarSlot" layoutX="23.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#PassarSlot" prefHeight="33.0" prefWidth="113.0" text="Passar Slot" />
       <TextField fx:id="nome" layoutX="503.0" layoutY="525.0" prefHeight="25.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="529.0" text="Nome" />
-      <TextField fx:id="especializacao" layoutX="503.0" layoutY="564.0" prefHeight="25.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="568.0" text="Especialização" />
       <TextField fx:id="salario" layoutX="503.0" layoutY="603.0" prefHeight="25.0" prefWidth="150.0" />
       <Label layoutX="423.0" layoutY="607.0" text="Salário" />
       <Button fx:id="addMec" layoutX="503.0" layoutY="649.0" mnemonicParsing="false" onMouseClicked="#AddMec" prefHeight="33.0" prefWidth="150.0" text="Adicionar Mecânico" />
       <Button fx:id="rvMec" layoutX="503.0" layoutY="691.0" mnemonicParsing="false" onMouseClicked="#RemMec" prefHeight="33.0" prefWidth="150.0" text="Remover Mecânico" />
       <Button fx:id="clean" layoutX="23.0" layoutY="598.0" mnemonicParsing="false" onMouseClicked="#CleanList" prefHeight="46.0" prefWidth="113.0" text="Limpar Lista do Mecânico" textAlignment="CENTER" wrapText="true" />
+      <ChoiceBox fx:id="especializacao" layoutX="503.0" layoutY="564.0" prefWidth="150.0" value="">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value= "ENGELETRICO" />
+               <String fx:value= "BATECHAPAS" />
+               <String fx:value= "PINTOR" />
+               <String fx:value= "ENGAUTOMOVEL" />
+               <String fx:value= "ESTOFADOR" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
    </children>
 </AnchorPane>

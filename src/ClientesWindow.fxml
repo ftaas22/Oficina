@@ -5,6 +5,8 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="167.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientesController">
    <TextField fx:id="modelo" layoutX="119.0" layoutY="34.0" />
    <Line endX="16.0" endY="218.5" layoutX="271.0" layoutY="133.0" startX="16.0" startY="-133.0" />
@@ -20,7 +22,6 @@
       </font>
    </Label>
    <TextField fx:id="dono" layoutX="119.0" layoutY="130.0" />
-   <TextField fx:id="avaria" layoutX="119.0" layoutY="176.0" />
    <Label layoutX="29.0" layoutY="129.0" text="Dono">
       <font>
          <Font size="18.0" />
@@ -56,4 +57,37 @@
          <Font size="18.0" />
       </font>
    </Label>
+   <ChoiceBox fx:id="avaria" layoutX="119.0" layoutY="176.0" prefWidth="150.0" value="OBSERVACAO">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value= "OBSERVACAO" />
+            <String fx:value= "BATERIA" />
+            <String fx:value= "FUSIVEIS" />
+            <String fx:value= "VELAS" />
+            <String fx:value= "ALTERNADOR" />
+            <String fx:value= "MOTORES_ELETRICOS" />
+            <String fx:value= "IGNICAO" />
+            <String fx:value= "ALMOGADELAS" />
+            <String fx:value= "ALINHAMENTO_CHASSI" />
+            <String fx:value= "LAVAR" />
+            <String fx:value= "SUSPENSAO" />
+            <String fx:value= "PINTAR_PAINEL" />
+            <String fx:value= "PINTAR_EXTERIOR" />
+            <String fx:value= "PINTAR_INTEIOR" />
+            <String fx:value= "MOTOR" />
+            <String fx:value= "ARCONDICIONADO" />
+            <String fx:value= "TRANSMISSAO" />
+            <String fx:value= "DIRECAO" />
+            <String fx:value= "RODA" />
+            <String fx:value= "RADIADOR" />
+            <String fx:value= "ESCAPE" />
+            <String fx:value= "ESTOFOSFRENTE" />
+            <String fx:value= "ESTOFOSTRAS" />
+            <String fx:value= "ESTOFOSPORTA" />
+            <String fx:value= "ESTOFOSBAGAGEM" />
+            <String fx:value= "TROCA_DE_VIDRO" />
+            <String fx:value= "CARPETES" />
+         </FXCollections>
+      </items>
+   </ChoiceBox>
 </AnchorPane>

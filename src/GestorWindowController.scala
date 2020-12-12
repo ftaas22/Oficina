@@ -3,7 +3,7 @@ import System._
 import javafx.fxml.FXML
 import UtilsApp.getCarList
 import UtilsApp.getMecList
-import javafx.scene.control.{Label, ListView, TextField}
+import javafx.scene.control.{ChoiceBox, Label, ListView, TextField}
 
 class GestorWindowController {
 
@@ -20,7 +20,7 @@ class GestorWindowController {
   @FXML
   var nome: TextField = _
   @FXML
-  var especializacao: TextField = _
+  var especializacao: ChoiceBox[String] = _
   @FXML
   var salario: TextField = _
 
@@ -62,10 +62,10 @@ class GestorWindowController {
     }
   }
 
-  def atribuirEspecializacao(): Unit = especializacao.getText match {
+  def atribuirEspecializacao(): Unit = especializacao.getSelectionModel.getSelectedItem match {
     case "" => errorLabel.setText("Tem de escolher uma Especialização")
     case _ => {
-      atriEspecializacao(Especializacao.withName(especializacao.getText.toUpperCase))
+      atriEspecializacao(Especializacao.withName(especializacao.getSelectionModel.getSelectedItem.toUpperCase))
       errorLabel.setText("Concluído")
     }
   }
@@ -120,13 +120,22 @@ class GestorWindowController {
     atualizarCarros_Mec()
   }
 
+
   def AddMec(): Unit = {
-    if (CheckIfAnyEmpty(nome.getText, especializacao.getText, salario.getText)) {
-      errorLabel.setText("Tem de preencher todos os campos.")
-    } else {
-      var mec = Mecanico(Especializacao.withName(especializacao.getText()), salario.getText, nome.getText, null)
-      meclist += mec
-      errorLabel.setText("Mecânico Adicionado!")
+    println(especializacao.getSelectionModel.getSelectedItem)
+    especializacao.getSelectionModel.getSelectedItem match {
+      case "" => {
+        errorLabel.setText("Tem de preencher todos os campos.")
+      }
+      case _ => {
+        if (CheckIfEmpty(nome.getText, salario.getText)) {
+          errorLabel.setText("Tem de preencher todos os campos.")
+        } else {
+          var mec = Mecanico(Especializacao.withName(especializacao.getSelectionModel.getSelectedItem), salario.getText, nome.getText, null)
+          meclist += mec
+          errorLabel.setText("Mecânico Adicionado!")
+        }
+      }
     }
   }
 
@@ -138,10 +147,9 @@ class GestorWindowController {
     }
   }
 
-  def CheckIfAnyEmpty(a:String, b:String, c:String): Boolean = (a,b,c) match {
-    case ("", _, _) => true
-    case (_,"", _) => true
-    case (_, _,"") => true
+  def CheckIfEmpty(a:String, b:String): Boolean = (a,b) match {
+    case ("", _) => true
+    case (_,"") => true
     case _ => false
   }
 
