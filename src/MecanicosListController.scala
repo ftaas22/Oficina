@@ -1,20 +1,19 @@
 import java.io.{File, PrintWriter}
 import FxApp.meclist
 import System._
-import UtilsApp._
-import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
-import javafx.scene.control.cell.PropertyValueFactory
-import javafx.scene.control.{Label, ListView, TableColumn, TableView, TextField}
+import javafx.scene.control.{ChoiceBox, Label, ListView}
 
 class MecanicosListController {
 
   @FXML
-  var errorLabel: Label = _
+  var carroatual: Label = _
   @FXML
   var horario: ListView[Carro] = _
   @FXML
   var mecanicosView: ListView[Mecanico] = _
+  @FXML
+  var hora: ChoiceBox[String] = _
 
   def UpdateMec(): Unit = {
     mecanicosView.getItems.clear()
@@ -30,7 +29,7 @@ class MecanicosListController {
 
   def EscolherMecanico(): Unit = mecanicosView.getSelectionModel.getSelectedItem match {
     case null => {
-      errorLabel.setText("Tem de preencher os campos Nome e Especialização")
+      carroatual.setText("É necessário escolher um mecânico.")
     }
     case _ => {
       horario.getItems.clear()
@@ -41,7 +40,6 @@ class MecanicosListController {
   def WriteTable(ind: Double, lista: List[Carro]): Unit = lista match {
     case x::xs =>
       if(ind < 8) {
-        //trabsemanal.setText("Horas de Trabalho Semanal: " + (ind + x.trabalho.tempo))
         horario.getItems.add(x)
         WriteTable(x.trabalho.tempo + ind, xs)
       }
@@ -54,18 +52,19 @@ class MecanicosListController {
     Trabalhar()
   }
 
-  def VerCar(): Unit = mecanicosView.getSelectionModel.getSelectedItem match {
-    case null => {
-      errorLabel.setText("Escolha um mecânico.")
-    }
-    case _ => {
-      val mec = mecanicosView.getSelectionModel.getSelectedItem
-      println(mec)
-      if(mec.lista_para_arr.length!=0) {
-        errorLabel.setText("Modelo: " + mec.lista_para_arr.head.modelo + "\nAno: " + mec.lista_para_arr.head.ano + "\nDono: " + mec.lista_para_arr.head.dono +
-          "\n Tipo de Avaria: " + mec.lista_para_arr.head.trabalho.TipoAvaria + "\n Tempo restante: " + mec.lista_para_arr.head.trabalho.tempo +
-          "\n Pronto: " + ProntoToString(mec.lista_para_arr.head.pronto()))
-      } else errorLabel.setText("O mecânico não tem carros")
+  def VerificarCarroAtual(): Unit = {
+    mecanicosView.getSelectionModel.getSelectedItem match {
+      case null => {
+        carroatual.setText("É necessário escolher um mecânico.")
+      }
+      case _ => {
+        val car = mecanicosView.getSelectionModel.getSelectedItem.lista_para_arr.head
+        if (car != null) {
+          carroatual.setText("Modelo: " + car.modelo + "\nAno: " + car.ano + "\nDono: " + car.dono +
+          "\n Tipo de Avaria: " + car.trabalho.TipoAvaria + "\n Tempo restante: " + car.trabalho.tempo +
+          "\n Pronto: " + ProntoToString(car.pronto()))
+        } else carroatual.setText("O mecânico não tem carros")
+      }
     }
   }
 
@@ -75,8 +74,14 @@ class MecanicosListController {
     "Não"
   }
 
-  def HorasExtra(): Unit = {
-    //por preencher
+  def HorasExtra(): Unit = mecanicosView.getSelectionModel.getSelectedItem match {
+    case null => carroatual.setText("É necessário escolher um mecânico.")
+    case _ => {
+      if(hora.getSelectionModel.getSelectedItem.toDouble != 0) {
+        horas_Extra(mecanicosView.getSelectionModel.getSelectedItem,hora.getSelectionModel.getSelectedItem.toDouble)
+        carroatual.setText("Foram adicionadas " + hora.getSelectionModel.getSelectedItem + " horas extras trabalhadas!")
+      } else carroatual.setText("Tem de escolher uma hora diferente de 0.")
+    }
   }
 
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<?import scala.Double?>
 <AnchorPane prefHeight="694.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MecanicosListController">
    <children>
       <Label layoutX="224.0" layoutY="23.0" text="Escolher Mecânico">
@@ -17,7 +16,6 @@
       <Button fx:id="update" layoutX="102.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#UpdateMec" prefHeight="25.0" prefWidth="150.0" text="Mostrar Mecânicos" />
       <Button fx:id="mecanico" layoutX="102.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#EscolherMecanico" prefHeight="25.0" prefWidth="150.0" text="Mostrar Horário" />
       <Button fx:id="passarslot" layoutX="102.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#PassarSlot" prefHeight="25.0" prefWidth="150.0" text="Passar Slot" />
-      <Button fx:id="vercar" layoutX="102.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#VerCar" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
       <Label fx:id="carroatual" alignment="CENTER" contentDisplay="CENTER" layoutX="306.0" layoutY="247.0" prefHeight="108.0" prefWidth="234.0" textAlignment="CENTER" wrapText="true" />
       <Label layoutX="165.0" layoutY="373.0" text="Próximas 8 Horas de Trabalho:">
          <font>
@@ -30,41 +28,42 @@
       <ChoiceBox fx:id="hora" layoutX="102.0" layoutY="335.0" prefWidth="150.0" value="0">
             <items>
                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value= "0" />
-                  <String fx:value= "0.25" />
-                  <String fx:value= "0.5" />
-                  <String fx:value= "0.75" />
-                  <String fx:value= "1" />
-                  <String fx:value= "1.25" />
-                  <String fx:value= "1.5" />
-                  <String fx:value= "1.75" />
-                  <String fx:value= "2" />
-                  <String fx:value= "2.25" />
-                  <String fx:value= "2.5" />
-                  <String fx:value= "2.75" />
-                  <String fx:value= "3" />
-                  <String fx:value= "3.25" />
-                  <String fx:value= "3.5" />
-                  <String fx:value= "3.75" />
-                  <String fx:value= "4" />
-                  <String fx:value= "4.25" />
-                  <String fx:value= "4.5" />
-                  <String fx:value= "4.75" />
-                  <String fx:value= "5" />
-                  <String fx:value= "5.25" />
-                  <String fx:value= "5.5" />
-                  <String fx:value= "5.75" />
-                  <String fx:value= "6" />
-                  <String fx:value= "6.25" />
-                  <String fx:value= "6.5" />
-                  <String fx:value= "6.75" />
-                  <String fx:value= "7" />
-                  <String fx:value= "7.25" />
-                  <String fx:value= "7.5" />
-                  <String fx:value= "7.75" />
-                  <String fx:value= "8" />
+                  <String fx:value="0" />
+                  <String fx:value="0.25" />
+                  <String fx:value="0.5" />
+                  <String fx:value="0.75" />
+                  <String fx:value="1" />
+                  <String fx:value="1.25" />
+                  <String fx:value="1.5" />
+                  <String fx:value="1.75" />
+                  <String fx:value="2" />
+                  <String fx:value="2.25" />
+                  <String fx:value="2.5" />
+                  <String fx:value="2.75" />
+                  <String fx:value="3" />
+                  <String fx:value="3.25" />
+                  <String fx:value="3.5" />
+                  <String fx:value="3.75" />
+                  <String fx:value="4" />
+                  <String fx:value="4.25" />
+                  <String fx:value="4.5" />
+                  <String fx:value="4.75" />
+                  <String fx:value="5" />
+                  <String fx:value="5.25" />
+                  <String fx:value="5.5" />
+                  <String fx:value="5.75" />
+                  <String fx:value="6" />
+                  <String fx:value="6.25" />
+                  <String fx:value="6.5" />
+                  <String fx:value="6.75" />
+                  <String fx:value="7" />
+                  <String fx:value="7.25" />
+                  <String fx:value="7.5" />
+                  <String fx:value="7.75" />
+                  <String fx:value="8" />
                </FXCollections>
             </items>
       </ChoiceBox>
+      <Button fx:id="vercarro" layoutX="102.0" layoutY="235.0" mnemonicParsing="false" onMouseClicked="#VerificarCarroAtual" prefHeight="25.0" prefWidth="150.0" text="Verificar Carro Atual" />
    </children>
 </AnchorPane>

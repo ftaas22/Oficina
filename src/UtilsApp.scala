@@ -149,6 +149,15 @@ object UtilsApp {
     }
   }
 
+  def FindInAll(modelo:String, ano: String, dono: String): Carro = {
+    val car = FindCarInMec(modelo,ano,dono,meclist.toList)
+    if(car != null) car
+    else {
+      val temp = FindCar(modelo,ano,dono,carlist.toList)
+      temp
+    }
+  }
+
   def getCarList(): List[Carro] ={
     carlist.toList
   }
